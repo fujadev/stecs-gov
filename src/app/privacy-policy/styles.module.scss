@@ -1,0 +1,89 @@
+.widthEnforcer {
+	max-width: 900px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+
+	li {
+		margin-bottom: 10px;
+	}
+	ul,
+	li {
+		list-style-type: disc;
+	}
+
+	ol,
+	ul,
+	dl {
+		padding-left: 2rem;
+		margin-bottom: 1rem;
+	}
+}
+
+.title {
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 120px;
+	letter-spacing: 0em;
+	text-align: center;
+}
+
+.infoTitle {
+	font-size: 22px;
+	font-weight: 700;
+	line-height: 30px;
+	letter-spacing: 0em;
+	text-align: left;
+}
+
+.text {
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 31px;
+	letter-spacing: 0em;
+	text-align: justify;
+	margin-bottom: 15px;
+}
+
+.numbering {
+	font-size: 22px;
+	font-weight: 700;
+	line-height: 30px;
+	letter-spacing: 0em;
+	text-align: left;
+	// padding-left: 0;
+}
+
+.numbering > li {
+	list-style-type: decimal;
+	margin-bottom: 30px;
+}
+
+.smallLetter li {
+	list-style-type: lower-alpha;
+	margin-bottom: 10px;
+}
+
+@media screen and (max-width: 600px) {
+	.title {
+		font-size: 16px;
+		line-height: 60px;
+	}
+
+	.numbering,
+	.infoTitle {
+		font-size: 14px;
+		line-height: 30px;
+	}
+
+	.text {
+		font-size: 10px;
+		line-height: 20px;
+		margin-bottom: 7px;
+	}
+
+	.numbering > li {
+		margin-bottom: 15px;
+	}
+}

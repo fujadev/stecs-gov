@@ -2,12 +2,13 @@
 
 import AppHeader from "@/components/Header";
 import Image from "next/image";
-import groupBuilding from '@/assets/images/groupBuilding.png'
+import groupBuilding from '@/assets/images/groupBuilding.webp'
 import BankingReinvented from "@/components/BankingReinvented";
 import StecsGlobal from "@/components/StecsGlobal";
 import AppFooter from "@/components/AppFooter";
 import FeedbackSection from "@/components/Feedback";
-import AppButton from "@/components/Common";
+import AppButton from "@/components/Common/AppButton";
+import Link from "next/link";
 
 
 const About = () => {
@@ -29,9 +30,11 @@ const About = () => {
         <p className="text-[18px] md:text-[22px] leading-[32px] text-sub-500 mb-[24px]">Stecs Learning Community is a growing community dedicated to empowering  Muslims with the tools and knowledge they need to make Shariah-compliant financial decisions. Our community offers educational content,  professional advice, valuable resources, and online workshops/webinars  tailored to help you navigate your financial journey.</p>
         <p className="text-[18px] md:text-[22px] leading-[32px] text-sub-500 mb-[24px]">Whether you're just starting or seeking to enhance your financial literacy, our welcoming community is here to support you. With Stecs Learning  Community, you can achieve your financial goals while staying true to  Islamic principles.</p>
         <p className="text-[18px] md:text-[22px] leading-[32px] text-sub-500 mb-[24px]">Become a member today and take charge of your financial future in a halal way business.</p>
-        <AppButton fullWidth={false} mih={48} classNames={{ root: "mt-[27px] md:mt-[51px] w-[212px] mx-auto py-[14px] px-[16px] rounded-[10px]" }}>
-          <span className="text-[#fff] text-[14px] font-medium">Join Us today</span>
-        </AppButton>
+        <Link className="mx-auto" href="https://docs.google.com/forms/d/e/1FAIpQLSf3v_5_IXXNHD1gWSAVeuZ_hYzfyEyiGbDtRsz2qubHIGbHUQ/viewform" target="_blank">
+          <AppButton fullWidth={false} mih={48} classNames={{ root: "mt-[27px] md:mt-[51px] w-[212px] mx-auto py-[14px] px-[16px] rounded-[10px]" }}>
+            <span className="text-[#fff] text-[14px] font-medium">Join Us today</span>
+          </AppButton>
+        </Link>
       </section>
 
       <BankingReinvented />

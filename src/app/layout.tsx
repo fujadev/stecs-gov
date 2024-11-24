@@ -5,6 +5,7 @@ import Providers from './providers';
 
 import localFont from 'next/font/local';
 import './globals.css';
+import StoreModal from '@/components/Common/StoreModal';
 
 export const metadata: Metadata = {
   title: 'Stecs',

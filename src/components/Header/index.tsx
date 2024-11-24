@@ -1,12 +1,14 @@
 import HeaderLogo from "@/assets/icons/HeaderLogo";
 import Link from "next/link";
 // import { usePathname } from "next/navigation";
-import AppButton from "../Common";
+import AppButton from "../Common/AppButton";
 import Hamburger from "@/assets/icons/Hamburger";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Transition } from "@mantine/core";
 import Close from "@/assets/icons/Close";
+import { useAppDispatch } from "@/config/api/config/store";
+import { setStoreModal } from "@/config/api/auth/slice";
 
 const navs = [
   {
@@ -28,6 +30,7 @@ const AppHeader = () => {
   // const pathname = usePathname();
   const [isMobileNavActive, setIsMobileNavActivee] = useState<boolean>(false);
   const params = useParams();
+  const dispatch = useAppDispatch()
 
   const toogleMobileNav = (): void => {
     setIsMobileNavActivee(!isMobileNavActive);
@@ -51,7 +54,7 @@ const AppHeader = () => {
         })}
       </nav>
       <div className="hidden md:block">
-        <AppButton fullWidth={false} mih={48} classNames={{ root: "py-[14px] px-[16px] rounded-[10px]" }}>
+        <AppButton onClick={() => dispatch(setStoreModal(true))} fullWidth={false} mih={48} classNames={{ root: "py-[14px] px-[16px] rounded-[10px]" }}>
           <span className="text-[#fff] text-[14px] font-medium">Open an Account</span>
         </AppButton>
       </div>
@@ -75,7 +78,7 @@ const AppHeader = () => {
                 {link.title}
               </Link>
             ))}
-            <AppButton fullWidth={false} mih={48} classNames={{ root: "py-[14px] px-[16px] rounded-[10px]" }}>
+            <AppButton onClick={() => dispatch(setStoreModal(true))} fullWidth={false} mih={48} classNames={{ root: "py-[14px] px-[16px] rounded-[10px]" }}>
               <span className="text-[#fff] text-[14px] font-medium">Open an Account</span>
             </AppButton>
           </nav>

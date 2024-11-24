@@ -1,13 +1,13 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import { Client } from '../client/types';
 
 type ThemeMode = 'auto' | 'dark' | 'light';
 
 type AuthState = {
 	token?: string;
-	user?: Client;
+	user?: any;
 	mode: ThemeMode;
+	showStoreModal?: boolean;
 };
 
 const initialState: AuthState = {
@@ -22,17 +22,13 @@ const authSlice = createSlice({
 			// eslint-disable-next-line fp/no-mutation
 			state.token = undefined;
 		},
-		storeToken: (state, { payload }: PayloadAction<string>) => {
-			// eslint-disable-next-line fp/no-mutation
-			state.token = payload;
-		},
-		storeUser: (state, { payload }: PayloadAction<Client>) => {
-			// eslint-disable-next-line fp/no-mutation
-			state.user = payload;
-		},
 		setMode: (state, { payload }: PayloadAction<ThemeMode>) => {
 			// eslint-disable-next-line fp/no-mutation
 			state.mode = payload;
+		},
+		setStoreModal: (state, { payload }: PayloadAction<boolean>) => {
+			// eslint-disable-next-line fp/no-mutation
+			state.showStoreModal = payload;
 		},
 		resetStore: (state) => {
 			// eslint-disable-next-line fp/no-mutation
@@ -46,4 +42,4 @@ const authSlice = createSlice({
 });
 
 export default authSlice.reducer;
-export const { clearToken, storeToken, storeUser, resetStore } = authSlice.actions;
+export const { clearToken, resetStore, setStoreModal } = authSlice.actions;

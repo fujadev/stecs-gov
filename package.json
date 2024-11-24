@@ -58,6 +58,7 @@
     "redux-persist": "^6.0.0",
     "sass": "^1.75.0",
     "sharp": "^0.33.5",
+    "swiper": "^11.1.15",
     "tailwindcss": "^3.4.1",
     "ts-pattern": "^5.2.0",
     "typescript": "^5",

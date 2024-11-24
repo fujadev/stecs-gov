@@ -5,9 +5,16 @@ import PaymentRow from "./PaymentRow";
 import Image from "next/image";
 import image1 from '@/assets/images/image6.png'
 import TabDescription from "../FeaturesTabPanel/TabDescription";
+import PieChartLine from "@/assets/icons/PieChartLine";
+import { useAppDispatch } from "@/config/api/config/store";
+import { setStoreModal } from "@/config/api/auth/slice";
+import GuageBar from "@/assets/icons/GaugeBar";
+import Vector1 from "@/assets/icons/Vector1";
+import horizontalBarChart from "@/assets/images/horizontalBarChart2.webp";
 
 
 const FeaturesSection = () => {
+  const dispatch = useAppDispatch()
 
   const tabs = [
     {
@@ -19,25 +26,12 @@ const FeaturesSection = () => {
         title: "Your Personal and Business Financial Hub",
         subText: "Manage your transactions effortlessly with Stecs.Send and receive money seamlessly, whether it’s for personal or business needs.",
         btnText: "Open An Account",
+        btnAction: () => dispatch(setStoreModal(true)),
         asideContent:
-          <>
-            <div className="rounded-[20px] px-[13px] pt-[30px] bg-[#FDEDF0] relative">
-              <Image src={image1} alt="Stecs Features" />
-              <div className="rounded-b-[20px] absolute left-[0] bottom-[0] w-full h-[143px] bg-gradient-to-b from-transparent to-white"></div>
-            </div>
-            {/* <div className="p-[33px] rounded-[20px] bg-neutral-100 max-w-[350px] w-full">
-              <div className="p-[12px] bg-white rounded-[13px] border-[1px] border-[#E2E4E9]">
-                <div className="flex items-center gap-[7px] mb-[16px]">
-                  <RefundIcon />
-                  <span className="text-[16px] text-main-900">Payments</span>
-                  <span className="ml-auto border-[1px] border-[#E2E4E9] p-[4.8px] rounded-[6px]">See All</span>
-                </div>
-                <div className="flex flex-col gap-[6px]">
-                  <PaymentRow />
-                </div>
-              </div>
-            </div> */}
-          </>
+          <div className="max-md:mx-auto rounded-[20px] px-[13px] pt-[30px] bg-[#FDEDF0] relative">
+            <Image src={image1} className="max-w-[414px] w-full" alt="Stecs Features" />
+            <div className="rounded-b-[20px] absolute left-[0] bottom-[0] w-full h-[143px] bg-gradient-to-b from-transparent to-white"></div>
+          </div>
       }
     },
     {
@@ -45,20 +39,21 @@ const FeaturesSection = () => {
       component: FeaturesTabPanel,
       value: "payBills",
       props: {
-        words: ['SEND', 'RECEIVE', 'MANAGE'],
-        title: "Your Personal and Business Financial Hub",
-        subText: "Manage your transactions effortlessly with Stecs.Send and receive money seamlessly, whether it’s for personal or business needs.",
-        btnText: "Open An Account",
+        words: ['Pay', 'MANAGE', 'SIMPLIFY'],
+        title: "Simplify Your Bills with STECS",
+        subText: "From airtime to electricity, STECS makes bill payments simple. Take care of your essentials like airtime, data, cable, and electricity, all from one app.",
+        btnText: "Pay Bills",
+        btnAction: () => dispatch(setStoreModal(true)),
         asideContent:
           <>
-            <div className="max-md:p-[12px] p-[33px] rounded-[20px] bg-[#F9FAE0] max-w-[350px] w-full flex justify-center items-center max-w-[440px] min-h-[465px] max-md: min-h-[100%]">
+            <div className="max-md:p-[12px] max-md:mx-auto p-[33px] rounded-[20px] bg-[#F9FAE0] max-w-[350px] w-full flex justify-center items-center max-w-[440px] min-h-[465px] max-md: min-h-[100%]">
               <div className="p-[12px] bg-white rounded-[13px] border-[1px] border-[#E2E4E9] max-w-[285px]">
                 <div className="flex items-center gap-[7px] mb-[16px]">
                   <RefundIcon />
                   <span className="text-[16px] text-main-900">Payments</span>
                   <span className="ml-auto border-[1px] border-[#E2E4E9] p-[4.8px] rounded-[6px]">See All</span>
                 </div>
-                <div className="flex flex-col gap-[6px]">
+                <div className="flex flex-col gap-[6px] w-full">
                   <PaymentRow />
                 </div>
               </div>
@@ -71,11 +66,36 @@ const FeaturesSection = () => {
       component: FeaturesTabPanel,
       value: "insights",
       props: {
-        words: ['SEND', 'RECEIVE', 'MANAGE'],
-        title: "Your Personal and Business Financial Hub",
-        subText: "Manage your transactions effortlessly with Stecs.Send and receive money seamlessly, whether it’s for personal or business needs.",
-        btnText: "Open An Account",
-        asideContent: <h3>Loading...</h3>
+        words: ['FINANCIAL', 'CONTROL', 'INSIGHTS'],
+        title: "Insights: Your Financial Compass",
+        subText: "Stay in control of your finances with the Insights feature. Monitor your spending habits, set budgets, and make informed financial decisions with ease.",
+        btnText: "Start Tracking Now",
+        btnAction: () => dispatch(setStoreModal(true)),
+        asideContent:
+          <>
+            <div className=" max-md:mx-auto max-md:p-[12px] p-[33px] rounded-[20px] bg-[#DAF2FB] max-w-[350px] w-full flex justify-center items-center max-w-[440px] min-h-[465px] max-md: min-h-[100%]">
+              <div className="p-[12px] bg-white rounded-[13px] border-[1px] border-[#E2E4E9] max-w-[285px] w-full">
+                <div className="flex items-center gap-[7px] mb-[16px]">
+                  <PieChartLine />
+                  <span className="text-[16px] text-main-900">Insights</span>
+                  <span className="ml-auto border-[1px] border-[#E2E4E9] p-[4.8px] rounded-[6px]">OCT 2024</span>
+                </div>
+                <div className="flex flex-col gap-[6px] justify-center border-b pb-[10px] border-[#E2E4E9]">
+                  <GuageBar />
+                </div>
+
+                <div>
+                  <div className="px-[11px] mt-[10px] pb-[11px] rounded-[11px] border border-[#E2E4E9]">
+                    <div className="flex gap-[6px] items-center py-[12px] border-b border-[#E2E4E9]">
+                      <Vector1 />
+                      <span>Where your money went</span>
+                    </div>
+                    <Image src={horizontalBarChart} alt="Bar chart" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
       }
     },
   ]

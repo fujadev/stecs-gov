@@ -1,8 +1,7 @@
 import BlueDot from "@/assets/icons/BlueDot";
 import PieChartCircle from "@/assets/icons/PieChart";
 import PieChartLine from "@/assets/icons/PieChartLine";
-import AppStoreDark from "@/assets/icons/AppStoreDark";
-import PlayStoreDark from "@/assets/icons/PlayStoreDark";
+import StoreButton from "../Common/StoreButton";
 
 const InvestmentSection = () => {
   return (
@@ -37,10 +36,7 @@ const InvestmentSection = () => {
         <div className="max-md:text-center flex flex-col max-md:items-center max-w-[468px] w-full">
           <h2 className="max-w-[366px] max-sm:text-[19px] max-sm:leading-[24px] text-[32px] font-bold leading-[40px] mb-[24px]">Ethical Investments with Peace of Mind</h2>
           <p className="text-[16px] leading-[24px]">STECS Vault ensures that all your savings are invested in low-risk, Shari'ah-compliant vehicles like Sukuks, Ijarah, and Murabahah contracts. Your money grows responsibly, with capital preservation at the core of everything we do.</p>
-          <div className="flex items-center mt-[25px] gap-[12px]">
-            <AppStoreDark />
-            <PlayStoreDark />
-          </div>
+          <StoreButton theme="dark" />
         </div>
       </div>
     </section>

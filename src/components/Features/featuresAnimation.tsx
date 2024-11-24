@@ -1,7 +1,7 @@
 import { Tabs } from "@mantine/core";
 import FeaturesTabPanel from "../FeaturesTabPanel";
 import { useEffect, useLayoutEffect, useState } from "react";
-import AppButton from "../Common";
+import AppButton from "../Common/AppButton";
 import gsap from 'gsap';
 
 import image1 from '@/assets/images/image6.png'

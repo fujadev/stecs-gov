@@ -27,10 +27,11 @@ const AppButton: FC<ButtonProps> = ({ w, disabled, loading, children, classNames
     loading={loading}
     disabled={disabled}
     classNames={{
-      inner: 'gap-[12px]',
+      inner: 'gap-[12px] ',
       root: 'rounded-[8px]',
       ...classNames
     }}
+    className='animate-shimmer'
     mih={mih}
     leftSection={leftSection}
     rightSection={rightSection}

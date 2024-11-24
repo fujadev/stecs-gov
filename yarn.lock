@@ -5287,6 +5287,7 @@ __metadata:
     redux-persist: ^6.0.0
     sass: ^1.75.0
     sharp: ^0.33.5
+    swiper: ^11.1.15
     tailwindcss: ^3.4.1
     ts-pattern: ^5.2.0
     typescript: ^5
@@ -5495,6 +5496,13 @@ __metadata:
   version: 1.0.0
   resolution: "supports-preserve-symlinks-flag@npm:1.0.0"
   checksum: 53b1e247e68e05db7b3808b99b892bd36fb096e6fba213a06da7fab22045e97597db425c724f2bbd6c99a3c295e1e73f3e4de78592289f38431049e1277ca0ae
+  languageName: node
+  linkType: hard
+
+"swiper@npm:^11.1.15":
+  version: 11.1.15
+  resolution: "swiper@npm:11.1.15"
+  checksum: 2fd6d8ee4cfd27294614f8eec7e15ea440d6fcb40a9ca4c66b6b951931c880507bfceadbf3ea5556ddc18382112f38afec2a8b340a5ef4e4099f07fbdb86dbad
   languageName: node
   linkType: hard
 

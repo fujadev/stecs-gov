@@ -10,7 +10,6 @@ import InvestmentSection from '@/components/InvestmentSection';
 import BankingReinvented from '@/components/BankingReinvented';
 import StecsGlobal from '@/components/StecsGlobal';
 import AppFooter from '@/components/AppFooter';
-// import FeaturesSection2 from '@/components/Features/featuresAnimation';
 
 
 const Home = (): ReactNode => (
@@ -23,7 +22,6 @@ const Home = (): ReactNode => (
     </div>
     <ChangeTheWayYouBank />
     <FeaturesSection />
-    {/* <FeaturesSection2 /> */}
     <VaultSavingsSection />
     <InvestmentSection />
     <BankingReinvented />

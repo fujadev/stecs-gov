@@ -1,16 +1,15 @@
-import AppStoreLight from "@/assets/icons/AppStoreLight";
 import ArrowUp from "@/assets/icons/ArrowUpIcon";
-import FacebookIcon from "@/assets/icons/Facebook";
 import InstagramIcon from "@/assets/icons/InstagramIcon";
 import LinkedinIcon from "@/assets/icons/LinkedIn";
 import LogoLight from "@/assets/icons/LogoWhite";
-import PlayStoreLight from "@/assets/icons/PlayStoreLight";
 import XIcon from "@/assets/icons/xIcon";
 import ndrp from '@/assets/images/ndrp.png'
 import Image from "next/image";
 import Link from "next/link";
 import FeedbackSection from "../Feedback";
 import React from "react";
+import StoreButton from "../Common/StoreButton";
+import { IG, LINKEDIN, X } from "@/config/constants/globals";
 
 
 const companyLinks = [
@@ -28,7 +27,7 @@ const companyLinks = [
   },
   {
     title: "Shariah Compliance",
-    href: ""
+    href: "/sheriah-compliance"
   },
 ]
 const legalLinks = [
@@ -38,7 +37,7 @@ const legalLinks = [
   },
   {
     title: "Privacy Policy",
-    href: ""
+    href: "/privacy-policy"
   },
   {
     title: "Terms of Service",
@@ -50,7 +49,7 @@ interface props {
 }
 const AppFooter: React.FC<props> = ({ showFeedBackSection }) => {
   return (
-    <footer className="bg-[#151718]">
+    <footer className="bg-[#151718]" id="footer">
       <div className="wrapper-pad">
         {showFeedBackSection && <FeedbackSection />}
         <div className="max-w-[1216px] mx-auto pb-[48px]">
@@ -58,10 +57,7 @@ const AppFooter: React.FC<props> = ({ showFeedBackSection }) => {
             <div className="w-full sm:w-fit">
               <LogoLight />
               <Image src={ndrp} alt="NDRP regulation" className="mt-[32px]" />
-              <div className="gap-[12px] flex items-center mt-[32px]">
-                <AppStoreLight />
-                <PlayStoreLight />
-              </div>
+              <StoreButton theme="light" />
             </div>
             <ul className="flex flex-col gap-[12px]">
               <li className="opacity-40 mb-[12px]">Company</li>
@@ -100,7 +96,15 @@ const AppFooter: React.FC<props> = ({ showFeedBackSection }) => {
             </div>
 
             <div className="flex items-center gap-[8px]">
-              <InstagramIcon /> <LinkedinIcon /> <FacebookIcon /> <XIcon />
+              <Link href={IG} target="_blank">
+                <InstagramIcon />
+              </Link>
+              <Link href={LINKEDIN} target="_blank">
+                <LinkedinIcon />
+              </Link>
+              <Link href={X} target="_blank">
+                <XIcon />
+              </Link>
             </div>
           </div>
         </div>

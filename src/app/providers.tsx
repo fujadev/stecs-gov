@@ -13,18 +13,26 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistor, store } from '@/config/api/config/store';
 import { mantineTheme } from '@/config/constants/theme/mantine';
+import StoreModal from '@/components/Common/StoreModal';
 
-const Providers = ({ children }: { children: ReactNode }): ReactNode => (
-  <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-      <MantineProvider theme={mantineTheme}>
-        <Notifications position='top-right' />
-        <ModalsProvider>
-          {children}
-        </ModalsProvider>
-      </MantineProvider>
-    </PersistGate>
-  </Provider>
-);
+const Providers = ({ children }: { children: ReactNode }): ReactNode => {
+
+
+
+  return (
+
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <MantineProvider theme={mantineTheme}>
+          <Notifications position='top-right' />
+          <ModalsProvider>
+            {children}
+            <StoreModal />
+          </ModalsProvider>
+        </MantineProvider>
+      </PersistGate>
+    </Provider>
+  )
+};
 
 export default Providers;

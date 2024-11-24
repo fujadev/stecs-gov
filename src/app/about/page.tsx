@@ -2,8 +2,8 @@
 
 import AppHeader from "@/components/Header";
 import Image from "next/image";
-import businesswoman from '@/assets/images/businesswoman1.png'
-import businesswomanM from '@/assets/images/businesswoman1M.png'
+import businesswoman from '@/assets/images/businesswoman1.webp'
+import businesswomanM from '@/assets/images/businesswoman1M.webp'
 import image1 from '@/assets/images/image6.png'
 import ArrowRightLine from "@/assets/icons/ArrowRigtLine";
 import ValueCard from "@/components/ValueCard";
@@ -57,7 +57,7 @@ const About = () => {
       <section className="wrapper-pad flex items-center gap-[24px] max-lg:flex-col justify-between max-w-[1216px] mx-auto mt-[102px] max-sm:mt-[31px]">
         <h2 className="max-lg:text-center max-sm:text-[43px] text-[72px] font-bold max-sm:leading-[45px] leading-[87px] text-main-900 max-w-[577px] sm:tracking-[-2px]">The one money app for an ethical lifestyle</h2>
         <p className="max-lg:text-center text-[18px] leading-[24px] text-main-900 max-w-[488px]">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla officia repudiandae quod fugiat ducimus perspiciatis veritatis, magnam libero dolore aliquid temporibus expedita non corrupti consequatur cum commodi blanditiis iste facere!
+          Stecs is an ethical mobile money app that lets you manage all your finances in just one app. Swift account opening process, savings and investment options, money management tools are some of the things you stand to gain by opening an account with us.
         </p>
       </section>
       <div className="wrapper-pad max-w-[1232px] mx-auto overflow-hidden w-fit mt-[96px]">
@@ -75,7 +75,7 @@ const About = () => {
           </div>
         </div>
         <div className="rounded-[20px] px-[13px] pt-[30px] bg-[#EBF2FF] relative">
-          <Image src={image1} alt="Stecs Features" />
+          <Image src={image1} className="max-w-[414px] w-full" alt="Stecs Features" />
           <div className="rounded-b-[20px] absolute left-[0] bottom-[0] w-full h-[143px] bg-gradient-to-b from-transparent to-white"></div>
         </div>
 
