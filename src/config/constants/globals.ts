@@ -15,6 +15,6 @@ export const PLAYSTORE = 'https://play.google.com/store/apps/details?id=com.stec
 export const APPSTORE = 'https://apps.apple.com/us/app/stecs/id6451484520';
 export const X = 'https://x.com/Stecsng';
 export const IG = 'https://www.instagram.com/stecs.ng/';
-export const LINKEDIN = 'https://www.linkedin.com/company/unavailable/';
+export const LINKEDIN = 'https://www.linkedin.com/company/stecs-ng';
 
 export const concatClasses = clsx;

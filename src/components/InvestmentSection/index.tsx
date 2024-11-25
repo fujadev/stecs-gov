@@ -16,7 +16,7 @@ const InvestmentSection = () => {
             <PieChartCircle />
             <div className="absolute flex flex-col gap-[4px] items-center">
               <span className="text-[14px] text-sub-500">Global Stocks</span>
-              <span className="text-[28] text-main-900 font-bold">53.3%</span>
+              <span className="text-[28px] text-main-900 font-bold">53.3%</span>
             </div>
           </div>
           <div className="pt-[16px] border-t-1 border-[#E2E4E9]">

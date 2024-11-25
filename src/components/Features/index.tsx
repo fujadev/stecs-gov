@@ -80,8 +80,12 @@ const FeaturesSection = () => {
                   <span className="text-[16px] text-main-900">Insights</span>
                   <span className="ml-auto border-[1px] border-[#E2E4E9] p-[4.8px] rounded-[6px]">OCT 2024</span>
                 </div>
-                <div className="flex flex-col gap-[6px] justify-center border-b pb-[10px] border-[#E2E4E9]">
+                <div className="relative items-center flex flex-col gap-[6px] justify-center border-b pb-[10px] border-[#E2E4E9]">
                   <GuageBar />
+                  <div className="absolute bottom-[10px] flex flex-col items-center">
+                    <span className="text-[11px] text-sub-500 font-medium">SPENT SO FAR</span>
+                    <span className="text-[19.23px] text-main-900 font-medium">₦580,000.00</span>
+                  </div>
                 </div>
 
                 <div>
