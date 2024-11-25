@@ -140,3 +140,8 @@ a {
 	background-image: linear-gradient(110deg, transparent, 45%, #dae7fa1f, 55%, transparent) !important;
 	background-size: 200% 100% !important;
 }
+
+.swiper-slide {
+	width: 100%;
+	max-width: 630px;
+}

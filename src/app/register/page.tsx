@@ -11,6 +11,8 @@ import EyeIcon from "@/assets/icons/EyeIcon";
 import { useRouter, useSearchParams } from "next/navigation";
 import { handleMutation } from '@/config/helpers/mutation';
 import { useSignUpMutation } from "@/config/api/client/slice";
+import AppHeader from "@/components/Header";
+import AppFooter from "@/components/AppFooter";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -40,176 +42,175 @@ export default function Register() {
     await handleMutation({
       mutation: () => signUp(values).unwrap(),
       onSuccess(result: any) {
-        console.log('====================================');
-        console.log(result);
-        console.log('====================================');
-        // congratulations
-        // router.push('/verify-email');
+        router.push('/congratulations');
       },
     });
   }
 
   return (
-    <div className="wrapper-pad max-w-[1216px] mx-auto pt-[32px]">
-      <Link href='/'>
-        <HeaderLogo />
-      </Link>
-      <div className={classes.wrapper}>
-        <header className={classes.header}>
-          <h1 className={classes.title}>Accept your invite to Stecs</h1>
-          <p className={classes.subtitle}>Sign up for Stecs</p>
-        </header>
-        <main className={classes.mainContent}>
-          <Formik
-            initialValues={{
-              email: "",
-              password: "",
-              confirmPassword: "",
-              referralCode: refCode,
-              ageDeclaration: false,
-              terms: false
-            }}
-            validateOnMount={true}
-            validateOnChange={true}
-            validationSchema={validationSchema}
-            onSubmit={handleSubmit}
-          >
-            {({
-              handleChange,
-              handleSubmit,
-              errors,
-              setFieldTouched,
-              touched,
-              values,
-              isValid
-            }) => (
-              <form onSubmit={handleSubmit} className={classes.form}>
-                <div className={classes.formField}>
-                  <label htmlFor="email">Email</label>
-                  <input
-                    id="email"
-                    onChange={handleChange("email")}
-                    type="email"
-                    name="email"
-                    onBlur={() => setFieldTouched("email")}
-                    placeholder="Enter your email"
-                    value={values.email}
-                  />
-                  {touched.email && <small className="text-[red]">{errors.email}</small>}
-
-                </div>
-
-                <div className={classes.formField}>
-                  <label htmlFor="password">Password</label>
-                  <div className={classes.passwordContainer}>
-                    <input
-                      id="password"
-                      onChange={handleChange("password")}
-                      type={showPassword ? "text" : "password"}
-                      name="password"
-                      onBlur={() => setFieldTouched("password")}
-                      placeholder="Enter your password"
-                      className={classes.passwordInput}
-                      value={values.password}
-                    />
-                    <div
-                      onClick={() => setShowPassword(!showPassword)}
-                      className={classes.eyeContainer}
-                    >
-                      <div className="cursor-pointer">
-                        {!showPassword ? <EyeClose /> : <EyeIcon />}
-                      </div>
-                    </div>
-                  </div>
-                  {touched.password && <small className="text-[red]">{errors.password}</small>}
-                </div>
-
-                <div className={classes.formField}>
-                  <label htmlFor="confirmPassword">Confirm Password</label>
-                  <div className={classes.passwordContainer}>
-                    <input
-                      id="confirmPassword"
-                      onChange={handleChange("confirmPassword")}
-                      type={showPassword ? "text" : "password"}
-                      name="confirmPassword"
-                      onBlur={() => setFieldTouched("confirmPassword")}
-                      placeholder="Confirm your password"
-                      className={classes.passwordInput}
-                      value={values.confirmPassword}
-                    />
-                    <div
-                      onClick={() => setShowPassword(!showPassword)}
-                      className={classes.eyeContainer}
-                    >
-                      <div className="cursor-pointer">
-                        {!showPassword ? <EyeClose /> : <EyeIcon />}
-                      </div>
-                    </div>
-                  </div>
-                  {touched.confirmPassword && <small className="text-[red]">{errors.confirmPassword}</small>}
-                </div>
-
-                <div className={classes.formField}>
-                  <label htmlFor="referral">Referral Code</label>
-                  <input
-                    id="referral"
-                    onChange={handleChange("referral")}
-                    type="text"
-                    readOnly
-                    name="referral"
-                    onBlur={() => setFieldTouched("referral")}
-                    placeholder="Enter your referral code"
-                    value={values.referralCode || ''}
-                  />
-                </div>
-
-                <div className={classes.checkboxGroup}>
-                  <div className={classes.checkboxField}>
-                    <div className={classes.checkboxWrapper}>
-                      <input
-                        id="ageDeclaration"
-                        type="checkbox"
-                        onChange={handleChange("ageDeclaration")}
-                        onBlur={() => setFieldTouched("ageDeclaration")}
-                        checked={values.ageDeclaration}
-                      />
-                      <label htmlFor="ageDeclaration">I am 18 years and above</label>
-                    </div>
-                    {touched.ageDeclaration && <small className="text-[red]">{errors.ageDeclaration}</small>}
-                  </div>
-                  <div className={classes.checkboxField}>
-                    <div className={classes.checkboxWrapper}>
-                      <input
-                        id="terms"
-                        type="checkbox"
-                        onChange={handleChange("terms")}
-                        onBlur={() => setFieldTouched("terms")}
-                        checked={values.terms}
-                      />
-                      <label htmlFor="terms">
-                        By clicking the sign-up button, you have read and agree to the
-                        <Link href='/terms' target="_blank"> Terms and Conditions </Link>
-                        and
-                        <Link href='/privacy-policy' target="_blank"> Privacy Policy </Link>
-                        for Stecs.
-                      </label>
-                    </div>
-                    {touched.terms && <small className="text-[red]">{errors.terms}</small>}
-                  </div>
-                </div>
-
-                <button
-                  className={classes.submitButton}
-                  type="submit"
-                  disabled={isLoading || !isValid}
-                >
-                  {isLoading ? <div className={classes.loader}></div> : "Sign Up"}
-                </button>
-              </form>
-            )}
-          </Formik>
-        </main>
+    <main>
+      <div className="pt-[25px] pb-[25px] md:pb-[0] bg-[#fff] drop-shadow-[0_4px_4px_rgba(0,0,0,0.1)] md:drop-shadow-none">
+        <AppHeader />
       </div>
-    </div>
+      <div className="wrapper-pad max-w-[1216px] mx-auto pt-[32px]">
+        <div className={classes.wrapper}>
+          <header className={classes.header}>
+            <h1 className={classes.title}>Accept your invite to Stecs</h1>
+            <p className={classes.subtitle}>Sign up for Stecs</p>
+          </header>
+          <main className={classes.mainContent}>
+            <Formik
+              initialValues={{
+                email: "",
+                password: "",
+                confirmPassword: "",
+                referralCode: refCode,
+                ageDeclaration: false,
+                terms: false
+              }}
+              validateOnMount={true}
+              validateOnChange={true}
+              validationSchema={validationSchema}
+              onSubmit={handleSubmit}
+            >
+              {({
+                handleChange,
+                handleSubmit,
+                errors,
+                setFieldTouched,
+                touched,
+                values,
+                isValid
+              }) => (
+                <form onSubmit={handleSubmit} className={classes.form}>
+                  <div className={classes.formField}>
+                    <label htmlFor="email">Email</label>
+                    <input
+                      id="email"
+                      onChange={handleChange("email")}
+                      type="email"
+                      name="email"
+                      onBlur={() => setFieldTouched("email")}
+                      placeholder="Enter your email"
+                      value={values.email}
+                    />
+                    {touched.email && <small className="text-[red]">{errors.email}</small>}
+
+                  </div>
+
+                  <div className={classes.formField}>
+                    <label htmlFor="password">Password</label>
+                    <div className={classes.passwordContainer}>
+                      <input
+                        id="password"
+                        onChange={handleChange("password")}
+                        type={showPassword ? "text" : "password"}
+                        name="password"
+                        onBlur={() => setFieldTouched("password")}
+                        placeholder="Enter your password"
+                        className={classes.passwordInput}
+                        value={values.password}
+                      />
+                      <div
+                        onClick={() => setShowPassword(!showPassword)}
+                        className={classes.eyeContainer}
+                      >
+                        <div className="cursor-pointer">
+                          {!showPassword ? <EyeClose /> : <EyeIcon />}
+                        </div>
+                      </div>
+                    </div>
+                    {touched.password && <small className="text-[red]">{errors.password}</small>}
+                  </div>
+
+                  <div className={classes.formField}>
+                    <label htmlFor="confirmPassword">Confirm Password</label>
+                    <div className={classes.passwordContainer}>
+                      <input
+                        id="confirmPassword"
+                        onChange={handleChange("confirmPassword")}
+                        type={showPassword ? "text" : "password"}
+                        name="confirmPassword"
+                        onBlur={() => setFieldTouched("confirmPassword")}
+                        placeholder="Confirm your password"
+                        className={classes.passwordInput}
+                        value={values.confirmPassword}
+                      />
+                      <div
+                        onClick={() => setShowPassword(!showPassword)}
+                        className={classes.eyeContainer}
+                      >
+                        <div className="cursor-pointer">
+                          {!showPassword ? <EyeClose /> : <EyeIcon />}
+                        </div>
+                      </div>
+                    </div>
+                    {touched.confirmPassword && <small className="text-[red]">{errors.confirmPassword}</small>}
+                  </div>
+
+                  <div className={classes.formField}>
+                    <label htmlFor="referral">Referral Code</label>
+                    <input
+                      id="referral"
+                      onChange={handleChange("referral")}
+                      type="text"
+                      readOnly
+                      name="referral"
+                      onBlur={() => setFieldTouched("referral")}
+                      placeholder="Enter your referral code"
+                      value={values.referralCode || ''}
+                    />
+                  </div>
+
+                  <div className={classes.checkboxGroup}>
+                    <div className={classes.checkboxField}>
+                      <div className={classes.checkboxWrapper}>
+                        <input
+                          id="ageDeclaration"
+                          type="checkbox"
+                          onChange={handleChange("ageDeclaration")}
+                          onBlur={() => setFieldTouched("ageDeclaration")}
+                          checked={values.ageDeclaration}
+                        />
+                        <label htmlFor="ageDeclaration">I am 18 years and above</label>
+                      </div>
+                      {touched.ageDeclaration && <small className="text-[red]">{errors.ageDeclaration}</small>}
+                    </div>
+                    <div className={classes.checkboxField}>
+                      <div className={classes.checkboxWrapper}>
+                        <input
+                          id="terms"
+                          type="checkbox"
+                          onChange={handleChange("terms")}
+                          onBlur={() => setFieldTouched("terms")}
+                          checked={values.terms}
+                        />
+                        <label htmlFor="terms">
+                          By clicking the sign-up button, you have read and agree to the
+                          <Link href='/terms' target="_blank"> Terms and Conditions </Link>
+                          and
+                          <Link href='/privacy-policy' target="_blank"> Privacy Policy </Link>
+                          for Stecs.
+                        </label>
+                      </div>
+                      {touched.terms && <small className="text-[red]">{errors.terms}</small>}
+                    </div>
+                  </div>
+
+                  <button
+                    className={classes.submitButton}
+                    type="submit"
+                    disabled={isLoading || !isValid}
+                  >
+                    {isLoading ? <div className={classes.loader}></div> : "Sign Up"}
+                  </button>
+                </form>
+              )}
+            </Formik>
+          </main>
+        </div>
+      </div>
+      <AppFooter />
+    </main>
   );
 }

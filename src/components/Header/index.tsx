@@ -42,7 +42,9 @@ const AppHeader = () => {
 
   return (
     <header className="flex items-center justify-between max-w-[1280px] mx-auto w-full wrapper-pad">
-      <HeaderLogo />
+      <Link href="/">
+        <HeaderLogo />
+      </Link>
       <nav className="md:flex items-center gap-[4px] hidden">
         {navs.map(nav => {
           // const isActive = pathname === nav.path ? 'bg-[#DCF1FA] text-[#2BAEDF]' : 'hover:bg-[#F4F4F4]';

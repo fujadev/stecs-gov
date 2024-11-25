@@ -36,7 +36,7 @@ const data = [
 ]
 const VaultSavingsSection = () => {
   return (
-    <section className="wrapper-pad py-[73px] max-w-[1225px] mx-auto">
+    <section className="wrapper-pad py-[73px] max-w-[1340px] mx-auto">
       <div className="max-w-[531px] mx-auto">
         <h2 className="text-center font-bold text-[32px] text-[#000] max-sm:text-[24px] max-sm:leading-[40px]">Grow your savings, without compromising flexibility</h2>
         <p className="text-[16px] text-sub-500 mb-[104px] text-center">Looking to save for your future without sacrificing accessibility?  Our vaults provide the flexibility and security you need to reach your financial goals.</p>
@@ -44,13 +44,11 @@ const VaultSavingsSection = () => {
       <div className='hidden md:block'>
 
         <Swiper
-          slidesPerView={3}
-          // slidesPerView="auto"
-          spaceBetween={30}
-          centeredSlides={true}
+          slidesPerView="auto"
+          spaceBetween={25}
         >
           {data.map(({ btnText, desc, imgSrc, title, color }, idx) =>
-            <SwiperSlide className='h-[100%] flex flex-col'> <VaultCard title={title} imgSrc={imgSrc} desc={desc} btnText={btnText} color={color} key={idx} /> </SwiperSlide>
+            <SwiperSlide > <VaultCard title={title} imgSrc={imgSrc} desc={desc} btnText={btnText} color={color} key={idx} /> </SwiperSlide>
           )}
         </Swiper>
       </div>
@@ -86,7 +84,7 @@ const VaultCard: React.FC<vaultCardprops> = ({ desc, imgSrc, title, btnText, col
               <BankCardLine />
               <span>Vaults</span>
             </div>
-            <Image src={imgSrc!} alt='Stecs Features' />
+            <Image src={imgSrc!} alt='Stecs Features' className='max-h-[286px]' />
           </div>
         </div>
       </div>
