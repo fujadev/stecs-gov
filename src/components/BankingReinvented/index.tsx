@@ -9,7 +9,7 @@ const BankingReinvented = () => {
   const dispatch = useAppDispatch()
   return (
     <section className="wrapper-pad mt-[45px] sm:mt-[96px] max-w-[1218px] w-full mx-auto">
-      <div className="bg-[#20232D] sm:rounded-[20px]">
+      <div className="bg-[#20232D] rounded-[20px]">
         <div className="flex flex-col items-center pt-[90px] bg-[url('../assets/images/stecsLogoBg.png')]">
           <h2 className="px-[13px] text-[22px] sm:text-[48px] font-bold text-[#fff] text-center mb-[12px]">Banking, Reinvented for Your Values</h2>
           <p className=" px-[13px] text-[12px] sm:text-[16px] mb-[30px] max-w-[671px] w-full text-[#CDD0D5] text-center">Ethical banking shouldn’t be hard. STECS combines digital banking with personalized, Shariah-compliant investments and wealth management tools, so you can spend, save, invest, and plan—all without compromise.</p>
