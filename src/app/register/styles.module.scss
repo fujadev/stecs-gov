@@ -1,0 +1,158 @@
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+
+	label {
+		font-size: 16px;
+		font-weight: 500;
+		margin-top: 15px;
+	}
+
+	input {
+		padding: 10px 14px;
+		border: 1px solid #d0d5dd;
+		font-size: 14px;
+		border-radius: 8px;
+		margin-top: 6px;
+	}
+}
+
+.backgroundImage {
+	width: 100%;
+
+	position: absolute;
+	top: 0;
+	left: 320px;
+	z-index: -1;
+}
+
+.header {
+	text-align: center;
+}
+
+.logo {
+	width: 150px;
+	margin: 20px 0 0 20px;
+}
+
+@media screen and (max-width: 531px) {
+	.logo {
+		width: 60px;
+	}
+}
+
+.title {
+	font-size: 32px;
+	text-transform: uppercase;
+	font-weight: 900;
+}
+
+@media screen and (max-width: 531px) {
+	.title {
+		font-size: 24px;
+		padding: 10px 0;
+		line-height: 27px;
+	}
+}
+
+.subtitle {
+	font-size: 16px;
+	color: #666;
+}
+
+.mainContent {
+	width: 100%;
+	max-width: 500px;
+	background-color: #ffffff;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+}
+
+.formField {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+}
+
+.passwordContainer {
+	display: flex;
+	align-items: center;
+	position: relative;
+}
+
+.passwordContainer .eyeContainer {
+	position: absolute;
+	right: 10px;
+	border: 0;
+}
+
+.passwordInput {
+	flex: 1;
+}
+
+.eyeIcon {
+	cursor: pointer;
+	color: #666;
+}
+
+.checkboxField {
+	display: flex;
+	flex-direction: column;
+}
+
+@media screen and (max-width: 531px) {
+	.checkboxField label {
+		font-size: 14px;
+	}
+}
+
+.checkboxWrapper {
+	display: flex;
+	align-items: baseline;
+	gap: 10px;
+}
+
+.submitButton {
+	border-radius: 4px;
+	background-color: #2baedf;
+	font-size: 16px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	color: #fff;
+	padding: 8px 0px;
+	width: 100%;
+	border: 0;
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+}
+
+.submitButton:disabled {
+	cursor: not-allowed;
+	background: #d0d5dd;
+}
+
+.loader {
+	border: 3px solid rgba(0, 0, 0, 0.1);
+	border-radius: 100%;
+	border-top: 3px solid #2baedf;
+	width: 24px;
+	height: 24px;
+	animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}

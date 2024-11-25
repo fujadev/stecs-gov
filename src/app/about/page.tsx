@@ -16,6 +16,9 @@ import BankingReinvented from "@/components/BankingReinvented";
 import StecsGlobal from "@/components/StecsGlobal";
 import AppFooter from "@/components/AppFooter";
 import FeedbackSection from "@/components/Feedback";
+import AppButton from "@/components/Common/AppButton";
+import { useAppDispatch } from "@/config/api/config/store";
+import { setStoreModal } from "@/config/api/auth/slice";
 
 
 const values = [
@@ -48,6 +51,7 @@ const values = [
 
 
 const About = () => {
+  const dispatch = useAppDispatch()
   return (
     <main>
       <div className="pt-[25px] pb-[25px] md:pb-[0] bg-[#fff] drop-shadow-[0_4px_4px_rgba(0,0,0,0.1)] md:drop-shadow-none">
@@ -69,10 +73,11 @@ const About = () => {
         <div className="max-w-[468px] w-full">
           <h2 className="max-md:text-center font-bold text-[32px] leading-[40px] text-[#000] mb-[24px]">We’re on a mission to remove your ethical financial worries</h2>
           <p className="max-md:text-center text-sub-500 text-[16px] leading-[24px]">From budgeting and saving to spending and investing, our app offers everything you need to take control of your money and reach your financial goals. Say goodbye to juggling multiple apps and hello to simplicity and convenience with our all-in-one money app that takes care of all your ethical financial worries.</p>
-          <div className="max-md:justify-center mt-[25px] flex items-center gap-[4px]">
+          <button onClick={() => dispatch(setStoreModal(true))} className="max-md:justify-center mt-[25px] flex items-center gap-[4px]">
             <span>Download app</span>
             <ArrowRightLine />
-          </div>
+          </button>
+
         </div>
         <div className="rounded-[20px] px-[13px] pt-[30px] bg-[#EBF2FF] relative">
           <Image src={image1} className="max-w-[414px] w-full" alt="Stecs Features" />

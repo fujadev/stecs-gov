@@ -1,19 +1,17 @@
 import { CLIENT_ENDPOINTS } from './endpoints';
-import type { SignUpRequest, SignUpResponse } from './types';
 import { api } from '@/config/api/config/base';
 import { createTag } from '@/config/api/config/tags';
 import { convertKeysCase } from '@/config/helpers/caseConverter';
 
 export const apiSlice = api.injectEndpoints({
 	endpoints: (builder) => ({
-		signUp: builder.mutation<SignUpResponse, SignUpRequest>({
+		signUp: builder.mutation<any, any>({
 			query: (payload) => ({
-				body: convertKeysCase(payload, 'snakeCase') as SignUpRequest,
+				body: convertKeysCase(payload, 'snakeCase'),
 				method: 'POST',
 				url: CLIENT_ENDPOINTS.signUp(),
 			}),
-			invalidatesTags: [createTag('Client')],
-			transformResponse: (data: SignUpResponse) => convertKeysCase(data, 'camelCase') as SignUpResponse,
+			transformResponse: (data) => convertKeysCase(data, 'camelCase'),
 		}),
 	}),
 });
