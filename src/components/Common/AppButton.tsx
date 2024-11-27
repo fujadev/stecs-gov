@@ -20,7 +20,7 @@ interface ButtonProps {
   w?: string | number
 }
 
-const AppButton: FC<ButtonProps> = ({ w, disabled, loading, children, classNames, type, onClick, mih = 40, color = '#233C8B', variant, title, fullWidth, leftSection, rightSection }) => (
+const AppButton: FC<ButtonProps> = ({ w, disabled, loading, children, classNames, type, onClick, mih = 52, color = '#233C8B', variant, title, fullWidth, leftSection, rightSection }) => (
   <Button
     type={type}
     onClick={onClick}

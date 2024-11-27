@@ -33,7 +33,7 @@ const companyLinks = [
 const legalLinks = [
   {
     title: "Terms Of Use",
-    href: ""
+    href: "/terms"
   },
   {
     title: "Privacy Policy",
@@ -81,7 +81,7 @@ const AppFooter: React.FC<props> = ({ showFeedBackSection }) => {
                 <Link href="mailto:support@stecs.ng" className="opacity-80 text-[#fff]">support@stecs.ng</Link>
               </li>
               <li className="underline">
-                <Link href="mailto:support@stecs.ng" className="opacity-80 text-[#fff]">support@stecs.ng</Link>
+                <Link href="mailto:hello@stecs.ng" className="opacity-80 text-[#fff]">hello@stecs.ng</Link>
               </li>
               <li className="underline">
                 <Link href="tel:02013309146" className="opacity-80 text-[#fff]">tel: 02013309146</Link>
@@ -91,7 +91,11 @@ const AppFooter: React.FC<props> = ({ showFeedBackSection }) => {
           <p className="text-[12px] sm:text-[16px] text-[#CDD0D5] my-[64px]">Stecs is a Financial Technology company duly registered with the Corporate Affairs Commission, Nigeria (RC: 1873053) with our office at 12F Tola Adewumi Street, TAAT Estate, Maryland, Lagos, Nigeria. Banking services provided in partnership with Providus Bank Limited. It's savings and Investments scheme is duly registered under the Co-operative Societies Laws of Lagos State with registration number LSCS 18966 as Stecs (Alausa) Multipurpose Cooperative Society Limited. Other activities and partnerships are in line with the best ethical practices and the laws of the Federal Republic of Nigeria. Any unauthorized redistribution or reproduction of any copyrighted materials on this website is strictly prohibited. Other product and company names are trademarks of their respective owners. This website contains simulated images; actual appearance may vary.</p>
           <div className="flex justify-between flex-wrap gap-[28px] items-center">
             <div className="flex items-center gap-[20px]">
-              <ArrowUp />
+              <button onClick={() => document.querySelector('#top')?.scrollIntoView({ behavior: 'smooth' })
+
+              }>
+                <ArrowUp />
+              </button>
               <span className="text-[#fff] opacity-50"> © {new Date().getFullYear()} Stecs Ltd. All Rights Reserved</span>
             </div>
 

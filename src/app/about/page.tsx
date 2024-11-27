@@ -69,11 +69,11 @@ const About = () => {
         <Image src={businesswomanM} className="sm:hidden rounded-[5px]" alt="" />
       </div>
 
-      <section className="wrapper-pad gap-[16px] flex max-md:flex-col items-center justify-around max-w-[1216px] w-full mx-auto py-[70px]">
+      <section className="wrapper-pad gap-[16px] flex max-md:flex-col max-md:text-center items-center justify-around max-w-[1216px] w-full mx-auto py-[70px]">
         <div className="max-w-[468px] w-full">
           <h2 className="max-md:text-center font-bold text-[32px] leading-[40px] text-[#000] mb-[24px]">We’re on a mission to remove your ethical financial worries</h2>
           <p className="max-md:text-center text-sub-500 text-[16px] leading-[24px]">From budgeting and saving to spending and investing, our app offers everything you need to take control of your money and reach your financial goals. Say goodbye to juggling multiple apps and hello to simplicity and convenience with our all-in-one money app that takes care of all your ethical financial worries.</p>
-          <button onClick={() => dispatch(setStoreModal(true))} className="max-md:justify-center mt-[25px] flex items-center gap-[4px]">
+          <button onClick={() => dispatch(setStoreModal(true))} className="max-md:justify-center mt-[25px] flex items-center gap-[4px] max-md:mx-auto">
             <span>Download app</span>
             <ArrowRightLine />
           </button>

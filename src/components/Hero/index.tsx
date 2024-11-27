@@ -1,6 +1,6 @@
 import heroImg from '@/assets/images/hero_img.webp'
 import heroImgM from '@/assets/images/hero_imgM.png'
-import mtnLogo from '@/assets/images/mtnLogo.png'
+import mtnLogo from '@/assets/images/mtnLogo.webp'
 import horizontalBarChart from '@/assets/images/horizontalBarChart1.webp'
 import cash1 from '@/assets/images/cash1.gif'
 import chart1 from '@/assets/images/chart1.gif'
@@ -18,7 +18,7 @@ const HeroSection = () => {
       <div className='p-[20px] rounded-[24px] bg-[#F9F9F7] max-w-[300px] w-full absolute right-[50px] top-[-60px]'>
         <span className='text-[12px] text-sub-500'>TRANSACTION</span>
         <div className='mt-[6px] flex item-center gap-[8px]'>
-          <Image src={mtnLogo} alt='MTN' />
+          <Image src={mtnLogo} alt='MTN' className='max-w-[28px]' />
           <span className='text-[18px] text-sub-500'>MTN Airtime</span>
           <span className='ml-auto'>₦1500.00</span>
         </div>

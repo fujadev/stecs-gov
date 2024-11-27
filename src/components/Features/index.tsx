@@ -3,7 +3,7 @@ import FeaturesTabPanel from "../FeaturesTabPanel";
 import RefundIcon from "@/assets/icons/RefundIcon";
 import PaymentRow from "./PaymentRow";
 import Image from "next/image";
-import image1 from '@/assets/images/image6.png'
+import image1 from '@/assets/images/mobileHomeMock.webp'
 import TabDescription from "../FeaturesTabPanel/TabDescription";
 import PieChartLine from "@/assets/icons/PieChartLine";
 import { useAppDispatch } from "@/config/api/config/store";
@@ -28,9 +28,8 @@ const FeaturesSection = () => {
         btnText: "Open An Account",
         btnAction: () => dispatch(setStoreModal(true)),
         asideContent:
-          <div className="max-md:mx-auto rounded-[20px] px-[13px] pt-[30px] bg-[#FDEDF0] relative">
-            <Image src={image1} className="max-w-[414px] w-full" alt="Stecs Features" />
-            <div className="rounded-b-[20px] absolute left-[0] bottom-[0] w-full h-[143px] bg-gradient-to-b from-transparent to-white"></div>
+          <div className="max-md:mx-auto rounded-[20px] px-[13px] pt-[30px] max-w-[440px] h-[465px] h-full w-full flex justify-center items-center bg-[#FDEDF0]">
+            <Image src={image1} className="max-w-[295px]" alt="Stecs Features" />
           </div>
       }
     },
@@ -111,7 +110,7 @@ const FeaturesSection = () => {
         <div className="max-md:block hidden mb-[66px]">
           {tabs.map(val =>
             <Tabs.Panel value={val.value}>
-              <TabDescription words={val.props.words} subText={val.props.subText} title={val.props.title} btnText={val.props.btnText} />
+              <TabDescription words={val.props.words} subText={val.props.subText} title={val.props.title} btnText={val.props.btnText} btnAction={val.props.btnAction} />
             </Tabs.Panel>
           )}
         </div>
