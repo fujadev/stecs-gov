@@ -986,15 +986,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tailwindcss/container-queries@npm:^0.1.1":
-  version: 0.1.1
-  resolution: "@tailwindcss/container-queries@npm:0.1.1"
-  peerDependencies:
-    tailwindcss: ">=3.2.0"
-  checksum: 2515ae0ce3ca5f3eb2a54116e97cbf4bce45d5fc7ad4b01f3204f51937461ff099c878048afbca22ca422ea3a9c1779df68a7cfe320ca155da47a8dde3257f4b
-  languageName: node
-  linkType: hard
-
 "@types/estree@npm:^1.0.6":
   version: 1.0.6
   resolution: "@types/estree@npm:1.0.6"
@@ -5306,7 +5297,6 @@ __metadata:
     "@mantine/spotlight": ^7.11.1
     "@react-google-maps/api": ^2.19.3
     "@reduxjs/toolkit": ^2.2.5
-    "@tailwindcss/container-queries": ^0.1.1
     "@types/lodash": ^4.17.4
     "@types/negotiator": ^0.6.3
     "@types/node": ^20
