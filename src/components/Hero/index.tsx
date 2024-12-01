@@ -14,7 +14,7 @@ const HeroSection = () => {
       <p className="text-main-900 text-[18px] max-sm:text-[13px] leading-[24px] max-sm:leading-[19px] font-light">Save for your goals, Earn ethical returns. Manage your wealth. Experience finance that aligns with your values, all in one app.</p>
       <StoreButton theme='dark' className='max-lg:mx-auto max-lg:w-fit' />
     </div>
-    <div className='max-h-[693px] h-[100%] w-auto relative max-md:hidden'>
+    <div className='container/mai mt-auto max-h-[693px] h-[100%] w-auto relative max-md:hidden'>
       <div className='p-[20px] rounded-[24px] bg-[#F9F9F7] max-w-[300px] w-full absolute right-[50px] top-[-60px]'>
         <span className='text-[12px] text-sub-500'>TRANSACTION</span>
         <div className='mt-[6px] flex item-center gap-[8px]'>
@@ -25,7 +25,7 @@ const HeroSection = () => {
       </div>
       <Image src={heroImg} className='w-full max-w-[719px]' alt="Stecs Features" />
 
-      <div className='p-[12px] rounded-[20px] bg-[white] max-w-[265px] absolute bottom-[63px] max-lg:left-[0px] left-[-100px]'>
+      <div className=' max-lg:scale-[1] max-lg:bottom-[30px] max-[1399px]:scale-[0.7] max-[1399px]:bottom-[-20px] p-[12px] rounded-[20px] bg-[white] max-w-[265px] absolute bottom-[63px] max-lg:left-[0px] left-[-100px]'>
         <div className='flex gap-[5.82px] items-center mb-[4px]'>
           <Image src={cash1} width={16} alt="Stecs Features" />
           <span className='text-[12px] text-main-900'>Savings</span>
