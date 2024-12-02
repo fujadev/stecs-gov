@@ -28,7 +28,7 @@ const FeaturesSection = () => {
         btnText: "Open An Account",
         btnAction: () => dispatch(setStoreModal(true)),
         asideContent:
-          <div className="max-md:mx-auto rounded-[20px] px-[13px] pt-[30px] max-w-[440px] h-[465px] h-full w-full flex justify-center items-center bg-[#FDEDF0]">
+          <div className="max-md:mx-auto rounded-[20px] px-[13px] pt-[30px] h-full w-full flex justify-center items-center bg-[#FDEDF0] max-w-[440px] min-h-[465px]">
             <Image src={image1} className="max-w-[295px]" alt="Stecs Features" />
           </div>
       }
@@ -45,7 +45,7 @@ const FeaturesSection = () => {
         btnAction: () => dispatch(setStoreModal(true)),
         asideContent:
           <>
-            <div className="max-md:p-[12px] max-md:mx-auto p-[33px] rounded-[20px] bg-[#F9FAE0] max-w-[350px] w-full flex justify-center items-center max-w-[440px] min-h-[465px] max-md: min-h-[100%]">
+            <div className="max-md:p-[12px] max-md:mx-auto p-[33px] rounded-[20px] bg-[#F9FAE0] w-full flex justify-center items-center max-w-[440px] min-h-[465px]">
               <div className="p-[12px] bg-white rounded-[13px] border-[1px] border-[#E2E4E9] max-w-[285px]">
                 <div className="flex items-center gap-[7px] mb-[16px]">
                   <RefundIcon />
@@ -72,7 +72,7 @@ const FeaturesSection = () => {
         btnAction: () => dispatch(setStoreModal(true)),
         asideContent:
           <>
-            <div className=" max-md:mx-auto max-md:p-[12px] p-[33px] rounded-[20px] bg-[#DAF2FB] max-w-[350px] w-full flex justify-center items-center max-w-[440px] min-h-[465px] max-md: min-h-[100%]">
+            <div className=" max-md:mx-auto max-md:p-[12px] p-[33px] rounded-[20px] bg-[#DAF2FB] w-full flex justify-center items-center max-w-[440px] min-h-[465px]">
               <div className="p-[12px] bg-white rounded-[13px] border-[1px] border-[#E2E4E9] max-w-[285px] w-full">
                 <div className="flex items-center gap-[7px] mb-[16px]">
                   <PieChartLine />

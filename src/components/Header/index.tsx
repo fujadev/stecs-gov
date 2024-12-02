@@ -56,7 +56,7 @@ const AppHeader = () => {
         })}
       </nav>
       <div className="hidden md:block">
-        <AppButton onClick={() => dispatch(setStoreModal(true))} fullWidth={false} mih={48} classNames={{ root: "py-[14px] px-[16px] rounded-[10px]" }}>
+        <AppButton onClick={() => dispatch(setStoreModal(true))} fullWidth={false} mih={52} classNames={{ root: "py-[14px] px-[16px] rounded-[10px]" }}>
           <span className="text-[#fff] text-[14px] font-medium">Open an Account</span>
         </AppButton>
       </div>

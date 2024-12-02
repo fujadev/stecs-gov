@@ -1,6 +1,5 @@
-import image1 from '@/assets/images/vualt2.webp'
-import image2 from '@/assets/images/vualt3.webp'
-
+import image1 from '@/assets/images/vualt2.png'
+import image2 from '@/assets/images/vualt3.png'
 import AppButton from '../Common/AppButton';
 import BankCardLine from '@/assets/icons/BankCardLine';
 import React from 'react';
@@ -8,6 +7,8 @@ import Image, { StaticImageData } from 'next/image';
 import { setStoreModal } from '@/config/api/auth/slice';
 import { useAppDispatch } from '@/config/api/config/store';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
+
 import 'swiper/css';
 
 const data = [
@@ -29,7 +30,7 @@ const data = [
     title: "Regular Vaults for Everyday Savings",
     desc: "Whether you prefer the security of a Locked Vault or the flexibility of an Unlocked Vault, our Regular Vaults provide a convenient solution for your everyday savings needs.",
     btnText: "Save with Regular Vaults",
-    imgSrc: image2,
+    imgSrc: image1,
     color: "#FBD4CB"
 
   },
@@ -46,6 +47,12 @@ const VaultSavingsSection = () => {
         <Swiper
           slidesPerView="auto"
           spaceBetween={25}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: true,
+          }}
+          loop={true}
+          modules={[Autoplay]}
         >
           {data.map(({ btnText, desc, imgSrc, title, color }, idx) =>
             <SwiperSlide > <VaultCard title={title} imgSrc={imgSrc} desc={desc} btnText={btnText} color={color} key={idx} /> </SwiperSlide>
@@ -84,7 +91,7 @@ const VaultCard: React.FC<vaultCardprops> = ({ desc, imgSrc, title, btnText, col
               <BankCardLine />
               <span>Vaults</span>
             </div>
-            <Image src={imgSrc!} alt='Stecs Features' className='max-h-[286px]' />
+            <Image src={imgSrc!} alt='Stecs Features' />
           </div>
         </div>
       </div>
