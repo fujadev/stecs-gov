@@ -3,8 +3,6 @@ import InstagramIcon from "@/assets/icons/InstagramIcon";
 import LinkedinIcon from "@/assets/icons/LinkedIn";
 import LogoLight from "@/assets/icons/LogoWhite";
 import XIcon from "@/assets/icons/xIcon";
-import ndrp from '@/assets/images/ndrp.png'
-import Image from "next/image";
 import Link from "next/link";
 import FeedbackSection from "../Feedback";
 import React from "react";
@@ -52,7 +50,7 @@ const AppFooter: React.FC<props> = ({ showFeedBackSection }) => {
           <div className="text-[#fff] w-full pt-[72px] flex flex-wrap gap-x-[16px] gap-y-[32px] justify-start sm:justify-between">
             <div className="w-full sm:w-fit">
               <LogoLight />
-              <Image src={ndrp} alt="NDRP regulation" className="mt-[32px]" />
+              {/* <Image src={ndrp} alt="NDRP regulation" className="mt-[32px]" /> */}
               <StoreButton theme="light" />
             </div>
             <ul className="flex flex-col gap-[12px]">
