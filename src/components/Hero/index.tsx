@@ -11,7 +11,7 @@ const HeroSection = () => {
   return (<section className="wrapper-pad w-[100%] max-w-[1253px] mx-auto flex max-lg:flex-col max-lg:items-center">
     <div className="md:min-w-[539px] max-lg:text-center w-full lg:max-w-[592px] pb-[90px] max-sm:pb-[32px]">
       <h1 className="text-[72px] max-sm:text-[42px] font-bold leading-[84px] max-sm:leading-[49px] tracking-[-2px] mb-[20px] text-main-900">One app, all your ethical financial needs.</h1>
-      <p className="text-main-900 text-[18px] max-sm:text-[13px] leading-[24px] max-sm:leading-[19px] font-light">Save for your goals, Earn ethical returns. Manage your wealth. Experience finance that aligns with your values, all in one app.</p>
+      <p className="text-main-900 text-[18px] max-sm:text-[13px] leading-[24px] max-sm:leading-[19px] font-light">Save for your goals. Earn ethical returns. Manage your wealth. Experience finance that aligns with your values, all in one app.</p>
       <StoreButton theme='dark' className='max-lg:mx-auto max-lg:w-fit' />
     </div>
     <div className='container/mai mt-auto max-h-[693px] h-[100%] w-auto relative max-md:hidden'>

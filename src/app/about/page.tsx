@@ -43,7 +43,7 @@ const values = [
     svg: <ControlIcon />,
   },
   {
-    title: "Sactisfaction",
+    title: "Satisfaction",
     desc: "Delivering an exceptional experience that meets and exceeds your expectations.",
     svg: <SactisfactionIcon />,
   },

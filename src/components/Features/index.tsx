@@ -24,7 +24,7 @@ const FeaturesSection = () => {
       props: {
         words: ['SEND', 'RECEIVE', 'MANAGE'],
         title: "Your Personal and Business Financial Hub",
-        subText: "Manage your transactions effortlessly with Stecs.Send and receive money seamlessly, whether it’s for personal or business needs.",
+        subText: "Manage your transactions effortlessly with Stecs. Send and receive money seamlessly, whether it’s for personal or business needs.",
         btnText: "Open An Account",
         btnAction: () => dispatch(setStoreModal(true)),
         asideContent:
