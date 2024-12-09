@@ -1,4 +1,5 @@
 import image1 from '@/assets/images/vualt2.png'
+import image3 from '@/assets/images/vaultUsd.png'
 import image2 from '@/assets/images/vualt3.png'
 import AppButton from '../Common/AppButton';
 import BankCardLine from '@/assets/icons/BankCardLine';
@@ -21,16 +22,16 @@ const data = [
   },
   {
     title: "Target Vaults for your milestones",
-    desc: "Need flexibility and high returns? Our vaults offer both. Lock for up to 13.5% interest or unlock after 30 days. Perfect for long-term savings or short-term needs.",
+    desc: "Need flexibility and high returns? Our vaults offer both. Lock for up to 13.5% returns or unlock after 30 days. Perfect for long-term savings or short-term needs.",
     btnText: "Save with Target Vaults",
     imgSrc: image2,
     color: "#CDF9F5"
   },
   {
-    title: "Regular Vaults for Everyday Savings",
-    desc: "Whether you prefer the security of a Locked Vault or the flexibility of an Unlocked Vault, our Regular Vaults provide a convenient solution for your everyday savings needs.",
-    btnText: "Save with Regular Vaults",
-    imgSrc: image1,
+    title: "Target Dollar vault for Everyday Savings",
+    desc: "Looking to grow your savings in dollars? Our Dollar Vault offers stability and attractive returns. Earn up to 6% returns while protecting your wealth in USD. Stay secure, stay dollar-smart!",
+    btnText: "Save with Target Dollar vault",
+    imgSrc: image3,
     color: "#FBD4CB"
 
   },

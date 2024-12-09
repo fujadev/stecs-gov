@@ -115,7 +115,7 @@ const PrivacyPolicy = () => {
                 <ul>
                   <li>name, username, gender, date of birth;</li>
                   <li>email address, postal address, telephone number;</li>
-                  <li>your interests;</li>
+                  <li>your returnss;</li>
                   <li>account number, card number and expiry date</li>
                   <li>or any other information that may be required</li>
                 </ul>
@@ -178,14 +178,14 @@ const PrivacyPolicy = () => {
                 In addition, we may pass your information onto one of our
                 carefully selected business partners or to other carefully
                 selected third parties to enable them to send you information
-                which may be of interest to you but only if you have given us
+                which may be of returns to you but only if you have given us
                 permission to do so. You can stop receiving such mail whenever
                 you choose by unsubscribing via the link provided.
               </p>
               <p className={style.text}>
                 We may also share your personal information with regulatory
                 authorities or law enforcement agencies as required by law or to
-                protect our legal interests.
+                protect our legal returnss.
               </p>
               <p className={style.text}>
                 Other than as set out above, we will not disclose any of your
@@ -214,7 +214,7 @@ const PrivacyPolicy = () => {
               <p className={style.text}>
                 We retain your personal information for as long as necessary to
                 provide our services to you, to comply with legal obligations,
-                or to protect our legal interests. We will delete your personal
+                or to protect our legal returnss. We will delete your personal
                 information when it is no longer necessary for these purposes.
               </p>
             </li>
@@ -271,7 +271,7 @@ const PrivacyPolicy = () => {
                 to recognize your device and you will need to answer a challenge
                 question each time you log on. You also may not receive tailored
                 advertising or other offers from us that may be relevant to your
-                interests and needs.
+                returnss and needs.
               </p>
             </li>
             <li>

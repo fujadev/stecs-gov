@@ -36,7 +36,7 @@ export default function Terms() {
     {
       id: 2,
       title: '2. Investment Nature',
-      description: `The investment is a Shariah-compliant term investment. Unlike conventional 'interest paying' deposit investments, the investment does not pay interest. Instead, the investment manager discretionarily invests funds mobilized in Shariah-compliant investments. Returns generated will be distributed in accordance with a pre-agreed profit-sharing formula.`,
+      description: `The investment is a Shariah-compliant term investment. Unlike conventional 'returns paying' deposit investments, the investment does not pay returns. Instead, the investment manager discretionarily invests funds mobilized in Shariah-compliant investments. Returns generated will be distributed in accordance with a pre-agreed profit-sharing formula.`,
     },
     {
       id: 3,
@@ -138,7 +138,7 @@ export default function Terms() {
             <li>You may only apply for an Account or use the Services if you are an individual or legal entity formed and registered in the Federal Republic of Nigeria and can enter into a binding contract with Stecs, and only in compliance with this Agreement and all applicable local, state, national and international laws, rules and regulations.</li>
           </ul>
           <p>b. Applying for an Account:</p>
-          <p>Your Account gives you access to the Services, the savings account ("Interest-free (Qard) Savings Account"), Debit cards ("Cards") and other services provided by our Banking Partner ("Banking Provider"), and any other functionality that we may establish and maintain from time to time and in our sole discretion.</p>
+          <p>Your Account gives you access to the Services, the savings account ("returns-free (Qard) Savings Account"), Debit cards ("Cards") and other services provided by our Banking Partner ("Banking Provider"), and any other functionality that we may establish and maintain from time to time and in our sole discretion.</p>
           <p>c. You must specify at least one Signatory to manage your account when submitting your Application.</p>
           <p>d. Prohibited uses: You may not use the Site, Account or the Services:</p>
           <ul>
