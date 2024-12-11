@@ -15,10 +15,10 @@ const companyLinks = [
     title: "About Us",
     href: "/about"
   },
-  {
-    title: "Features",
-    href: ""
-  },
+  // {
+  //   title: "Features",
+  //   href: ""
+  // },
   {
     title: "Community",
     href: "/community"
