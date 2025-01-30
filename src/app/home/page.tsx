@@ -23,7 +23,7 @@ const Home = (): ReactNode => (
     <ChangeTheWayYouBank />
     <FeaturesSection />
     <VaultSavingsSection />
-    <InvestmentSection />
+    {/* <InvestmentSection /> */}
     <BankingReinvented />
     <StecsGlobal />
     <AppFooter showFeedBackSection />
