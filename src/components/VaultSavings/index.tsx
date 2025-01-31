@@ -27,14 +27,14 @@ const data = [
     imgSrc: image2,
     color: "#CDF9F5"
   },
-  {
-    title: "Target Dollar vault for Everyday Savings",
-    desc: "Looking to grow your savings in dollars? Our Dollar Vault offers stability and attractive returns. Earn up to 6% returns while protecting your wealth in USD. Stay secure, stay dollar-smart!",
-    btnText: "Save with Target Dollar vault",
-    imgSrc: image3,
-    color: "#FBD4CB"
+  // {
+  //   title: "Target Dollar vault for Everyday Savings",
+  //   desc: "Looking to grow your savings in dollars? Our Dollar Vault offers stability and attractive returns. Earn up to 6% returns while protecting your wealth in USD. Stay secure, stay dollar-smart!",
+  //   btnText: "Save with Target Dollar vault",
+  //   imgSrc: image3,
+  //   color: "#FBD4CB"
 
-  },
+  // },
 ]
 const VaultSavingsSection = () => {
   return (
