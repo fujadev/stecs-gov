@@ -39,18 +39,6 @@ const FeaturesSection2 = () => {
   const changeTab = (idx: number) => {
     const wrapper = document.querySelector(".content_wrapper")
     const tabContent: any = gsap.utils.toArray('.tab-content ')
-    console.log('====================================');
-    console.log(wrapper?.scrollLeft);
-    console.log(tabContent[0]?.offsetLeft);
-    console.log(tabContent[1]?.offsetLeft);
-    console.log(tabContent[2]?.offsetLeft);
-    console.log('====================================');
-    // console.log('====================================');
-    // console.log(tabContent[0].getBoundingClientRect());
-    // console.log(tabContent[1].getBoundingClientRect());
-    // console.log(tabContent[2].getBoundingClientRect());
-    // console.log(wrapper?.getBoundingClientRect());
-    // console.log('====================================');
     if (idx === activeIdx) return
     setActiveIdx(idx)
     const descs = gsap.utils.toArray('.f_desc')

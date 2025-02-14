@@ -5,7 +5,7 @@ import Image from "next/image";
 import businesswoman from '@/assets/images/businesswoman1.webp'
 import businesswomanM from '@/assets/images/businesswoman1M.webp'
 import image1 from '@/assets/images/image6.png'
-import ArrowRightLine from "@/assets/icons/ArrowRigtLine";
+import ArrowRightLine from "@/assets/icons/ArrowRightLine";
 import ValueCard from "@/components/ValueCard";
 import SimplicityIcon from "@/assets/icons/SimplicityIcon";
 import TransparencyIcon from "@/assets/icons/TransparancyIcon";
