@@ -22,7 +22,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="relative mt-[4px]">
+    <div className="relative">
       <div
         className={`w-full py-[10px] px-[14px] border rounded-sm border-[#EAECF0] cursor-pointer flex justify-between items-center ${error && touched ? "border-red-500" : ""}`}
         onClick={() => setIsOpen(!isOpen)}
@@ -32,7 +32,6 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
       </div>
 
       <AnimatePresence>
-        {" "}
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, y: -10 }}

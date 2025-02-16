@@ -6,7 +6,7 @@ import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer, pers
 import storage from 'redux-persist/lib/storage';
 import { api } from './base';
 import authReducer, { resetStore } from '@/config/api/auth/slice';
-import donationReducer from "../donation/slice"
+
 
 export const errorMiddleware: Middleware =
 	({ dispatch }: MiddlewareAPI) =>
@@ -29,13 +29,12 @@ export const errorMiddleware: Middleware =
 const persistConfig = {
 	key: 'root',
 	storage,
-	whitelist: ['auth', 'onboarding', 'donation'],
+	whitelist: ['auth', 'onboarding'],
 };
 
 const rootReducer = combineReducers({
 	[api.reducerPath]: api.reducer,
 	auth: authReducer,
-	donation: donationReducer, 
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

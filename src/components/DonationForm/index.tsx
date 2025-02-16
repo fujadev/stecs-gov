@@ -10,7 +10,7 @@ import { PaystackButton } from "react-paystack";
 import { FaChevronDown } from "react-icons/fa";
 import { useState } from "react";
 import CustomDatePicker from "../CustomDatePicker";
-import { AnimatePresence , motion} from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 const paymentOptions = [
   { label: "Pay with Card", icon: <CardIcon /> },
@@ -26,19 +26,27 @@ const validationSchema = Yup.object().shape({
   paymentMethod: Yup.string().required("Please select a payment method"),
 });
 
-const DonationForm = ({
-  setOpenTransactionDetails,
-  setOpenSuccess,
-  setOpenDonationForm,
+interface DonationFormProps {
+  setIsTransactionDetailsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsSuccessOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsDonationFormOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  onAmountChange: (amount: number) => void;
+}
+
+const DonationForm: React.FC<DonationFormProps> = ({
+  setIsTransactionDetailsOpen,
+  setIsSuccessOpen,
+  setIsDonationFormOpen,
   onAmountChange,
 }: {
-  setOpenTransactionDetails: any;
-  setOpenSuccess: any;
-  setOpenDonationForm: any;
+  setIsTransactionDetailsOpen: any;
+  setIsSuccessOpen: any;
+  setIsDonationFormOpen: any;
   onAmountChange: (amount: number) => void;
 }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [date, setDate] = useState<Date | null>(null);
+  const publicKey = process.env.NEXT_PUBLIC_PAYMENT_PUBLIC_KEY;
 
   const initialValues = {
     amount: "",
@@ -53,9 +61,9 @@ const DonationForm = ({
       values.paymentMethod === "Pay with Bank transfer" &&
       values.frequency == "One Time"
     ) {
-      setOpenTransactionDetails(true);
+      setIsTransactionDetailsOpen(true);
     } else {
-      setOpenTransactionDetails(false);
+      setIsTransactionDetailsOpen(false);
     }
   };
 
@@ -79,9 +87,9 @@ const DonationForm = ({
 
         const paystackConfig = {
           email: values.email,
-          amount: Number(values.amount) * 100, 
+          amount: Number(values.amount) * 100,
           currency: "NGN",
-          publicKey: "pk_test_034bf42515647c0d3fc941b8601cddd6b74a9395",
+          publicKey:publicKey,
           metadata: {
             transfer_type: "donation",
             email: values.email,
@@ -91,12 +99,9 @@ const DonationForm = ({
           },
 
           onSuccess: (reference: any) => {
-            setOpenSuccess(true);
-            setOpenTransactionDetails(false);
-            setOpenDonationForm(false);
-          },
-          onClose: () => {
-            alert("Payment window closed.");
+            setIsSuccessOpen(true);
+            setIsTransactionDetailsOpen(false);
+            setIsDonationFormOpen(false);
           },
         };
 
@@ -145,14 +150,16 @@ const DonationForm = ({
               <label className="block mt-[16px] text-base font-medium ">
                 How often do you want to donate?
               </label>
-              <CustomSelect
-                name="frequency"
-                options={["One Time", "Weekly", "Monthly"]}
-                value={values.frequency}
-                onChange={(name, value) => setFieldValue(name, value)}
-                error={errors.frequency}
-                touched={touched.frequency}
-              />
+              <div className="mt-[4px]">
+                <CustomSelect
+                  name="frequency"
+                  options={["One Time", "Weekly", "Monthly"]}
+                  value={values.frequency}
+                  onChange={(name, value) => setFieldValue(name, value)}
+                  error={errors.frequency}
+                  touched={touched.frequency}
+                />
+              </div>
             </div>
 
             {/* Weekly Donation */}
@@ -163,28 +170,30 @@ const DonationForm = ({
                   <label className="block mt-[16px] text-base font-medium ">
                     Select a day during the week
                   </label>
-                  <CustomSelect
-                    name="weekly"
-                    options={[
-                      "Monday",
-                      "Tuesday",
-                      "Wednesday",
-                      "Thursday",
-                      "Friday",
-                      "Saturday",
-                      "Sunday",
-                    ]}
-                    value={values.weekly}
-                    onChange={(name, value) => setFieldValue(name, value)}
-                    error={errors.weekly}
-                    touched={touched.weekly}
-                  />
+                  <div className="mt-[4px]">
+                    <CustomSelect
+                      name="weekly"
+                      options={[
+                        "Monday",
+                        "Tuesday",
+                        "Wednesday",
+                        "Thursday",
+                        "Friday",
+                        "Saturday",
+                        "Sunday",
+                      ]}
+                      value={values.weekly}
+                      onChange={(name, value) => setFieldValue(name, value)}
+                      error={errors.weekly}
+                      touched={touched.weekly}
+                    />
+                  </div>
                 </div>
                 <div className="flex items-center gap-x-sm shadow-one border border-[#EAECF0] rounded-sm py-[10px] px-[8px]">
                   <CardIcon />
                   <p>Pay with Card</p>
                 </div>
-                <div className="w-full" >
+                <div className="w-full">
                   <CustomDatePicker onDateChange={setDate} />
                 </div>
               </div>
@@ -212,37 +221,40 @@ const DonationForm = ({
                 </div>
 
                 {/* Payment Selection */}
-                <AnimatePresence> 
-                {isDropdownOpen && (
-                  <motion.div initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 10}}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.6 }} className="shadow-one rounded-[10px]">
-                    {paymentOptions.map((option) => (
-                      <label
-                        key={option.label}
-                        className="flex items-center justify-between px-[8px] py-[12px] cursor-pointer"
-                      >
-                        <span className="flex items-center gap-x-[8px]">
-                          <span className="mr-2 text-lg">{option.icon}</span>
-                          {option.label}
-                        </span>
-                        <input
-                          type="radio"
-                          name="paymentMethod"
-                          checked={values.paymentMethod === option.label}
-                          onChange={() => {
-                            setFieldValue("paymentMethod", option.label);
-                            setIsDropdownOpen(false);
-                          }}
-                          className="w-[16px] h-[16px]"
-                        />
-                      </label>
-                    ))}
-                  </motion.div>
-                )}
+                <AnimatePresence>
+                  {isDropdownOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 10 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.6 }}
+                      className="shadow-one rounded-[10px]"
+                    >
+                      {paymentOptions.map((option) => (
+                        <label
+                          key={option.label}
+                          className="flex items-center justify-between px-[8px] py-[12px] cursor-pointer"
+                        >
+                          <span className="flex items-center gap-x-[8px]">
+                            <span className="mr-2 text-lg">{option.icon}</span>
+                            {option.label}
+                          </span>
+                          <input
+                            type="radio"
+                            name="paymentMethod"
+                            checked={values.paymentMethod === option.label}
+                            onChange={() => {
+                              setFieldValue("paymentMethod", option.label);
+                              setIsDropdownOpen(false);
+                            }}
+                            className="w-[16px] h-[16px]"
+                          />
+                        </label>
+                      ))}
+                    </motion.div>
+                  )}
                 </AnimatePresence>
-             
+
                 {touched.paymentMethod && errors.paymentMethod && (
                   <small className="text-red-500">{errors.paymentMethod}</small>
                 )}

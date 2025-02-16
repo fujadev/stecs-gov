@@ -9,9 +9,9 @@ import TransferDetails from "@/components/TransferDetails";
 import TransactionSuccess from "@/components/TransactionSucess";
 
 const Payment = () => {
-  const [openTransactionDetails, setOpenTransactionDetails] = useState(false);
-  const [openDonationForm, setOpenDonationForm] = useState(false);
-  const [openSuccess, setOpenSuccess] = useState(false);
+  const [isTransactionDetailsOpen, setIsTransactionDetailsOpen] = useState(false);
+  const [isDonationFormOpen, setIsDonationFormOpen] = useState(false);
+  const [isSuccessOpen, setIsSuccessOpen] = useState(false);
   const [amount, setAmount] = useState(0);
   const router = useRouter();
 
@@ -59,23 +59,23 @@ const Payment = () => {
               </div>
               <div className="md:w-1/2 xl:w-2/5">
                 <div className="mt-[68px]">
-                  {!openTransactionDetails && !openSuccess && (
+                  {!isTransactionDetailsOpen && !isSuccessOpen ? (
                     <DonationForm
-                      setOpenTransactionDetails={setOpenTransactionDetails}
-                      setOpenDonationForm={setOpenDonationForm}
-                      setOpenSuccess={setOpenSuccess}
+                      setIsTransactionDetailsOpen={setIsTransactionDetailsOpen}
+                      setIsDonationFormOpen={setIsDonationFormOpen}
+                      setIsSuccessOpen={setIsSuccessOpen}
                       onAmountChange={setAmount}
                     />
-                  )}
-                  {openTransactionDetails && (
+                  ): <></>}
+                  {isTransactionDetailsOpen ? (
                     <TransferDetails amount={amount} />
-                  )}
+                  ): <></>}
 
-                  {openSuccess && (
+                  {isSuccessOpen ? (
                     <TransactionSuccess
                       onClose={() => router.push("/ramadan-drive")}
-                    />
-                  )}
+                    /> 
+                  ): <></>}
                 </div>
               </div>
             </div>

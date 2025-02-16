@@ -22,7 +22,7 @@ const RamadanDriveIntro: React.FC<RamadanDriveIntroProps> = ({
   descSize = '16px',
   raisedAmount = '₦51,245',
   goalAmount = '₦5,000,000',
-  progressWidth = '80%',
+  progressWidth = '20',
   lineHeight="30px",
   quotelineHeight="20px",
   buttonWidth = '100%',
@@ -65,7 +65,7 @@ const RamadanDriveIntro: React.FC<RamadanDriveIntroProps> = ({
         <div className="w-full h-[8px] bg-[#D9D9D9] mt-[4px] rounded-lg">
           <div
             className="h-full bg-[#233C8B] rounded-lg "
-            style={{ width: progressWidth }}
+            style={{ width: `${progressWidth}%` }}
           ></div>
         </div>
       </div>

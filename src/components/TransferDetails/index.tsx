@@ -1,23 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import AppButton from "../Common/AppButton";
 import CopyIcon from "@/assets/icons/CopyIcon";
-import { AppDispatch } from "@/config/api/config/store";
-import { fetchDonation } from "@/config/api/donation/slice";
-import { useSelector, useDispatch } from "react-redux";
+import { useDonationQuery } from "@/config/api/donation/slice";
 
 const TransferDetails = ({ amount }: { amount: number }) => {
-  const donationState = useSelector((state: any) => state.donation);
-  const dispatch = useDispatch<AppDispatch>();
+  const { data } = useDonationQuery();
 
   const [copied, setCopied] = useState(false);
-  const accountNumber = donationState?.data?.account_details?.account_number;
-  const accountName = donationState?.data?.account_details?.account_name;
-
-  useEffect(() => {
-    dispatch(fetchDonation());
-  }, [dispatch]);
+  const accountNumber = data?.accountDetails?.accountNumber;
+  const accountName = data?.accountDetails?.accountName;
 
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text);

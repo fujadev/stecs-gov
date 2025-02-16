@@ -5,30 +5,24 @@ import AppFooter from "@/components/AppFooter";
 import AppButton from "@/components/Common/AppButton";
 import AppHeader from "@/components/Header";
 import RamadanDriveBg from "../../assets/images/header-card-image2.png";
-import React, { useEffect } from "react";
+import React from "react";
 import Image from "next/image";
 import HowToContribute from "@/components/HowToContribute";
 import RamadanDriveIntro from "@/components/RamandanDriveIntro";
 import FreeFood from "../../assets/images/free-food.png";
 import StoreButton from "@/components/Common/StoreButton";
 import { useRouter } from "next/navigation";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from "@/config/api/config/store";
-import { fetchDonation } from "@/config/api/donation/slice";
+import { useDonationQuery } from "@/config/api/donation/slice";
 
 const RamadanDrive = () => {
-  const donationState = useSelector((state: any) => state.donation);
-  const dispatch = useDispatch<AppDispatch>();
-
-  useEffect(() => {
-    dispatch(fetchDonation());
-  }, [dispatch]);
-
+  const { data } = useDonationQuery();
   const router = useRouter();
+
   return (
     <div className="">
+      {data?.name}
       <div className="px-sm py-md md:p-md ">
-        <div className="relative  min-h-screen bg-cover bg-center bg-no-repeat bg-[url('../assets/images/ramadan-drive-bg-mobile.png')]  md:bg-[url('../assets/images/ramadan-drive-bg.png')] rounded-[20px] pb-[24px] pt-[20px]">
+        <div className="relative  min-h-screen bg-cover bg-center bg-no-repeat bg-[url('../assets/images/ramadan-drive-bg-mobile.png')]  md:bg-[url('../assets/images/ramadan-drive-bg.png')] rounded-[5px] md:rounded-[20px] pb-[24px] pt-[20px]">
           <div className="absolute inset-0 "></div>
           <div>
             <AppHeader />
@@ -45,7 +39,7 @@ const RamadanDrive = () => {
                 </p>
                 <AppButton
                   fullWidth={false}
-                  onClick={() => router.push("/payment")}
+                  onClick={() => router.push("/ramadan/payment")}
                   mih={52}
                   classNames={{
                     root: "py-[14px] px-[16px] rounded-[10px] w-[101px]",
@@ -67,10 +61,10 @@ const RamadanDrive = () => {
                 </div>
                 <div className="px-sm">
                   <RamadanDriveIntro
-                    onClick={() => router.push("/payment")}
-                    raisedAmount={donationState?.data?.amountRaised}
-                    goalAmount={donationState?.data?.target}
-                    progressWidth={donationState?.data?.percentageAchieved}
+                    onClick={() => router.push("/ramadan/payment")}
+                    raisedAmount={data?.amountRaised}
+                    goalAmount={data?.target}
+                    progressWidth={data?.percentageAchieved}
                   />
                 </div>
               </div>
@@ -98,10 +92,10 @@ const RamadanDrive = () => {
                 quotelineHeight="27px"
                 buttonWidth="60%"
                 buttonMargin="40px"
-                raisedAmount={donationState?.data?.amountRaised}
-                goalAmount={donationState?.data?.target}
-                progressWidth={donationState?.data?.percentageAchieved}
-                onClick={() => router.push("/payment")}
+                raisedAmount={data?.amountRaised}
+                goalAmount={data?.target}
+                progressWidth={data?.percentageAchieved}
+                onClick={() => router.push("/ramadan/payment")}
               />
             </div>
 
