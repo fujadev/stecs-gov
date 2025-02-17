@@ -12,10 +12,12 @@ const TransferDetails = ({ amount }: { amount: number }) => {
   const accountNumber = data?.accountDetails?.accountNumber;
   const accountName = data?.accountDetails?.accountName;
 
-  const handleCopy = (text: string) => {
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const handleCopy = (text?: string) => {
+    if (text) {
+      navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
   };
 
   return (

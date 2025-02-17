@@ -38,11 +38,6 @@ const DonationForm: React.FC<DonationFormProps> = ({
   setIsSuccessOpen,
   setIsDonationFormOpen,
   onAmountChange,
-}: {
-  setIsTransactionDetailsOpen: any;
-  setIsSuccessOpen: any;
-  setIsDonationFormOpen: any;
-  onAmountChange: (amount: number) => void;
 }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [date, setDate] = useState<Date | null>(null);

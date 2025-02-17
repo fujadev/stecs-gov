@@ -1,16 +1,12 @@
-// export interface donationRequest {
-// 	email: string;
-// 	password: string;
-// 	investmentId?: string | null;
-// 	investorType: string;
-// 	countryCode: string;
-// 	phoneNumber: string;
-// 	firstName: string;
-// 	lastName: string;
-// 	institutionName: string;
-// }
+export interface DonationResponse {
+  name: string;
+  amountRaised: number;
+  target: number;
+  percentageAchieved: string;
+  accountDetails: {
+    accountName: string;
+    accountNumber: string;
+  };
+}
 
-// export interface donationResponse {
-// 	token: string;
-// 	user: any;
-// }
+export type DonationQueryResult = void;

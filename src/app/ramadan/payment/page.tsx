@@ -66,16 +66,16 @@ const Payment = () => {
                       setIsSuccessOpen={setIsSuccessOpen}
                       onAmountChange={setAmount}
                     />
-                  ): <></>}
+                  ): null}
                   {isTransactionDetailsOpen ? (
                     <TransferDetails amount={amount} />
-                  ): <></>}
+                  ): null}
 
                   {isSuccessOpen ? (
                     <TransactionSuccess
-                      onClose={() => router.push("/ramadan-drive")}
+                      onClose={() => router.push("/ramadan")}
                     /> 
-                  ): <></>}
+                  ): null}
                 </div>
               </div>
             </div>

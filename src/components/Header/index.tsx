@@ -27,7 +27,7 @@ const navs = [
   },
   {
     title: "Ramadan Drive",
-    path: "/ramadan-drive",
+    path: "/ramadan",
   },
 ];
 
@@ -55,7 +55,7 @@ const AppHeader = () => {
           return (
             <Link href={nav.path} key={nav.path}>
               <div
-                className={`py-[8px] px-[29px] rounded-[6px] hover:bg-[#F4F4F4] text-[14px] font-medium  transition-all duration-[500ms] ${pathname == "/ramadan-drive" ? "text-white hover:text-sub-500" : "text-sub-500"}`}
+                className={`py-[8px] px-[29px] rounded-[6px] hover:bg-[#F4F4F4] text-[14px] font-medium  transition-all duration-[500ms] ${pathname == "/ramadan" ? "text-white hover:text-sub-500" : "text-sub-500"}`}
               >
                 {nav.title}
               </div>

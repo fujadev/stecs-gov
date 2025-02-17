@@ -6,8 +6,8 @@ interface RamadanDriveIntroProps {
   quoteSize?: string;
   titleSize?: string;
   descSize?: string;
-  raisedAmount?: string;
-  goalAmount?: string;
+  raisedAmount?: number;
+  goalAmount?: number;
   progressWidth?: string;
   buttonWidth?: string;
   lineHeight?: string;
