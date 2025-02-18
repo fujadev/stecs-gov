@@ -55,16 +55,16 @@ const AppFooter: React.FC<props> = ({ showFeedBackSection }) => {
             </div>
             <ul className="flex flex-col gap-[12px]">
               <li className="opacity-40 mb-[12px]">Company</li>
-              {companyLinks.map(val =>
-                <li>
+              {companyLinks.map((val, index) =>
+                <li key={index}>
                   <Link href={val.href} className="opacity-80 text-[#fff]">{val.title}</Link>
                 </li>
               )}
             </ul>
             <ul className="flex flex-col gap-[12px]">
               <li className="opacity-40 mb-[12px]">Legal</li>
-              {legalLinks.map(val =>
-                <li>
+              {legalLinks.map((val,index) =>
+                <li key={index}>
                   <Link href={val.href} className="opacity-80 text-[#fff]">{val.title}</Link>
                 </li>
               )}

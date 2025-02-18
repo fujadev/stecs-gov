@@ -7,6 +7,7 @@ import storage from 'redux-persist/lib/storage';
 import { api } from './base';
 import authReducer, { resetStore } from '@/config/api/auth/slice';
 
+
 export const errorMiddleware: Middleware =
 	({ dispatch }: MiddlewareAPI) =>
 	(next) =>
