@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import AppButton from "../Common/AppButton";
 import CopyIcon from "@/assets/icons/CopyIcon";
 import { useDonationQuery } from "@/config/api/donation/slice";
 

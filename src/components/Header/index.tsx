@@ -1,3 +1,4 @@
+"use client";
 import HeaderLogo from "@/assets/icons/HeaderLogo";
 import Link from "next/link";
 import { usePathname } from "next/navigation";

@@ -41,7 +41,7 @@ const DonationForm: React.FC<DonationFormProps> = ({
 }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [date, setDate] = useState<Date | null>(null);
-  const publicKey = process.env.NEXT_PUBLIC_PAYMENT_PUBLIC_KEY;
+  const publicKey = process.env.NEXT_PUBLIC_PAYMENT_PUBLIC_KEY ?? "";
 
   const initialValues = {
     amount: "",
@@ -84,21 +84,43 @@ const DonationForm: React.FC<DonationFormProps> = ({
           email: values.email,
           amount: Number(values.amount) * 100,
           currency: "NGN",
-          publicKey:publicKey,
+          publicKey: publicKey ?? "",
           metadata: {
             transfer_type: "donation",
             email: values.email,
             id: 1,
             end_date: date,
             autosave_frequency: values.frequency,
+            custom_fields: [
+              {
+                display_name: "Email",
+                variable_name: "email",
+                value: values.email,
+              },
+              {
+                display_name: "User ID",
+                variable_name: "id",
+                value: 1,
+              },
+              {
+                display_name: "End Date",
+                variable_name: "end_date",
+                value: date,
+              },
+              {
+                display_name: "Autosave Frequency",
+                variable_name: "autosave_frequency",
+                value: values.frequency,
+              },
+            ],
           },
-
           onSuccess: (reference: any) => {
             setIsSuccessOpen(true);
             setIsTransactionDetailsOpen(false);
             setIsDonationFormOpen(false);
           },
         };
+        
 
         return (
           <form
@@ -261,7 +283,7 @@ const DonationForm: React.FC<DonationFormProps> = ({
             values.frequency == "One Time" ? (
               <div className="mt-[28px]">
                 <AppButton
-                  onClick={handleSubmit}
+                  type="submit"
                   fullWidth={true}
                   mih={52}
                   classNames={{

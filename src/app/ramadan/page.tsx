@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import ArrowRightLine from "@/assets/icons/ArrowRightLine";
 import AppFooter from "@/components/AppFooter";
 import AppButton from "@/components/Common/AppButton";
@@ -8,11 +9,14 @@ import RamadanDriveBg from "../../assets/images/header-card-image2.png";
 import React from "react";
 import Image from "next/image";
 import HowToContribute from "@/components/HowToContribute";
-import RamadanDriveIntro from "@/components/RamandanDriveIntro";
 import FreeFood from "../../assets/images/free-food.png";
 import StoreButton from "@/components/Common/StoreButton";
 import { useRouter } from "next/navigation";
 import { useDonationQuery } from "@/config/api/donation/slice";
+
+const RamadanDriveIntro = dynamic(() => import("@/components/RamandanDriveIntro"), {
+  ssr: false,
+});
 
 const Ramadan = () => {
   const { data } = useDonationQuery();

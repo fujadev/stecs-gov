@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import AppButton from "../Common/AppButton";
 import CircleCheckList from "../../assets/images/circle-checklist.png";

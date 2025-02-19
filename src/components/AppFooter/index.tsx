@@ -1,3 +1,4 @@
+"use client";
 import ArrowUp from "@/assets/icons/ArrowUpIcon";
 import InstagramIcon from "@/assets/icons/InstagramIcon";
 import LinkedinIcon from "@/assets/icons/LinkedIn";
