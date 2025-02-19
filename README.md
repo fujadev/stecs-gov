@@ -1,4 +1,4 @@
-# Stecs Crowdfunding
+# Stecs web
 
 ## Compile & Run
 

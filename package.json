@@ -69,6 +69,7 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@types/react-datepicker": "^7.0.0",
     "eslint-plugin-fp": "^2.3.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsx-a11y": "^6.8.0",
