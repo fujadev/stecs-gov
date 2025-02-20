@@ -1,6 +1,7 @@
-import Image from "next/image";
-import AppButton from "../Common/AppButton";
-import CircleCheckList from "../../assets/images/circle-checklist.png";
+'use client';
+import Image from 'next/image';
+import CircleCheckList from '../../assets/images/circle-checklist.png';
+import AppButton from '../Common/AppButton';
 
 const TransactionSuccess = ({ onClose }: { onClose: () => void }) => {
   return (
@@ -21,7 +22,7 @@ const TransactionSuccess = ({ onClose }: { onClose: () => void }) => {
           fullWidth={true}
           mih={52}
           classNames={{
-            root: "py-[14px] px-[16px] rounded-[10px]",
+            root: 'py-[14px] px-[16px] rounded-[10px]',
           }}
         >
           <span className="text-[#fff] text-[14px] font-medium flex items-center gap-x-2 ">

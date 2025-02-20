@@ -1,43 +1,44 @@
-import ArrowUp from "@/assets/icons/ArrowUpIcon";
-import InstagramIcon from "@/assets/icons/InstagramIcon";
-import LinkedinIcon from "@/assets/icons/LinkedIn";
-import LogoLight from "@/assets/icons/LogoWhite";
-import XIcon from "@/assets/icons/xIcon";
-import Link from "next/link";
-import FeedbackSection from "../Feedback";
-import React from "react";
-import StoreButton from "../Common/StoreButton";
-import { IG, LINKEDIN, X } from "@/config/constants/globals";
+'use client';
+import React from 'react';
+import Link from 'next/link';
+import StoreButton from '../Common/StoreButton';
+import FeedbackSection from '../Feedback';
+import ArrowUp from '@/assets/icons/ArrowUpIcon';
+import InstagramIcon from '@/assets/icons/InstagramIcon';
+import LinkedinIcon from '@/assets/icons/LinkedIn';
+import LogoLight from '@/assets/icons/LogoWhite';
+import XIcon from '@/assets/icons/xIcon';
+import { IG, LINKEDIN, X } from '@/config/constants/globals';
 
 
 const companyLinks = [
   {
-    title: "About Us",
-    href: "/about"
+    title: 'About Us',
+    href: '/about'
   },
   {
-    title: "Features",
-    href: "#feature"
+    title: 'Features',
+    href: '#feature'
   },
   {
-    title: "Community",
-    href: "/community"
+    title: 'Community',
+    href: '/community'
   },
   {
-    title: "Shariah Compliance",
-    href: "/sheriah-compliance"
+    title: 'Shariah Compliance',
+    href: '/sheriah-compliance'
   },
-]
+];
 const legalLinks = [
   {
-    title: "Terms Of Use",
-    href: "/terms"
+    title: 'Terms Of Use',
+    href: '/terms'
   },
   {
-    title: "Privacy Policy",
-    href: "/privacy-policy"
+    title: 'Privacy Policy',
+    href: '/privacy-policy'
   },
-]
+];
 interface props {
   showFeedBackSection?: boolean
 }
@@ -107,6 +108,6 @@ const AppFooter: React.FC<props> = ({ showFeedBackSection }) => {
       </div>
     </footer>
   );
-}
+};
 
 export default AppFooter;

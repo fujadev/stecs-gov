@@ -30,7 +30,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.20.13, @babel/runtime@npm:^7.21.0, @babel/runtime@npm:^7.23.2, @babel/runtime@npm:^7.23.9, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.8.7":
+"@babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.20.13, @babel/runtime@npm:^7.23.2, @babel/runtime@npm:^7.23.9, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.8.7":
   version: 7.26.9
   resolution: "@babel/runtime@npm:7.26.9"
   dependencies:
@@ -302,9 +302,9 @@ __metadata:
   linkType: hard
 
 "@humanwhocodes/retry@npm:^0.4.1":
-  version: 0.4.1
-  resolution: "@humanwhocodes/retry@npm:0.4.1"
-  checksum: f11167c28e8266faba470fd273cbaafe2827523492bc18c5623015adb7ed66f46b2e542e3d756fed9ca614300249267814220c2f5f03a59e07fdfa64fc14ad52
+  version: 0.4.2
+  resolution: "@humanwhocodes/retry@npm:0.4.2"
+  checksum: 764127449a9f97d807b9c47f898fce8d7e0e8e8438366116b9ddcaacded99b2c285b8eed2cfdd5fdcb68be47728218db949f9618a58c0d3898d9fd14a6d6671e
   languageName: node
   linkType: hard
 
@@ -962,13 +962,6 @@ __metadata:
   version: 0.1.1
   resolution: "@pkgr/core@npm:0.1.1"
   checksum: 6f25fd2e3008f259c77207ac9915b02f1628420403b2630c92a07ff963129238c9262afc9e84344c7a23b5cc1f3965e2cd17e3798219f5fd78a63d144d3cceba
-  languageName: node
-  linkType: hard
-
-"@popperjs/core@npm:^2.11.8":
-  version: 2.11.8
-  resolution: "@popperjs/core@npm:2.11.8"
-  checksum: e5c69fdebf52a4012f6a1f14817ca8e9599cb1be73dd1387e1785e2ed5e5f0862ff817f420a87c7fc532add1f88a12e25aeb010ffcbdc98eace3d55ce2139cf0
   languageName: node
   linkType: hard
 
@@ -1891,7 +1884,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"classnames@npm:^2.2.6, classnames@npm:^2.5.1":
+"classnames@npm:^2.5.1":
   version: 2.5.1
   resolution: "classnames@npm:2.5.1"
   checksum: da424a8a6f3a96a2e87d01a432ba19315503294ac7e025f9fece656db6b6a0f7b5003bb1fbb51cbb0d9624d964f1b9bb35a51c73af9b2434c7b292c42231c1e5
@@ -1962,10 +1955,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"country-flag-icons@npm:^1.5.11":
-  version: 1.5.16
-  resolution: "country-flag-icons@npm:1.5.16"
-  checksum: f1df30e3ac63ab3e253826adfd33e5afe8e673d2ddb539f6bba24174d22de2830a7b9b126384bdc9d2d501be60b4b1230158f9210aba459428cf23644335d846
+"country-flag-icons@npm:^1.5.17":
+  version: 1.5.18
+  resolution: "country-flag-icons@npm:1.5.18"
+  checksum: 9039abf0ab116249611f057c6dd820b36613920850077c50ea20fede7d3471dba7ce20b4cf6d9274a09b5363ee2d31b042a6964579b2484eb1ad4c43abb7957e
   languageName: node
   linkType: hard
 
@@ -2042,15 +2035,6 @@ __metadata:
     es-errors: ^1.3.0
     is-data-view: ^1.0.1
   checksum: 8dd492cd51d19970876626b5b5169fbb67ca31ec1d1d3238ee6a71820ca8b80cafb141c485999db1ee1ef02f2cc3b99424c5eda8d59e852d9ebb79ab290eb5ee
-  languageName: node
-  linkType: hard
-
-"date-fns@npm:^2.30.0":
-  version: 2.30.0
-  resolution: "date-fns@npm:2.30.0"
-  dependencies:
-    "@babel/runtime": ^7.21.0
-  checksum: f7be01523282e9bb06c0cd2693d34f245247a29098527d4420628966a2d9aad154bd0e90a6b1cf66d37adcb769cd108cf8a7bd49d76db0fb119af5cdd13644f4
   languageName: node
   linkType: hard
 
@@ -3939,7 +3923,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"libphonenumber-js@npm:^1.11.17":
+"libphonenumber-js@npm:^1.11.20":
   version: 1.11.20
   resolution: "libphonenumber-js@npm:1.11.20"
   checksum: ab72f7162bf5023099914b7040b72739eefb8d6fa226a4aa133a1abf25e20f3d7a0999be43b73188e70e8493e5e646e6e89f54f6392a0139e7628df0ab9e28bf
@@ -4756,13 +4740,13 @@ __metadata:
   linkType: hard
 
 "postcss@npm:^8.4.39, postcss@npm:^8.4.47":
-  version: 8.5.2
-  resolution: "postcss@npm:8.5.2"
+  version: 8.5.3
+  resolution: "postcss@npm:8.5.3"
   dependencies:
     nanoid: ^3.3.8
     picocolors: ^1.1.1
     source-map-js: ^1.2.1
-  checksum: 5097c458ce792d38bb93cb245f8603804b48087540b9d0e42d612f6d0bd7add4b47848cb9bc2a5ee388f70e45a1546fa7471b84697ab95aa8206aa3989fea611
+  checksum: da574620eb84ff60e65e1d8fc6bd5ad87a19101a23d0aba113c653434161543918229a0f673d89efb3b6d4906287eb04b957310dbcf4cbebacad9d1312711461
   languageName: node
   linkType: hard
 
@@ -4863,7 +4847,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-datepicker@npm:*":
+"react-datepicker@npm:*, react-datepicker@npm:^8.1.0":
   version: 8.1.0
   resolution: "react-datepicker@npm:8.1.0"
   dependencies:
@@ -4874,23 +4858,6 @@ __metadata:
     react: ^16.9.0 || ^17 || ^18 || ^19 || ^19.0.0-rc
     react-dom: ^16.9.0 || ^17 || ^18 || ^19 || ^19.0.0-rc
   checksum: de996bac6e281597b611f74bec4065f3173caeb0d68d045e21e2952b86c555c6dd57733b771164018c47a9ea4a7aa74f92d2ccd29238ea28f3ae8267318fd2f2
-  languageName: node
-  linkType: hard
-
-"react-datepicker@npm:^4.21.0":
-  version: 4.25.0
-  resolution: "react-datepicker@npm:4.25.0"
-  dependencies:
-    "@popperjs/core": ^2.11.8
-    classnames: ^2.2.6
-    date-fns: ^2.30.0
-    prop-types: ^15.7.2
-    react-onclickoutside: ^6.13.0
-    react-popper: ^2.3.0
-  peerDependencies:
-    react: ^16.9.0 || ^17 || ^18
-    react-dom: ^16.9.0 || ^17 || ^18
-  checksum: c619dc2ed1325e455a24cfd0428edf9da3b921853e27f28141bcda705962820912dd0e7221a1d00e984a468ba70475664a5bd6cb732776a5d32eb318a710ae0c
   languageName: node
   linkType: hard
 
@@ -4910,13 +4877,6 @@ __metadata:
   version: 2.0.4
   resolution: "react-fast-compare@npm:2.0.4"
   checksum: 06046595f90a4e3e3a56f40a8078c00aa71bdb064ddb98343f577f546aa22e888831fd45f009c93b34707cc842b4c637737e956fd13d6f80607ee92fb9cf9a1c
-  languageName: node
-  linkType: hard
-
-"react-fast-compare@npm:^3.0.1":
-  version: 3.2.2
-  resolution: "react-fast-compare@npm:3.2.2"
-  checksum: 2071415b4f76a3e6b55c84611c4d24dcb12ffc85811a2840b5a3f1ff2d1a99be1020d9437ee7c6e024c9f4cbb84ceb35e48cf84f28fcb00265ad2dfdd3947704
   languageName: node
   linkType: hard
 
@@ -4980,16 +4940,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-onclickoutside@npm:^6.13.0":
-  version: 6.13.1
-  resolution: "react-onclickoutside@npm:6.13.1"
-  peerDependencies:
-    react: ^15.5.x || ^16.x || ^17.x || ^18.x
-    react-dom: ^15.5.x || ^16.x || ^17.x || ^18.x
-  checksum: 6c5727bfcd6e0ecc1fd83ac865a23382b7784aa54e3d0cb67520a53f9d02a1d312b9493d150fb8fa2f912b6cf4b23b228809c2513096ef6e53c7553162c048c7
-  languageName: node
-  linkType: hard
-
 "react-paystack@npm:^6.0.0":
   version: 6.0.0
   resolution: "react-paystack@npm:6.0.0"
@@ -5004,32 +4954,18 @@ __metadata:
   linkType: hard
 
 "react-phone-number-input@npm:^3.4.3":
-  version: 3.4.11
-  resolution: "react-phone-number-input@npm:3.4.11"
+  version: 3.4.12
+  resolution: "react-phone-number-input@npm:3.4.12"
   dependencies:
     classnames: ^2.5.1
-    country-flag-icons: ^1.5.11
+    country-flag-icons: ^1.5.17
     input-format: ^0.3.10
-    libphonenumber-js: ^1.11.17
+    libphonenumber-js: ^1.11.20
     prop-types: ^15.8.1
   peerDependencies:
     react: ">=16.8"
     react-dom: ">=16.8"
-  checksum: 4c750615d5b96c273e8911b4cb6c478b408feb199e902f443ab341834c5450763886330d9a4cbef43d4959830557b5ffd689ad47f54c8d07528dbb5cf63c770d
-  languageName: node
-  linkType: hard
-
-"react-popper@npm:^2.3.0":
-  version: 2.3.0
-  resolution: "react-popper@npm:2.3.0"
-  dependencies:
-    react-fast-compare: ^3.0.1
-    warning: ^4.0.2
-  peerDependencies:
-    "@popperjs/core": ^2.0.0
-    react: ^16.8.0 || ^17 || ^18
-    react-dom: ^16.8.0 || ^17 || ^18
-  checksum: 837111c98738011c69b3069a464ea5bdcbf487105b6148e8faf90cb7337e134edb1b98b8824322941c378756cca30a15c18c25f558e53b85ed5762fa0dc8e6b2
+  checksum: 41273da06da8dcfb420cef0de52ec3ae5a7a6558358ad48ef6a7f4eae1a6be9334625c2295367f2ac474a365eb225090e0ee783be92a8367a9fb945e34b811eb
   languageName: node
   linkType: hard
 
@@ -5751,7 +5687,7 @@ __metadata:
     prettier: ^3.2.5
     react: ^18
     react-countdown: ^2.3.5
-    react-datepicker: ^4.21.0
+    react-datepicker: ^8.1.0
     react-dom: ^18
     react-i18next: ^14.1.2
     react-icons: ^5.4.0
@@ -6429,15 +6365,6 @@ __metadata:
   version: 3.1.0
   resolution: "void-elements@npm:3.1.0"
   checksum: 0390f818107fa8fce55bb0a5c3f661056001c1d5a2a48c28d582d4d847347c2ab5b7f8272314cac58acf62345126b6b09bea623a185935f6b1c3bbce0dfd7f7f
-  languageName: node
-  linkType: hard
-
-"warning@npm:^4.0.2":
-  version: 4.0.3
-  resolution: "warning@npm:4.0.3"
-  dependencies:
-    loose-envify: ^1.0.0
-  checksum: 4f2cb6a9575e4faf71ddad9ad1ae7a00d0a75d24521c193fa464f30e6b04027bd97aa5d9546b0e13d3a150ab402eda216d59c1d0f2d6ca60124d96cd40dfa35c
   languageName: node
   linkType: hard
 

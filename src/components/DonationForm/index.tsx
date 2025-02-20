@@ -1,60 +1,62 @@
-"use client";
+'use client';
 
-import { Formik } from "formik";
-import * as Yup from "yup";
-import AppButton from "../Common/AppButton";
-import CustomSelect from "../CustomSelect";
-import CardIcon from "@/assets/icons/CardIcon";
-import TransferIcon from "@/assets/icons/TransferIcon";
-import { PaystackButton } from "react-paystack";
-import { FaChevronDown } from "react-icons/fa";
-import { useState } from "react";
-import CustomDatePicker from "../CustomDatePicker";
-import { AnimatePresence, motion } from "framer-motion";
+import type { SetStateAction, Dispatch, FC } from 'react';
+import { useState } from 'react';
+import { Formik } from 'formik';
+import { AnimatePresence, motion } from 'framer-motion';
+import { FaChevronDown } from 'react-icons/fa';
+import { PaystackButton } from 'react-paystack';
+import * as Yup from 'yup';
+import AppButton from '../Common/AppButton';
+import CustomDatePicker from '../CustomDatePicker';
+import CustomSelect from '../CustomSelect';
+import CardIcon from '@/assets/icons/CardIcon';
+import TransferIcon from '@/assets/icons/TransferIcon';
 
 const paymentOptions = [
-  { label: "Pay with Card", icon: <CardIcon /> },
-  { label: "Pay with Bank transfer", icon: <TransferIcon /> },
+  { label: 'Pay with Card', icon: <CardIcon /> },
+  { label: 'Pay with Bank transfer', icon: <TransferIcon /> },
 ];
 
 const validationSchema = Yup.object().shape({
   amount: Yup.number()
-    .typeError("Amount must be a number")
-    .min(1, "Amount must be at least 1")
-    .required("Amount is required"),
-  frequency: Yup.string().required("Frequency is required"),
-  paymentMethod: Yup.string().required("Please select a payment method"),
+    .typeError('Amount must be a number')
+    .min(1, 'Amount must be at least 1')
+    .required('Amount is required'),
+  frequency: Yup.string().required('Frequency is required'),
+  paymentMethod: Yup.string().required('Please select a payment method'),
 });
 
 interface DonationFormProps {
-  setIsTransactionDetailsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsSuccessOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsDonationFormOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsTransactionDetailsOpen: Dispatch<SetStateAction<boolean>>;
+  setIsSuccessOpen: Dispatch<SetStateAction<boolean>>;
+  setIsDonationFormOpen: Dispatch<SetStateAction<boolean>>;
   onAmountChange: (amount: number) => void;
 }
 
-const DonationForm: React.FC<DonationFormProps> = ({
-  setIsTransactionDetailsOpen,
-  setIsSuccessOpen,
-  setIsDonationFormOpen,
+const DonationForm: FC<DonationFormProps> = ({
   onAmountChange,
+  setIsDonationFormOpen,
+  setIsSuccessOpen,
+  setIsTransactionDetailsOpen,
 }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [date, setDate] = useState<Date | null>(null);
-  const publicKey = process.env.NEXT_PUBLIC_PAYMENT_PUBLIC_KEY;
+  const publicKey = process.env.NEXT_PUBLIC_PAYMENT_PUBLIC_KEY ?? '';
 
   const initialValues = {
-    amount: "",
-    email: "",
-    frequency: "One Time",
-    weekly: "Monday",
-    paymentMethod: "Pay with Bank transfer",
+    amount: '',
+    email: '',
+    frequency: 'One Time',
+    weekly: 'Monday',
+    paymentMethod: 'Pay with Bank transfer',
   };
 
   const handleSubmit = (values: typeof initialValues) => {
+    // TODO: use proper conditions with id
     if (
-      values.paymentMethod === "Pay with Bank transfer" &&
-      values.frequency == "One Time"
+      values.paymentMethod == 'Pay with Bank transfer' &&
+      values.frequency == 'One Time'
     ) {
       setIsTransactionDetailsOpen(true);
     } else {
@@ -69,12 +71,12 @@ const DonationForm: React.FC<DonationFormProps> = ({
       onSubmit={handleSubmit}
     >
       {({
-        values,
-        handleChange,
-        setFieldValue,
-        handleSubmit,
         errors,
+        handleChange,
+        handleSubmit,
+        setFieldValue,
         touched,
+        values,
       }) => {
         const selectedPayment = paymentOptions.find(
           (option) => option.label === values.paymentMethod
@@ -83,22 +85,44 @@ const DonationForm: React.FC<DonationFormProps> = ({
         const paystackConfig = {
           email: values.email,
           amount: Number(values.amount) * 100,
-          currency: "NGN",
-          publicKey:publicKey,
+          currency: 'NGN',
+          publicKey: publicKey ?? '',
           metadata: {
-            transfer_type: "donation",
+            transfer_type: 'donation',
             email: values.email,
             id: 1,
             end_date: date,
             autosave_frequency: values.frequency,
+            custom_fields: [
+              {
+                display_name: 'Email',
+                variable_name: 'email',
+                value: values.email,
+              },
+              {
+                display_name: 'User ID',
+                variable_name: 'id',
+                value: 1,
+              },
+              {
+                display_name: 'End Date',
+                variable_name: 'end_date',
+                value: date,
+              },
+              {
+                display_name: 'Autosave Frequency',
+                variable_name: 'autosave_frequency',
+                value: values.frequency,
+              },
+            ],
           },
-
           onSuccess: (reference: any) => {
             setIsSuccessOpen(true);
             setIsTransactionDetailsOpen(false);
             setIsDonationFormOpen(false);
           },
         };
+
 
         return (
           <form
@@ -107,8 +131,9 @@ const DonationForm: React.FC<DonationFormProps> = ({
           >
             {/* Email Input */}
             <div className="mb-[16px]">
-              <label className="block text-base font-medium ">Email</label>
+              <label htmlFor="emailInput" className="block text-base font-medium ">Email</label>
               <input
+                id="emailInput"
                 type="email"
                 name="email"
                 value={values.email}
@@ -123,8 +148,9 @@ const DonationForm: React.FC<DonationFormProps> = ({
 
             {/* Amount Input */}
             <div className="mb-[16px]">
-              <label className="block text-base font-medium ">Amount</label>
+              <label htmlFor="amountInput" className="block text-base font-medium ">Amount</label>
               <input
+                id="amountInput"
                 type="amount"
                 name="amount"
                 value={values.amount}
@@ -148,7 +174,7 @@ const DonationForm: React.FC<DonationFormProps> = ({
               <div className="mt-[4px]">
                 <CustomSelect
                   name="frequency"
-                  options={["One Time", "Weekly", "Monthly"]}
+                  options={['One Time', 'Weekly', 'Monthly']}
                   value={values.frequency}
                   onChange={(name, value) => setFieldValue(name, value)}
                   error={errors.frequency}
@@ -158,8 +184,8 @@ const DonationForm: React.FC<DonationFormProps> = ({
             </div>
 
             {/* Weekly Donation */}
-            {(values.frequency === "Weekly" ||
-              values.frequency === "Monthly") && (
+            {(values.frequency === 'Weekly' ||
+              values.frequency === 'Monthly') && (
               <div>
                 <div className="mb-[16px]">
                   <label className="block mt-[16px] text-base font-medium ">
@@ -169,13 +195,13 @@ const DonationForm: React.FC<DonationFormProps> = ({
                     <CustomSelect
                       name="weekly"
                       options={[
-                        "Monday",
-                        "Tuesday",
-                        "Wednesday",
-                        "Thursday",
-                        "Friday",
-                        "Saturday",
-                        "Sunday",
+                        'Monday',
+                        'Tuesday',
+                        'Wednesday',
+                        'Thursday',
+                        'Friday',
+                        'Saturday',
+                        'Sunday',
                       ]}
                       value={values.weekly}
                       onChange={(name, value) => setFieldValue(name, value)}
@@ -195,7 +221,7 @@ const DonationForm: React.FC<DonationFormProps> = ({
             )}
 
             {/* Payment Options */}
-            {values.frequency === "One Time" && (
+            {values.frequency === 'One Time' && (
               <div>
                 <label
                   className="text-base font-medium text-[#07222C] "
@@ -239,7 +265,7 @@ const DonationForm: React.FC<DonationFormProps> = ({
                             name="paymentMethod"
                             checked={values.paymentMethod === option.label}
                             onChange={() => {
-                              setFieldValue("paymentMethod", option.label);
+                              setFieldValue('paymentMethod', option.label);
                               setIsDropdownOpen(false);
                             }}
                             className="w-[16px] h-[16px]"
@@ -257,15 +283,16 @@ const DonationForm: React.FC<DonationFormProps> = ({
             )}
 
             {/* Submit Button */}
-            {values.paymentMethod == "Pay with Bank transfer" &&
-            values.frequency == "One Time" ? (
+            {/* TODO: use proper conditions with id */}
+            {values.paymentMethod == 'Pay with Bank transfer' &&
+            values.frequency == 'One Time' ? (
               <div className="mt-[28px]">
                 <AppButton
-                  onClick={handleSubmit}
+                  type="submit"
                   fullWidth={true}
                   mih={52}
                   classNames={{
-                    root: "py-[14px] px-[16px] rounded-[10px]",
+                    root: 'py-[14px] px-[16px] rounded-[10px]',
                   }}
                 >
                   <span className="text-[#fff] text-[14px] font-medium flex items-center gap-x-2 ">

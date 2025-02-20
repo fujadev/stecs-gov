@@ -1,9 +1,8 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import AppButton from "../Common/AppButton";
-import CopyIcon from "@/assets/icons/CopyIcon";
-import { useDonationQuery } from "@/config/api/donation/slice";
+import { useState } from 'react';
+import CopyIcon from '@/assets/icons/CopyIcon';
+import { useDonationQuery } from '@/config/api/donation/slice';
 
 const TransferDetails = ({ amount }: { amount: number }) => {
   const { data } = useDonationQuery();
@@ -12,9 +11,9 @@ const TransferDetails = ({ amount }: { amount: number }) => {
   const accountNumber = data?.accountDetails?.accountNumber;
   const accountName = data?.accountDetails?.accountName;
 
-  const handleCopy = (text?: string) => {
-    if (text) {
-      navigator.clipboard.writeText(text);
+  const handleCopy = async (text?: string) => {
+    if (typeof window !== 'undefined' && navigator?.clipboard && text) {
+      await navigator.clipboard.writeText(text);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     }

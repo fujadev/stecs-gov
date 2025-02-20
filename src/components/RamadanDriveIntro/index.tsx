@@ -1,6 +1,9 @@
 import ArrowRightLine from '@/assets/icons/ArrowRightLine';
 import React, { MouseEventHandler, useEffect, useState } from 'react';
 import AppButton from '../Common/AppButton';
+import useMediaQueryWatcher from "@/hooks/useMediaQueryWatcher"; 
+
+
 
 interface RamadanDriveIntroProps {
   quoteSize?: string;
@@ -29,14 +32,9 @@ const RamadanDriveIntro: React.FC<RamadanDriveIntroProps> = ({
   buttonMargin,
   onClick
 }) => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 768);
-    window.addEventListener("resize", handleResize);
-    
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const isMobile = useMediaQueryWatcher("(max-width: 768px)");
+
   return (
     <div className="mt-xl mb-[12px]">
       {/* Quote */}

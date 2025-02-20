@@ -1,26 +1,27 @@
 import type { FC, MouseEventHandler, ReactNode } from 'react';
-import { Button, ButtonStylesNames, ButtonVariant, DefaultMantineColor } from '@mantine/core';
+import type { ButtonStylesNames, ButtonVariant, DefaultMantineColor } from '@mantine/core';
+import { Button } from '@mantine/core';
 
 
 interface ButtonProps {
   color?: DefaultMantineColor | undefined
   title?: string
   children?: ReactNode
-  // eslint-disable-next-line 
+  // eslint-disable-next-line
   variant?: (string & {}) | ButtonVariant | undefined
   fullWidth?: boolean
   loading?: boolean
   disabled?: boolean
   leftSection?: ReactNode
   rightSection?: ReactNode
-  mih?: string | number
+  mih?: number | string
   onClick?: MouseEventHandler<HTMLButtonElement> | undefined
-  type?: 'button' | 'submit' | 'reset' | undefined
+  type?: 'button' | 'reset' | 'submit' | undefined
   classNames?: Partial<Record<ButtonStylesNames, string>> | undefined
-  w?: string | number
+  w?: number | string
 }
 
-const AppButton: FC<ButtonProps> = ({ w, disabled, loading, children, classNames, type, onClick, mih = 52, color = '#233C8B', variant, title, fullWidth, leftSection, rightSection }) => (
+const AppButton: FC<ButtonProps> = ({ children, classNames, color = '#233C8B', disabled, fullWidth, leftSection, loading, mih = 52, onClick, rightSection, title, type, variant, w }) => (
   <Button
     type={type}
     onClick={onClick}
