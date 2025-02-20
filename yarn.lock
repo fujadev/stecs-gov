@@ -6028,12 +6028,12 @@ __metadata:
   linkType: hard
 
 "tinyglobby@npm:^0.2.11":
-  version: 0.2.11
-  resolution: "tinyglobby@npm:0.2.11"
+  version: 0.2.12
+  resolution: "tinyglobby@npm:0.2.12"
   dependencies:
     fdir: ^6.4.3
     picomatch: ^4.0.2
-  checksum: 223a8b356eb14376cc5779fd6aafc3e3ca3b3cfcd0e1a13e5fd6e9724e44657f1d90d6d8d0fe4d3c73da03f8dd376d4529964562834c82035c7800ede78cba55
+  checksum: ef9357fa1b2b661afdccd315cb4995f5f36bce948faaace68aae85fe57bdd8f837883045c88efc50d3186bac6586e4ae2f31026b9a3aac061b884217e6092e23
   languageName: node
   linkType: hard
 
