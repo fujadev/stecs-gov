@@ -75,7 +75,7 @@ const About = () => {
           <p className="max-md:text-center text-sub-500 text-[16px] leading-[24px]">From budgeting and saving to spending and investing, our app offers everything you need to take control of your money and reach your financial goals. Say goodbye to juggling multiple apps and hello to simplicity and convenience with our all-in-one money app that takes care of all your ethical financial worries.</p>
           <button onClick={() => dispatch(setStoreModal(true))} className="max-md:justify-center mt-[25px] flex items-center gap-[4px] max-md:mx-auto">
             <span>Download app</span>
-            <ArrowRightLine />
+            <ArrowRightLine fill="#0A0D14" />
           </button>
 
         </div>

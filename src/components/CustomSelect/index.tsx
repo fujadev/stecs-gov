@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { FaChevronDown } from "react-icons/fa";
-import { motion, AnimatePresence } from "framer-motion";
+import type { FC } from 'react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaChevronDown } from 'react-icons/fa';
 
 interface CustomSelectProps {
   name: string;
@@ -11,23 +12,23 @@ interface CustomSelectProps {
   touched?: boolean;
 }
 
-const CustomSelect: React.FC<CustomSelectProps> = ({
-  name,
-  options,
-  value,
-  onChange,
+const CustomSelect: FC<CustomSelectProps> = ({
   error,
+  name,
+  onChange,
+  options,
   touched,
+  value,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="relative">
       <div
-        className={`w-full py-[10px] px-[14px] border rounded-sm border-[#EAECF0] cursor-pointer flex justify-between items-center ${error && touched ? "border-red-500" : ""}`}
+        className={`w-full py-[10px] px-[14px] border rounded-sm border-[#EAECF0] cursor-pointer flex justify-between items-center ${error && touched ? 'border-red-500' : ''}`}
         onClick={() => setIsOpen(!isOpen)}
       >
-        {value || "Select an option"}
+        {value || 'Select an option'}
         <FaChevronDown />
       </div>
 

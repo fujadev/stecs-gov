@@ -1,18 +1,18 @@
 
-"use client";
-import React, { useState, forwardRef } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import CalenderIcon from "@/assets/icons/CalenderIcon";
+'use client';
+import React, { useState, forwardRef } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import CalenderIcon from '@/assets/icons/CalenderIcon';
 
 const CustomInput = forwardRef<HTMLDivElement, { value: string; onClick: () => void }>(
-  ({ value, onClick }, ref) => (
+  ({ onClick, value }, ref) => (
   <div
     className="flex items-center justify-between border border-[#EAECF0] rounded-md py-[10px] px-[14px] mt-[16px] cursor-pointer"
     onClick={onClick}
     ref={ref}
   >
-    <p className="text-[#667085]">{value || "Select a date"}</p>
+    <p className="text-[#667085]">{value || 'Select a date'}</p>
     <CalenderIcon />
   </div>
 ));
@@ -31,16 +31,15 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({ onDateChange }) => 
 
   return (
     <div className="w-full">
-    <DatePicker
-      selected={selectedDate}
-      onChange={handleDateChange}
-      dateFormat="yyyy-MM-d"
-      popperPlacement="bottom-end"
-      popperProps={{ strategy: "absolute" }}
-      customInput={<CustomInput  value={selectedDate ? selectedDate.toString() : "Select a date"}   onClick={() => {}} />}
-    />
+      <DatePicker
+        selected={selectedDate}
+        onChange={handleDateChange}
+        dateFormat="yyyy-MM-d"
+        popperPlacement="bottom-end"
+        popperProps={{ strategy: 'absolute' }}
+        customInput={<CustomInput  value={selectedDate ? selectedDate.toString() : 'Select a date'}   onClick={() => {}} />}
+      />
     </div>
-
   );
 };
 

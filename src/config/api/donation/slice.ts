@@ -1,9 +1,9 @@
+import type { BaseQueryFn, FetchArgs } from '@reduxjs/toolkit/query';
+import type { EndpointBuilder } from '@reduxjs/toolkit/query/react';
 import { CLIENT_ENDPOINTS } from './endpoint';
+import type { DonationResponse, DonationQueryResult } from './types';
 import { api } from '@/config/api/config/base';
 import { convertKeysCase } from '@/config/helpers/caseConverter';
-import { BaseQueryFn, FetchArgs } from '@reduxjs/toolkit/query';
-import { EndpointBuilder } from '@reduxjs/toolkit/query/react';
-import { DonationResponse, DonationQueryResult } from './types';
 
 
 export const apiSlice = api.injectEndpoints({
@@ -12,12 +12,12 @@ export const apiSlice = api.injectEndpoints({
       query: (): FetchArgs => {
         const url = CLIENT_ENDPOINTS.donation();
         return {
-          method: "GET",
+          method: 'GET',
           url,
         };
       },
       transformResponse: (data: unknown): DonationResponse =>
-        convertKeysCase(data, "camelCase") as DonationResponse,
+        convertKeysCase(data, 'camelCase') as DonationResponse,
     }),
   }),
 });
