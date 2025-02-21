@@ -4,10 +4,10 @@ import React, { useState, Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
 import AppFooter from '@/components/AppFooter';
-// import DonationForm from '@/components/DonationForm';
 import AppHeader from '@/components/Header';
 import TransactionSuccess from '@/components/TransactionSucess';
 import TransferDetails from '@/components/TransferDetails';
+import Link from 'next/link';
 
 const DonationForm = dynamic(
   () => import('../../../components/DonationForm'), // Adjust the path
@@ -54,8 +54,8 @@ const Payment = () => {
                     </p>
                     <p className="my-[20px]">
                       For a detailed breakdown of the campaign’s impact, we invite
-                      you to read the full pdf report here: Stecs Ramadan Charity
-                      ‘24
+                      you to read the full pdf report here: <Link href='https://docs.google.com/document/d/1JN72VrBa0hyI88If-AS0OWLCcyXcgl5qtPePodMRX-g/edit?tab=t.0' className='underline'>Stecs Ramadan Charity
+                      ‘24</Link>
                     </p>
                     <p>
                       Jazakum Allahu Khairan for being a part of this noble cause.

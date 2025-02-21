@@ -8,7 +8,7 @@ import CalenderIcon from '@/assets/icons/CalenderIcon';
 const CustomInput = forwardRef<HTMLDivElement, { value: string; onClick: () => void }>(
   ({ onClick, value }, ref) => (
   <div
-    className="flex items-center justify-between border border-[#EAECF0] rounded-md py-[10px] px-[14px] mt-[16px] cursor-pointer"
+    className="flex items-center justify-between border border-[#EAECF0] rounded-md py-[10px] px-[14px]  cursor-pointer"
     onClick={onClick}
     ref={ref}
   >

@@ -210,11 +210,18 @@ const DonationForm: FC<DonationFormProps> = ({
                     />
                   </div>
                 </div>
+                <label
+                  className="text-base font-medium text-[#07222C] "
+                  htmlFor=""
+                >
+                  Payment Choice
+                </label>
                 <div className="flex items-center gap-x-sm shadow-one border border-[#EAECF0] rounded-sm py-[10px] px-[8px]">
                   <CardIcon />
                   <p>Pay with Card</p>
                 </div>
-                <div className="w-full">
+                <div className="w-full mt-[16px]">
+                  <p className='text-base font-medium text-[#07222C]'>Date</p>
                   <CustomDatePicker onDateChange={setDate} />
                 </div>
               </div>
