@@ -26,7 +26,7 @@ const RamadanDriveIntro: React.FC<RamadanDriveIntroProps> = ({
   goalAmount = 0,
   lineHeight='30px',
   onClick,
-  progressWidth = '20',
+  progressWidth = '0',
   quoteLineHeight= '20px',
   quoteSize = '12px',
   raisedAmount = 0,
