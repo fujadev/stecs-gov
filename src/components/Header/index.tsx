@@ -72,7 +72,7 @@ const AppHeader = () => {
           <span className="text-[#fff] text-[14px] font-medium">
             Open an Account
           </span>
-          <ArrowRightLine/>
+          <ArrowRightLine />
         </AppButton>
       </div>
       <button className="md:hidden" onClick={() => toogleMobileNav()}>
