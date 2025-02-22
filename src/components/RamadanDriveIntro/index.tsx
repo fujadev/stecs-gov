@@ -1,9 +1,9 @@
-import ArrowRightLine from '@/assets/icons/ArrowRightLine';
-import React, { MouseEventHandler, useEffect, useState } from 'react';
+import type { MouseEventHandler} from 'react';
+import React from 'react';
 import AppButton from '../Common/AppButton';
-import useMediaQueryWatcher from "@/hooks/useMediaQueryWatcher"; 
-
-
+import ArrowRightLine from '@/assets/icons/ArrowRightLine';
+import {numberWithCommas} from '@/config/helpers/globals';
+import useMediaQueryWatcher from '@/hooks/useMediaQueryWatcher';
 
 interface RamadanDriveIntroProps {
   quoteSize?: string;
@@ -14,32 +14,32 @@ interface RamadanDriveIntroProps {
   progressWidth?: string;
   buttonWidth?: string;
   lineHeight?: string;
-  quotelineHeight?: string;
+  quoteLineHeight?: string;
   buttonMargin?: string;
   onClick?: MouseEventHandler<HTMLButtonElement> | undefined
 }
 
 const RamadanDriveIntro: React.FC<RamadanDriveIntroProps> = ({
-  quoteSize = '12px',
-  titleSize = '32px',
-  descSize = '16px',
-  raisedAmount = 0,
-  goalAmount = 0,
-  progressWidth = '20',
-  lineHeight="30px",
-  quotelineHeight="20px",
-  buttonWidth = '100%',
   buttonMargin,
-  onClick
+  buttonWidth = '100%',
+  descSize = '16px',
+  goalAmount = 0,
+  lineHeight='30px',
+  onClick,
+  progressWidth = '20',
+  quoteLineHeight= '20px',
+  quoteSize = '12px',
+  raisedAmount = 0,
+  titleSize = '32px'
 }) => {
 
-  const isMobile = useMediaQueryWatcher("(max-width: 768px)");
+  const isMobile = useMediaQueryWatcher('(max-width: 768px)');
 
   return (
     <div className="mt-xl mb-[12px]">
       {/* Quote */}
-      <p className="mt-[16px] " style={{ fontSize: isMobile ? '16px' : quoteSize ,lineHeight: isMobile ? '28px' : quotelineHeight}}>
-        "By No Means Shall You Attain Righteousness Unless You Give Freely Of That Which You Love, And Whatever You Give, Allah Knows It Well" 
+      <p className="mt-[16px] " style={{ fontSize: isMobile ? '16px' : quoteSize ,lineHeight: isMobile ? '28px' : quoteLineHeight}}>
+        "By No Means Shall You Attain Righteousness Unless You Give Freely Of That Which You Love, And Whatever You Give, Allah Knows It Well"
         <span className="font-bold"> [Quran 3:92]</span>
       </p>
 
@@ -57,12 +57,12 @@ const RamadanDriveIntro: React.FC<RamadanDriveIntroProps> = ({
       {/* Donation Progress Bar */}
       <div className="my-[20px]">
         <div className="text-sm flex justify-between text-[#1A1A1A]">
-          <span>Raised: ₦{raisedAmount}</span>
-          <span>Goal: ₦{goalAmount}</span>
+          <span>Raised: ₦{numberWithCommas(raisedAmount)}</span>
+          <span>Goal: ₦{numberWithCommas(goalAmount)}</span>
         </div>
         <div className="w-full h-[8px] bg-[#D9D9D9] mt-[4px] rounded-lg">
           <div
-            className="h-full bg-[#233C8B] rounded-lg "
+            className="h-full bg-[#233C8B] rounded-lg"
             style={{ width: `${progressWidth}%` }}
           ></div>
         </div>
@@ -71,20 +71,19 @@ const RamadanDriveIntro: React.FC<RamadanDriveIntroProps> = ({
       {/* Donate Button */}
       <div style={{ width: buttonWidth, margin: isMobile ? `${buttonMargin} auto 0px` :  `${buttonMargin} 0px 0px`  }}>
       <AppButton
-      onClick={onClick}
+        onClick={onClick}
         fullWidth={true}
         mih={52}
         classNames={{
-          root: "py-[14px] px-[16px] rounded-[10px]",
+          root: 'py-[14px] px-[16px] rounded-[10px]',
         }}
-      
       >
         <span className="text-[#fff] text-[14px] font-medium flex items-center gap-x-2 ">
           Donate <ArrowRightLine fill="white" />
         </span>
       </AppButton>
       </div>
-  
+
     </div>
   );
 };

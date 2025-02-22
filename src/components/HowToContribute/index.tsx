@@ -1,21 +1,21 @@
-import Image from "next/image";
-import Artwork from "../../assets/images/Artwork.png";
+import Image from 'next/image';
+import Artwork from '../../assets/images/Artwork.png';
 
 const HowToContribute = () => {
   const steps = [
     {
-      title: "Make a Donation",
-      description: "Donate any amount directly to our causes.",
+      title: 'Make a Donation',
+      description: 'Donate any amount directly to our causes.',
     },
     {
-      title: "Track Progress",
+      title: 'Track Progress',
       description:
-        "See the impact of your contribution through our real-time progress tracker.",
+        'See the impact of your contribution through our real-time progress tracker.',
     },
     {
-      title: "Stay Updated",
+      title: 'Stay Updated',
       description:
-        "Receive updates on how your donations are making a difference.",
+        'Receive updates on how your donations are making a difference.',
     },
   ];
 

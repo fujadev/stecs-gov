@@ -92,7 +92,7 @@ const Ramadan = () => {
                 descSize="24px"
                 titleSize="57px"
                 lineHeight="62px"
-                quotelineHeight="27px"
+                quoteLineHeight="27px"
                 buttonWidth="60%"
                 buttonMargin="40px"
                 raisedAmount={data?.amountRaised}
