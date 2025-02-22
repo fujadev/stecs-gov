@@ -1,6 +1,5 @@
 import { CLIENT_ENDPOINTS } from './endpoints';
 import { api } from '@/config/api/config/base';
-import { createTag } from '@/config/api/config/tags';
 import { convertKeysCase } from '@/config/helpers/caseConverter';
 
 export const apiSlice = api.injectEndpoints({

@@ -2,12 +2,12 @@
 
 import React, { useState, Suspense } from 'react';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import AppFooter from '@/components/AppFooter';
 import AppHeader from '@/components/Header';
 import TransactionSuccess from '@/components/TransactionSucess';
 import TransferDetails from '@/components/TransferDetails';
-import Link from 'next/link';
 
 const DonationForm = dynamic(
   () => import('../../../components/DonationForm'), // Adjust the path
@@ -16,7 +16,6 @@ const DonationForm = dynamic(
 
 const Payment = () => {
   const [isTransactionDetailsOpen, setIsTransactionDetailsOpen] = useState(false);
-  const [isDonationFormOpen, setIsDonationFormOpen] = useState(false);
   const [isSuccessOpen, setIsSuccessOpen] = useState(false);
   const [amount, setAmount] = useState(0);
   const router = useRouter();
@@ -54,7 +53,7 @@ const Payment = () => {
                     </p>
                     <p className="my-[20px]">
                       For a detailed breakdown of the campaign’s impact, we invite
-                      you to read the full pdf report here: <Link href='https://docs.google.com/document/d/1JN72VrBa0hyI88If-AS0OWLCcyXcgl5qtPePodMRX-g/edit?tab=t.0' className='underline'>Stecs Ramadan Charity
+                      you to read the full pdf report here: <Link href='https://docs.google.com/document/d/1JN72VrBa0hyI88If-AS0OWLCcyXcgl5qtPePodMRX-g/edit?tab=t.0' target="_blank" className='underline'>Stecs Ramadan Charity
                       ‘24</Link>
                     </p>
                     <p>
@@ -69,7 +68,6 @@ const Payment = () => {
                     {!isTransactionDetailsOpen && !isSuccessOpen ? (
                       <DonationForm
                         setIsTransactionDetailsOpen={setIsTransactionDetailsOpen}
-                        setIsDonationFormOpen={setIsDonationFormOpen}
                         setIsSuccessOpen={setIsSuccessOpen}
                         onAmountChange={setAmount}
                       />

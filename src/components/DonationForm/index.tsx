@@ -30,13 +30,11 @@ const validationSchema = Yup.object().shape({
 interface DonationFormProps {
   setIsTransactionDetailsOpen: Dispatch<SetStateAction<boolean>>;
   setIsSuccessOpen: Dispatch<SetStateAction<boolean>>;
-  setIsDonationFormOpen: Dispatch<SetStateAction<boolean>>;
   onAmountChange: (amount: number) => void;
 }
 
 const DonationForm: FC<DonationFormProps> = ({
   onAmountChange,
-  setIsDonationFormOpen,
   setIsSuccessOpen,
   setIsTransactionDetailsOpen,
 }) => {
@@ -119,7 +117,6 @@ const DonationForm: FC<DonationFormProps> = ({
           onSuccess: (reference: any) => {
             setIsSuccessOpen(true);
             setIsTransactionDetailsOpen(false);
-            setIsDonationFormOpen(false);
           },
         };
 
