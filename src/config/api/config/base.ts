@@ -25,7 +25,7 @@ export type TagType = keyof typeof API_TAG_CONFIG;
 
 export type ApiTagConfig = typeof API_TAG_CONFIG;
 const baseQuery = fetchBaseQuery({
-	baseUrl: process.env.NEXT_PUBLIC_BASE_URL  || process.env.NEXT_PUBLIC_API_BASE_URL,
+	baseUrl: process.env.NEXT_PUBLIC_BASE_URL,
 	prepareHeaders: (headers, { getState }) => {
 		// prettier-ignore
 		// @ts-expect-error this might be null
