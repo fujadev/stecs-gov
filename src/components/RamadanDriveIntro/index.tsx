@@ -79,7 +79,7 @@ const RamadanDriveIntro: React.FC<RamadanDriveIntroProps> = ({
         }}
       >
         <span className="text-[#fff] text-[14px] font-medium flex items-center gap-x-2 ">
-          Donate <ArrowRightLine fill="white" />
+          Donate <ArrowRightLine />
         </span>
       </AppButton>
       </div>
