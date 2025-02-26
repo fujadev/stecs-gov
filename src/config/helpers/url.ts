@@ -42,3 +42,6 @@ export const validateImageType = (value: any) => {
 
 export const individualVerificationData = ['Drivers License', 'Voters Card', 'International Passport'];
 export const businessVerificationData = ['CAC'];
+export const formatAmount = (amount: number) => {
+	return new Intl.NumberFormat('en-US').format(amount);
+  };
