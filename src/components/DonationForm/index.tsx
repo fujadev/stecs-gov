@@ -12,6 +12,8 @@ import CustomDatePicker from '../CustomDatePicker';
 import CustomSelect from '../CustomSelect';
 import CardIcon from '@/assets/icons/CardIcon';
 import TransferIcon from '@/assets/icons/TransferIcon';
+import { useDonationQuery } from '@/config/api/donation/slice';
+
 
 const paymentOptions = [
   { label: 'Pay with Card', icon: <CardIcon /> },
@@ -41,6 +43,7 @@ const DonationForm: FC<DonationFormProps> = ({
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [date, setDate] = useState<Date | null>(null);
   const publicKey = process.env.NEXT_PUBLIC_PAYMENT_PUBLIC_KEY ?? '';
+  const { data } = useDonationQuery();
 
   const initialValues = {
     amount: '',
@@ -88,7 +91,7 @@ const DonationForm: FC<DonationFormProps> = ({
           metadata: {
             transfer_type: 'donation',
             email: values.email,
-            id: 1,
+            id: data?.id,
             end_date: date,
             autosave_frequency: values.frequency,
             custom_fields: [

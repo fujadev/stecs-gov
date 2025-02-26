@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import CopyIcon from '@/assets/icons/CopyIcon';
 import { useDonationQuery } from '@/config/api/donation/slice';
+import { formatAmount } from '@/config/helpers/url';
 
 const TransferDetails = ({ amount }: { amount: number }) => {
   const { data } = useDonationQuery();
@@ -22,10 +23,10 @@ const TransferDetails = ({ amount }: { amount: number }) => {
   return (
     <div className="p-[24px] rounded-[12px] w-full  bg-white shadow-two">
       <h2 className="text-center  font-medium text-base">
-        Transfer ₦{amount} to STECS RAMADAN DRIVE
+        Transfer ₦{formatAmount(amount)} to STECS RAMADAN DRIVE
       </h2>
 
-      <div className="bg-[#F9F9FA] rounded-[10px] py-[20px] px-[15px] mt-[16px]">
+      <div className="bg-[#F9F9FA] rounded-[10px] py-[20px] px-[15px] mt-[8px]">
         {/* Bank Name */}
         <div className="mb-md">
           <p className="text-sm text-[#030E1280] font-medium">BANK NAME</p>
@@ -57,7 +58,7 @@ const TransferDetails = ({ amount }: { amount: number }) => {
         <div className="mb-md flex items-center justify-between">
           <div>
             <p className="text-sm text-[#030E1280] font-medium">AMOUNT</p>
-            <p className="text-[#344054] text-base font-semibold">₦{amount}</p>
+            <p className="text-[#344054] text-base font-semibold">₦{formatAmount(amount)}</p>
           </div>
           <button
             onClick={() => handleCopy(amount.toString())}
