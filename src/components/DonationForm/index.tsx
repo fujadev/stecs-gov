@@ -123,8 +123,6 @@ const DonationForm: FC<DonationFormProps> = ({
           },
         };
 
-        console.log(paystackConfig)
-
 
         return (
           <form
