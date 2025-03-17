@@ -7,7 +7,7 @@
                     {
                         "/": "/ramadan/*",
                         "exclude": true,
-                        "comment": "Matches any URL with a path that starts with /help/website/ and instructs the system not to open it as a universal link."
+                        "comment": "Matches any URL with a path that starts with /ramadan/ and instructs the system not to open it as a universal link."
                     }
                 ]
             }
