@@ -14,3 +14,7 @@ const nextConfig = {
 };
 
 export default withNextIntl(nextConfig);
+
+// bundle identify => com.stecsmobile.stecs <= com.stecs.stecsapp
+
+// team id and bundle id

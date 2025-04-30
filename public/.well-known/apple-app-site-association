@@ -2,7 +2,7 @@
     "applinks": {
         "details": [
             {
-                "appIDs": ["3U7Y568CL7.com.stecs.stecsapp"],
+                "appIDs": ["3U7Y568CL7.com.stecsmobile.stecs"],
                 "components": [
                     {
                         "/": "/ramadan/*",
