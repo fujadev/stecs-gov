@@ -1,16 +1,13 @@
 {
     "applinks": {
-        "details": [
-            {
-                "appIDs": ["3U7Y568CL7.com.stecsmobile.stecs"],
-                "components": [
-                    {
-                        "/": "/ramadan/*",
-                        "exclude": true,
-                        "comment": "Matches any URL with a path that starts with /ramadan/ and instructs the system not to open it as a universal link."
-                    }
-                ]
-            }
-        ]
+      "apps": [],
+      "details": [
+        {
+          "appID": "3U7Y568CL7.com.stecsmobile.stecs",
+          "paths": [
+            "*"
+          ]
+        }
+      ]
     }
-}
+  }

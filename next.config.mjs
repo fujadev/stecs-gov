@@ -18,3 +18,21 @@ export default withNextIntl(nextConfig);
 // bundle identify => com.stecsmobile.stecs <= com.stecs.stecsapp
 
 // team id and bundle id
+
+
+// {
+//     "applinks": {
+//         "details": [
+//             {
+//                 "appIDs": ["3U7Y568CL7.com.stecsmobile.stecs"],
+//                 "components": [
+//                     {
+//                         "/": "/ramadan/*",
+//                         "exclude": true,
+//                         "comment": "Matches any URL with a path that starts with /ramadan/ and instructs the system not to open it as a universal link."
+//                     }
+//                 ]
+//             }
+//         ]
+//     }
+// }
