@@ -17,8 +17,6 @@ export default withNextIntl(nextConfig);
 
 // bundle identify => com.stecsmobile.stecs <= com.stecs.stecsapp
 
-// team id and bundle id
-
 
 // {
 //     "applinks": {
@@ -36,3 +34,13 @@ export default withNextIntl(nextConfig);
 //         ]
 //     }
 // }
+
+
+// "details": [
+//         {
+//           "appID": "3U7Y568CL7.com.stecsmobile.stecs",
+//           "paths": [
+//             "*"
+//           ]
+//         }
+//       ]
