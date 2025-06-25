@@ -6,7 +6,7 @@
                 "appIDs": ["3U7Y568CL7.com.stecsmobile.stecs"],
                 "components": [
                   {
-                    "path": "*",
+                    "/": "*",
                     "exclude": true
                   },
                    {
@@ -15,19 +15,19 @@
                       "comment": "Matches any URL with a fragment that equals no_universal_links and instructs the system not to open it as a universal link."
                     },
                     {
-                      "path": "/ramadan",
+                      "/": "/ramadan",
                       "exclude": true
                     },
                     {
-                      "path": "/community",
+                      "/": "/community",
                       "exclude": true
                     },
                     {
-                      "path": "/ramadan/*",
+                      "/": "/ramadan/*",
                       "exclude": true
                     },
                     {
-                      "path": "/community/*",
+                      "/": "/community/*",
                       "exclude": true
                     }
                 ]
