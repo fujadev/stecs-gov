@@ -12,6 +12,14 @@
                     {
                       "/": "/community",
                       "exclude": true
+                    },
+                    {
+                      "/": "/ramadan/*",
+                      "exclude": true
+                    },
+                    {
+                      "/": "/community/*",
+                      "exclude": true
                     }
                 ]
             }
