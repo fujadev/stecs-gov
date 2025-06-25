@@ -1,23 +1,25 @@
-// {
-//     "applinks": {
-//       "apps": [],
-//       "details": [
-//             {
-//                 "appIDs": ["3U7Y568CL7.com.stecsmobile.stecs"],
-//                 "components": [
-//                     {
-//                         "/": "*"
-//                     },
-//                     {
-//                         "/": "/ramadan/*",
-//                         "exclude": true
-//                     },
-//                     {
-//                         "/": "/community",
-//                         "exclude": true
-//                     }
-//                 ]
-//             }
-//         ]
-//     }
-//   }
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": ["3U7Y568CL7.com.stecsmobile.stecs"],
+        "components": [
+          {
+            "/": "*"
+          },
+          {
+            "/ramadan": {
+              "exclude": true
+            }
+          },
+          {
+            "/community": {
+              "exclude": true
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
