@@ -11,23 +11,23 @@
                       "comment": "Matches any URL with a fragment that equals no_universal_links and instructs the system not to open it as a universal link."
                     },
                     {
-                      "/": "/ramadan",
+                      "path": "/ramadan",
                       "exclude": true
                     },
                     {
-                      "/": "/community",
+                      "path": "/community",
                       "exclude": true
                     },
                     {
-                      "/": "/ramadan/*",
+                      "path": "/ramadan/*",
                       "exclude": true
                     },
                     {
-                      "/": "/community/*",
+                      "path": "/community/*",
                       "exclude": true
                     },
                     {
-                      "/": "*",
+                      "path": "*",
                       "exclude": true
                     }
                 ]
