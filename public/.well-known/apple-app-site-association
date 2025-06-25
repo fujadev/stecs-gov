@@ -5,6 +5,10 @@
             {
                 "appIDs": ["3U7Y568CL7.com.stecsmobile.stecs"],
                 "components": [
+                  {
+                    "path": "*",
+                    "exclude": true
+                  },
                    {
                       "#": "no_universal_links",
                       "exclude": true,
@@ -24,10 +28,6 @@
                     },
                     {
                       "path": "/community/*",
-                      "exclude": true
-                    },
-                    {
-                      "path": "*",
                       "exclude": true
                     }
                 ]
