@@ -98,7 +98,7 @@ const AppFooter: React.FC<props> = ({ showFeedBackSection }) => {
 						Co-operative Societies Laws of Lagos State with registration number LSCS 18966 as Stecs (Alausa) Multipurpose Cooperative Society Limited. Other activities and
 						partnerships are in line with the best ethical practices and the laws of the Federal Republic of Nigeria. Any unauthorized redistribution or reproduction of any
 						copyrighted materials on this website is strictly prohibited. Other product and company names are trademarks of their respective owners. This website contains simulated
-						images; actual appearance may vary
+						images; actual appearance may vary.
 					</p>
 					<div className="flex justify-between flex-wrap gap-[28px] items-center">
 						<div className="flex items-center gap-[20px]">
