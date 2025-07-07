@@ -7,7 +7,6 @@
                 "components": [
                   {
                     "/": "*",
-                    "exclude": true
                   },
                    {
                       "#": "no_universal_links",
