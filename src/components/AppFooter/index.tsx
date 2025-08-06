@@ -105,7 +105,7 @@ const AppFooter: React.FC<props> = ({ showFeedBackSection }) => {
 							<button onClick={() => document.querySelector('main')?.scrollIntoView({ behavior: 'smooth' })}>
 								<ArrowUp />
 							</button>
-							<span className="text-[#fff] opacity-50"> © {new Date().getFullYear()} Stecs Ltd. All Rights Reserved</span>
+							<span className="text-[#fff] opacity-50"> © {new Date().getFullYear()} Stecs Ltd. All Rights Reserved.</span>
 						</div>
 
 						<div className="flex items-center gap-[8px]">
