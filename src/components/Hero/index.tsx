@@ -1,45 +1,135 @@
-import heroImg from '@/assets/images/hero_img.webp'
-import heroImgM from '@/assets/images/hero_imgM.png'
-import mtnLogo from '@/assets/images/mtnLogo.webp'
-import horizontalBarChart from '@/assets/images/horizontalBarChart1.webp'
-import cash1 from '@/assets/images/cash1.gif'
-import chart1 from '@/assets/images/chart1.gif'
-import Image from 'next/image';
-import StoreButton from '../Common/StoreButton';
+import React, { useState } from "react";
+// import classes from "./styles.module.scss";
+import { Formik } from "formik";
+import * as Yup from "yup";
+import Link from "next/link";
+import HeaderLogo from "@/assets/icons/HeaderLogo";
+import EyeClose from "@/assets/icons/EyeClose";
+import EyeIcon from "@/assets/icons/EyeIcon";
+import { useRouter, useSearchParams } from "next/navigation";
+import { handleMutation } from '@/config/helpers/mutation';
+import { useSignUpMutation } from "@/config/api/client/slice";
+import AppHeader from "@/components/Header";
+import AppFooter from "@/components/AppFooter";
+
+const validationSchema = Yup.object().shape({
+  email: Yup.string().required().email().label("Email"),
+  password: Yup.string()
+    .min(8, 'Password must be at least 8 characters long')
+    .matches(/[A-Z]/, 'Password must contain at least one uppercase character')
+    .matches(/[!@#$%^&*(),.?':{}|<>]/, 'Password must contain at least one special character (!, @, #, $, etc.)')
+    .required('Password is required'),
+  confirmPassword: Yup.string()
+    .required()
+    .label("Confirm Password")
+    .oneOf([Yup.ref('password')], "Passwords must match"),
+  referral: Yup.string().label("Referral"),
+  ageDeclaration: Yup.boolean().oneOf([true], 'You must declare that you are 18 years and above'),
+  terms: Yup.boolean().oneOf([true], 'You must agree to the terms and conditions')
+});
 
 const HeroSection = () => {
-  return (<section className="wrapper-pad w-[100%] max-w-[1253px] mx-auto flex max-lg:flex-col max-lg:items-center">
-    <div className="md:min-w-[539px] max-lg:text-center w-full lg:max-w-[592px] pb-[90px] max-sm:pb-[32px]">
-      <h1 className="text-[72px] max-sm:text-[42px] font-bold leading-[84px] max-sm:leading-[49px] tracking-[-2px] mb-[20px] text-main-900">One app, all your ethical financial needs.</h1>
-      <p className="text-main-900 text-[18px] max-sm:text-[13px] leading-[24px] max-sm:leading-[19px] font-light">Save for your goals. Earn ethical returns. Manage your wealth. Experience finance that aligns with your values, all in one app.</p>
-      <StoreButton theme='dark' className='max-lg:mx-auto max-lg:w-fit' />
-    </div>
-    <div className='container/mai mt-auto max-h-[693px] h-[100%] w-auto relative max-md:hidden'>
-      <div className='p-[20px] rounded-[24px] bg-[#F9F9F7] max-w-[300px] w-full absolute right-[50px] top-[-60px]'>
-        <span className='text-[12px] text-sub-500'>TRANSACTION</span>
-        <div className='mt-[6px] flex item-center gap-[8px]'>
-          <Image src={mtnLogo} alt='MTN' className='max-w-[28px]' />
-          <span className='text-[18px] text-sub-500'>MTN Airtime</span>
-          <span className='ml-auto'>₦1500.00</span>
-        </div>
-      </div>
-      <Image src={heroImg} className='w-full max-w-[719px]' alt="Stecs Features" />
 
-      <div className=' max-lg:scale-[1] max-lg:bottom-[30px] max-[1399px]:scale-[0.7] max-[1399px]:bottom-[-20px] p-[12px] rounded-[20px] bg-[white] max-w-[265px] absolute bottom-[63px] max-lg:left-[0px] left-[-100px]'>
-        <div className='flex gap-[5.82px] items-center mb-[4px]'>
-          <Image src={cash1} width={16} alt="Stecs Features" />
-          <span className='text-[12px] text-main-900'>Savings</span>
-        </div>
-        <span className='text-[18px] text-main-900'>₦14,480,567.24</span>
-        <div className='flex gap-[5.82px] items-center mt-[8px] mb-[11px] pb-[14px] border-b-1 border-[#E2E4E9]'>
-          <Image width={16} src={chart1} alt="Stecs Features" />
-          <span className='text-[12px] text-main-900'>Expenses</span>
-        </div>
-        <Image src={horizontalBarChart} alt="Stecs Features" />
+  const [signUp, { isLoading }] = useSignUpMutation();
+  const router = useRouter();
+  const searchParams = useSearchParams()
+  const refCode = searchParams.get('code')
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (values: any) => {
+    await handleMutation({
+      mutation: () => signUp(values).unwrap(),
+      onSuccess(result: any) {
+        router.push('/congratulations');
+      },
+    });
+  }
+
+
+  return (
+    <section className="border-[1px] border-[#3C3B3B] rounded-[20px] p-[48px] max-w-[601px]">
+      <div>
+        <Formik
+          initialValues={{
+            email: "",
+            password: "",
+            confirmPassword: "",
+            referralCode: refCode,
+            ageDeclaration: false,
+            terms: false
+          }}
+          validateOnMount={true}
+          validateOnChange={true}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
+          {({
+            handleChange,
+            handleSubmit,
+            errors,
+            setFieldTouched,
+            touched,
+            values,
+            isValid
+          }) => (
+            <form onSubmit={handleSubmit}>
+
+              <div className="mb-[24px]">
+                <label htmlFor="email" className="text-[#003049] text-[14px]">Email or Phone number</label>
+                <div>
+                  <input
+                    className="border border-[#92929D] px-[16px] py-[12px] rounded-[4px] w-full"
+                    id="email"
+                    onChange={handleChange("email")}
+                    type="email"
+                    name="email"
+                    onBlur={() => setFieldTouched("email")}
+                    placeholder="eg. janedoe@gmail.com"
+                    value={values.email}
+                  />
+                </div>
+                {touched.email && <small className="text-[#E63946]">{errors.email}</small>}
+              </div>
+              
+              <div>
+                <label htmlFor="password" className="text-[#003049] text-[14px]">Password</label>
+                <div className="relative w-full">
+                  <input
+                    className="border border-[#92929D] px-[16px] py-[12px] rounded-[4px] w-full pr-[40px]"
+                    id="password"
+                    onChange={handleChange("password")}
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    onBlur={() => setFieldTouched("password")}
+                    placeholder="Your Password"
+                    value={values.password}
+                  />
+                  {/* <div
+                    className="absolute top-1/2 transform -translate-y-1/2 cursor-pointer"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {!showPassword ? <EyeClose /> : <EyeIcon />}
+                  </div> */}
+                </div>
+                {touched.password && <small className="text-[#E63946]">{errors.password}</small>}
+              </div>
+
+              <span className="block text-right text-[#3A86FF] font-medium text-sm mt-[12px]">Forgot Password?</span>
+
+              <button
+                className="bg-[#3A86FF] rounded-[12px] w-full py-[15px] text-center text-[14px] text-[#FFFFFF] font-semibold mt-[32px]"
+                type="submit"
+                disabled={isLoading || !isValid}
+              >
+                {isLoading ? "Loading..." : "Log in"}
+              </button>
+            </form>
+          )}
+        </Formik>
       </div>
-    </div>
-    <Image src={heroImgM} alt="Features" className='md:hidden' />
-  </section>
+    </section>
+
   );
 }
 
