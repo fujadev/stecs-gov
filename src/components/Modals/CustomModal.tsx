@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { Modal } from "@mantine/core";
 import Image, { StaticImageData } from "next/image";
 import CancelCircle from "@/assets/icons/CancelCircle";
@@ -18,6 +18,8 @@ interface CustomModalProps {
   cancelText?: string;
   releaseText?: string;
   children?: ReactNode;
+  opened: boolean;     
+  onClose: () => void;          
 }
 
 const validationSchema = Yup.object().shape({
@@ -33,62 +35,50 @@ const CustomModal = ({
   releaseText,
   cancelText,
   children,
+  opened,
+  onClose,
 }: CustomModalProps) => {
-  const [opened, setOpened] = useState(false);
-
   const handleSubmit = (values: { email: string }) => {
     console.log("Form submitted:", values);
-    setOpened(false);
+    onClose();
   };
 
   return (
-    <>
-      <button
-        onClick={() => setOpened(true)}
-        className="px-4 py-2 bg-blue-500 text-white rounded"
-      >
-        Open {variant} Modal
-      </button>
+    <Modal
+      opened={opened}
+      onClose={onClose}
+      centered
+      withCloseButton={false}
+      overlayProps={{
+        backgroundOpacity: 0.55,
+        blur: 3,
+      }}
+      size="auto"
+      padding={0}
+    >
+      <div>
+        {children && children}
+        {!children && variant === "invite" && (
+          <div className="flex flex-col items-center text-center w-[719px] py-[40px]">
+            {image && (
+              <Image
+                src={image}
+                alt="invite success"
+                className="w-[100px] h-[100px] mb-[40px]"
+              />
+            )}
+            <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
+            <p className="text-[16px] text-[#003049] mt-[24px]">{description}</p>
+            <button
+              onClick={onClose}
+              className="mt-[40px] rounded-[12px] bg-[#3A86FF] text-white px-[61px] py-[15px] text-[16px] font-semibold"
+            >
+              {buttonText}
+            </button>
+          </div>
+        )}
 
-      <Modal
-        opened={opened}
-        onClose={() => setOpened(false)}
-        centered
-        withCloseButton={false}
-        overlayProps={{
-          backgroundOpacity: 0.55,
-          blur: 3,
-        }}
-        size="auto"
-        padding={0}
-      >
-        <div>
-          {children && children}
 
-          {/* Invite Modal */}
-          {!children && variant === "invite" && (
-            <div className="flex flex-col items-center text-center w-[719px] py-[40px]">
-              {image && (
-                <Image
-                  src={image}
-                  alt="invite success"
-                  className="w-[100px] h-[100px] mb-[40px]"
-                />
-              )}
-              <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
-              <p className="text-[16px] text-[#003049] mt-[24px]">
-                {description}
-              </p>
-              <button
-                onClick={() => setOpened(false)}
-                className="mt-[40px] rounded-[12px] bg-[#3A86FF] text-white px-[61px] py-[15px] text-[16px] font-semibold"
-              >
-                {buttonText}
-              </button>
-            </div>
-          )}
-
-          {/* Release Payment Modal */}
           {!children && variant === "releasePayment" && (
             <div className="flex flex-col items-center text-center w-[719px] py-[40px]">
               <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
@@ -112,7 +102,6 @@ const CustomModal = ({
             </div>
           )}
 
-          {/* Status Modal with Formik Email Form */}
           {!children && variant === "status" && (
             <div className="flex flex-col w-[719px] p-[40px]">
               <div className="flex justify-between items-center">
@@ -123,13 +112,11 @@ const CustomModal = ({
                 <div className="flex items-center gap-[16px]">
                   <button
                     type="button"
-                    onClick={() => setOpened(false)}
                     className="rounded-[12px] bg-[#3A86FF] text-white w-[197px] h-[50px] text-[16px] font-semibold"
                   >
                     Send Invite
                   </button>
                   <div
-                    onClick={() => setOpened(false)}
                     className="bg-[#F5F5F5] p-[12px] rounded-full cursor-pointer"
                   >
                     <CancelCircle />
@@ -177,8 +164,8 @@ const CustomModal = ({
           )}
         </div>
       </Modal>
-    </>
   );
 };
+
 
 export default CustomModal;

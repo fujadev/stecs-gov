@@ -2,27 +2,26 @@
 
 import type { ReactNode } from 'react';
 import AppHeader from '@/components/Header';
-import HeroSection from '@/components/Hero';
-import Register from '../UploadCSV/page';
+import HeroSection from '@/components/Login';
+import Register from '../uploadcsv/page';
 import WalletSummary from '@/components/WalletSummary';
 import Total from '@/components/Total';
 import ButtonPill from '@/components/ButtonPill';
-import checklist from "../../assets/images/checklist.png";
 import PaymentSummary from '@/components/PaymentSummary';
 import CustomModal from '@/components/Modals/CustomModal';
 import CancelCircle from '@/assets/icons/CancelCircle';
-import UploadCSV from '../UploadCSV/page';
+import UploadCSV from '../uploadcsv/page';
+import Login from '@/components/Login';
 
 
 
 const Home = (): ReactNode => (
   <main>
     {/* <AppHeader /> */}
-    {/* <HeroSection /> */}
+    <Login />
     {/* <WalletSummary /> */}
     {/* <ButtonPill /> */}
     {/* <PaymentSummary /> */}
-    {/* Invite modal */}
     {/* <CustomModal
       variant="invite"
       image={checklist}
@@ -41,7 +40,7 @@ const Home = (): ReactNode => (
     /> */}
 
     {/* <CustomModal variant="status"/> */}
-<UploadCSV />
+
   </main>
 );
 
