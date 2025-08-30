@@ -4020,15 +4020,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lucide-react@npm:^0.542.0":
-  version: 0.542.0
-  resolution: "lucide-react@npm:0.542.0"
-  peerDependencies:
-    react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
-  checksum: 779e426ef3473e6a56bbc627c945d8fb6fb98039ff6b731b66e60f1af5240aac5fcb16cae3a348ffc11f023a47e7f3f212ddc49e16548f2e47bd24e6f71c4ce4
-  languageName: node
-  linkType: hard
-
 "lz-string@npm:^1.5.0":
   version: 1.5.0
   resolution: "lz-string@npm:1.5.0"
@@ -5687,7 +5678,6 @@ __metadata:
     i18next-resources-to-backend: ^1.2.1
     lodash: ^4.17.21
     lodash.pick: ^4.4.0
-    lucide-react: ^0.542.0
     negotiator: ^0.6.3
     next: 14.2.2
     next-intl: ^3.14.1
