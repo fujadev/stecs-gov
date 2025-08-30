@@ -12,13 +12,14 @@ import CustomModal from '@/components/Modals/CustomModal';
 import CancelCircle from '@/assets/icons/CancelCircle';
 import UploadCSV from '../uploadcsv/page';
 import Login from '@/components/Login';
+import PayoutDetails from '../payout-details/page';
 
 
 
 const Home = (): ReactNode => (
   <main>
     {/* <AppHeader /> */}
-    <Login />
+    {/* <Login /> */}
     {/* <WalletSummary /> */}
     {/* <ButtonPill /> */}
     {/* <PaymentSummary /> */}
@@ -40,7 +41,7 @@ const Home = (): ReactNode => (
     /> */}
 
     {/* <CustomModal variant="status"/> */}
-
+<PayoutDetails />
   </main>
 );
 
