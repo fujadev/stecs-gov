@@ -12,7 +12,7 @@ const WalletSummary = () => {
                         <Money />
                     </div>
                     <span className="block text-[#F5F6FA] text-[14px]">Wallet Balance</span>
-                    <span className="block text-[#FFFFFF] text-[36px]">₦6,718,000</span>
+                    <span className="block text-[#FFFFFF] font-bold text-[36px]">₦6,718,000</span>
                 </div>
                 <div className='flex flex-col w-full justify-between'>
                     <Total title={'Total Disbursed'} figure={'₦718,000'} />

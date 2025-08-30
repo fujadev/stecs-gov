@@ -19,7 +19,7 @@ const config: Config = {
 	theme: {
 		extend: {
 			fontFamily: {
-				aneonik: ['var(--font-aneonik)'],
+				sans: ["var(--font-montserrat)", "sans-serif"],
 			},
 			colors: {
 				primary: PRIMARY,

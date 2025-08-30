@@ -110,7 +110,7 @@ const Login = () => {
                   type="submit"
                   className="bg-[#3A86FF] rounded-[12px] w-full py-[15px] text-[14px] text-white font-semibold mt-[32px]"
                 >
-                  "Log in"
+                  Log in
                 </button>
               </form>
             )}
