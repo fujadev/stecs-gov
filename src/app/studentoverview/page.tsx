@@ -1,15 +1,18 @@
 "use client";
 import AppHeader from "@/components/Header";
 import PaymentSummary from "@/components/PaymentSummary";
-import checklist from "../../assets/images/checklist.png";
 import { useRouter } from "next/navigation";
 
 const StudentOverview = () => {
-     const router = useRouter();
+    const router = useRouter();
     return (
         <>
             <AppHeader />
-          <PaymentSummary />
+            {/* <div className="bg-[#F5F6FA] min-h-screen"> */}
+            <div className=" ">
+                <PaymentSummary />
+            </div>
+            {/* </div> */}
         </>
     );
 };
