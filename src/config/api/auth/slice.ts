@@ -18,6 +18,14 @@ const authSlice = createSlice({
 	name: 'auth',
 	initialState,
 	reducers: {
+		storeToken: (state, { payload }: PayloadAction<string>) => {
+			// eslint-disable-next-line fp/no-mutation
+			state.token = payload;
+		},
+		storeUser: (state, { payload }: PayloadAction<any>) => {
+			// eslint-disable-next-line fp/no-mutation
+			state.user = payload;
+		},
 		clearToken: (state) => {
 			// eslint-disable-next-line fp/no-mutation
 			state.token = undefined;
@@ -42,4 +50,4 @@ const authSlice = createSlice({
 });
 
 export default authSlice.reducer;
-export const { clearToken, resetStore, setStoreModal } = authSlice.actions;
+export const { clearToken, resetStore, setStoreModal, storeToken, storeUser, setMode } = authSlice.actions;

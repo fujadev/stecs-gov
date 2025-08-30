@@ -1,6 +1,7 @@
-import { createApi, fetchBaseQuery, retry } from '@reduxjs/toolkit/query/react';
+import { BaseQueryFn, createApi, FetchArgs, fetchBaseQuery, FetchBaseQueryError, retry } from '@reduxjs/toolkit/query/react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { keys } from 'lodash';
+import { resetStore } from '../auth/slice';
 
 // Rules of rtk caching:
 // 1. Mutations cannot provide tags to the cache, only queries can
@@ -37,10 +38,28 @@ const baseQuery = fetchBaseQuery({
 	},
 });
 
-const baseQueryWithRetry = retry(baseQuery, { maxRetries: 2 });
+// const baseQueryWithRetry = retry(baseQuery, { maxRetries: 1 });
+
+// Wrapper to handle 401s
+const baseQueryWith401Handler: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> = async (args, api, extraOptions) => {
+	const result = await baseQuery(args, api, extraOptions);
+
+	if (result.error && result.error.status === 401) {
+		api.dispatch(resetStore());
+		window.location.href = '/';
+
+		// const pathname = window.location.pathname;
+		// const search = window.location.search;
+		// window.location.href = ROUTES.PEERS_AUTH({ redirect: `${pathname}${search}` });
+
+		return { error: { status: 401, data: 'Unauthorized' } };
+	}
+
+	return result;
+};
 
 export const api = createApi({
-	baseQuery: baseQueryWithRetry,
+	baseQuery: baseQueryWith401Handler,
 	tagTypes: getTagTypes(),
 	endpoints: () => ({}),
 });

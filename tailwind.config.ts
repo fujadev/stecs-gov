@@ -9,7 +9,7 @@ const preset = {
 };
 
 const config: Config = {
-	content: ['./src/pages/**/*.{js,ts,jsx,tsx,mdx}', './src/components/**/*.{js,ts,jsx,tsx,mdx}', './src/app/**/*.{js,ts,jsx,tsx,mdx}'],
+	content: ['./src/pages/**/*.{js,ts,jsx,tsx,mdx}', './src/components/**/*.{js,ts,jsx,tsx,mdx}', './src/app/**/*.{js,ts,jsx,tsx,mdx}', './src/config/helpers/tailwindClasses.ts'],
 	// Required to use Mantine
 	important: true,
 	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -19,7 +19,7 @@ const config: Config = {
 	theme: {
 		extend: {
 			fontFamily: {
-				sans: ["var(--font-montserrat)", "sans-serif"],
+				sans: ['var(--font-montserrat)', 'sans-serif'],
 			},
 			colors: {
 				primary: PRIMARY,
@@ -42,7 +42,7 @@ const config: Config = {
 			},
 			screens: {
 				sm: '564px',
-				xsm:'450px'
+				xsm: '450px',
 			},
 		},
 	},
