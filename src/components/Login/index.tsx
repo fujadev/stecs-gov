@@ -10,6 +10,7 @@ import AppHeader from '@/components/Header';
 import AppButton from '../Common/AppButton';
 import { storeToken, storeUser } from '@/config/api/auth/slice';
 import { useAppDispatch } from '@/config/api/config/store';
+import { ROUTES } from '@/config/routes';
 
 const validationSchema = Yup.object().shape({
 	email: Yup.string().required().email().label('Email'),
@@ -30,7 +31,7 @@ const Login = () => {
 				const { token, ...rest } = result?.data;
 				dispatch(storeToken(token));
 				dispatch(storeUser(rest));
-				router.push('/dashboard');
+				router.push(ROUTES.DASHBOARD);
 			},
 		});
 	};

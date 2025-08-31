@@ -6,6 +6,7 @@ import { Avatar, Loader, useDrawersStack } from '@mantine/core';
 import { redirect, usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import AppHeader from '../Header';
+import { ROUTES } from '@/config/routes';
 
 const DashboardLayout: React.FC<
 	Readonly<{
@@ -13,6 +14,7 @@ const DashboardLayout: React.FC<
 	}>
 > = ({ children }) => {
 	const { isLoading, data: user } = useRetrieveClientQuery();
+	const router = useRouter();
 
 	const { token, user: appuser } = useTypedSelector((state) => state.auth);
 	const dispatch = useAppDispatch();
@@ -31,12 +33,15 @@ const DashboardLayout: React.FC<
 		);
 	}
 
+	if (!token) router.push(ROUTES.LOGIN);
 	if (!token) return <></>;
 
 	return (
 		<>
 			<AppHeader />
-			<div className="bg-[#F5F6FA] min-h-screen pt-[36px]">{children}</div>
+			<div className="bg-[#F5F6FA]">
+				<div className="mx-auto max-w-[1137px] min-h-screen pt-[36px]">{children}</div>
+			</div>
 		</>
 	);
 };

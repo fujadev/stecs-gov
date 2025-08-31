@@ -8,7 +8,7 @@ import WalletSummary from '@/components/WalletSummary';
 import Total from '@/components/Total';
 import ButtonPill from '@/components/ButtonPill';
 import PaymentSummary from '@/components/PaymentSummary';
-import CustomModal from '@/components/Modals/CustomModal';
+import CustomModal from '@/components/Modals/inviteAuthorizer';
 import CancelCircle from '@/assets/icons/CancelCircle';
 import UploadCSV from '../uploadcsv/page';
 import Login from '@/components/Login';

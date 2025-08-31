@@ -1,4 +1,5 @@
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent#encoding_for_content-disposition_and_link_headers
+import dayjs from 'dayjs';
 
 import { statusClasses } from './tailwindClasses';
 
@@ -50,20 +51,31 @@ export const formatAmount = (amount: number) => {
 };
 
 export const groupTableColumn = [
-	{ header: 'Recipient name', accessor: 'recipientName' },
+	{ header: 'Recipient name', accessor: 'firstName' },
 	{ header: 'Phone Number', accessor: 'phoneNumber' },
 	{ header: 'NIN', accessor: 'nin' },
-	{ header: 'Amount', accessor: 'amount' },
+	{
+		header: 'Amount',
+
+		render: (row: any) => <span>{row.amount || 0}</span>,
+	},
 	{
 		header: 'Status',
 		render: (row: any) => <span className={statusClasses[row.status] ?? 'px-3 py-1 rounded-full text-sm border'}>{row.status}</span>,
 	},
 ];
 export const groupsTableColumn = [
-	{ header: 'Group name', accessor: 'transactionType' },
-	{ header: 'Date Uploaded', accessor: 'date' },
-	{ header: 'Total Amount', accessor: 'amount' },
-	{ header: 'Recipient', accessor: 'reference' },
+	{ header: 'Group name', accessor: 'groupName' },
+	{
+		header: 'Date Uploaded',
+		render: (row: any) => <span>{dayjs(row.createdAt).format('DD MMM, YYYY')}</span>,
+	},
+	{ header: 'Total Amount', accessor: 'totalAmount' },
+	{
+		header: 'Recipient',
+
+		render: (row: any) => <span>{row?.beneficiaries?.length}</span>,
+	},
 	{
 		header: 'Status',
 		render: (row: any) => <span className={statusClasses[row.status] ?? 'px-3 py-1 rounded-full text-sm border'}>{row.status}</span>,

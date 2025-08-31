@@ -1,5 +1,5 @@
 import { SearchIcon } from '@/assets/icons/SearchIcon';
-import { ChangeEventHandler, useEffect, useLayoutEffect, useRef } from 'react';
+import { ChangeEventHandler, useEffect, useRef } from 'react';
 
 interface props {
 	onChange?: ChangeEventHandler<HTMLInputElement> | undefined;

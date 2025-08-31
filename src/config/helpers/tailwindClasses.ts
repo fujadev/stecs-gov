@@ -4,3 +4,10 @@ export const statusClasses: any = {
 	Completed: 'text-[#3A86FF]  border border-[#3A86FF] px-[8px] py-[4px] rounded-[8px] text-[12px] font-semibold',
 	Processing: 'text-[#8A38F5]  border border-[#8A38F5] px-[8px] py-[4px] rounded-[8px] text-[12px] font-semibold',
 };
+
+export const statusTextColor: any = {
+	Authorized: 'text-[#22C55E]',
+	Pending: 'text-[#F97316]',
+	Completed: 'text-[#3A86FF]',
+	Processing: 'text-[#8A38F5]',
+};

@@ -17,12 +17,45 @@ export const apiSlice = api.injectEndpoints({
 			query: CLIENT_ENDPOINTS.getUser,
 			transformResponse: ({ data }) => convertKeysCase(data, 'camelCase') as any,
 		}),
+		retrieveAccount: builder.query<any, void>({
+			providesTags: ['user'],
+			query: CLIENT_ENDPOINTS.account,
+			transformResponse: ({ data }) => convertKeysCase(data, 'camelCase') as any,
+		}),
 		retrieveGroups: builder.query<any, void>({
 			providesTags: ['groups'],
-			query: CLIENT_ENDPOINTS.getGroups,
-			transformResponse: ({ data }) => convertKeysCase(data, 'camelCase') as any,
+			query: CLIENT_ENDPOINTS.group,
+			transformResponse: ({ groups = [] }) => convertKeysCase(groups, 'camelCase') as any,
+		}),
+		retrieveGroup: builder.query<any, string>({
+			query: (payload) => ({
+				url: CLIENT_ENDPOINTS.singleGroup(payload),
+			}),
+			transformResponse: ({ group }) => convertKeysCase(group, 'camelCase') as any,
+		}),
+		createGroup: builder.mutation<any, any>({
+			query: (payload) => ({
+				body: payload,
+				method: 'POST',
+				url: CLIENT_ENDPOINTS.group(),
+			}),
+			transformResponse: ({ data }: any) => convertKeysCase(data, 'camelCase') as any,
+		}),
+		inviteAuthorizer: builder.mutation<any, { id: string; email: string }>({
+			query: (payload) => ({
+				url: CLIENT_ENDPOINTS.inviteAuthorizer(payload.id, payload.email),
+			}),
+			transformResponse: ({ data }: any) => convertKeysCase(data, 'camelCase') as any,
 		}),
 	}),
 });
 
-export const { useSignInMutation, useRetrieveClientQuery, useRetrieveGroupsQuery } = apiSlice;
+export const {
+	useSignInMutation,
+	useRetrieveClientQuery,
+	useRetrieveGroupsQuery,
+	useCreateGroupMutation,
+	useRetrieveGroupQuery,
+	useRetrieveAccountQuery,
+	useInviteAuthorizerMutation,
+} = apiSlice;

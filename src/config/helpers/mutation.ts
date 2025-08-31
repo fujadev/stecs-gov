@@ -22,7 +22,8 @@ export const isAPICustomError = (error: unknown): error is APICustomError =>
 			{
 				data: {
 					//  code: P.number,
-					message: P.string,
+					error: P.string,
+					statusCode: P.number,
 				},
 				status: P.number,
 			},
@@ -49,14 +50,14 @@ export const extractApiError = (error: unknown): string | undefined => {
 	if (isAPIValidationError(error)) {
 		return error.data.errors.reduce((acc, { field, message }) => acc.concat(`${changeCase(field, 'sentenceCase')}: ${message}\n`), '');
 	} else if (isAPICustomError(error)) {
-		return error.data.message;
+		return error.data?.error;
 	} else if (isString(error)) {
 		return String(error);
 	}
 	return undefined;
 };
 
-export const FALLBACK_ERROR_MESSAGE = 'Something went wrong. Try again later.';
+export const FALLBACK_ERROR_MESSAGE = 'Something went wrong. Try again later';
 export const FALLBACK_SUCCESS_MESSAGE = 'Success!';
 
 type HandleMutationOptions<Result> = {
