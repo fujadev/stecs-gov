@@ -7,10 +7,13 @@ import { useRouter } from 'next/navigation';
 import { useSignInMutation } from '@/config/api/client/slice';
 import { handleMutation } from '@/config/helpers/mutation';
 import AppHeader from '@/components/Header';
+import { Eye, EyeOff } from "lucide-react";
 import AppButton from '../Common/AppButton';
 import { storeToken, storeUser } from '@/config/api/auth/slice';
 import { useAppDispatch } from '@/config/api/config/store';
 import { ROUTES } from '@/config/routes';
+import EyeIcon from '@/assets/icons/EyeIcon';
+import EyeClose from '@/assets/icons/EyeClose';
 
 const validationSchema = Yup.object().shape({
 	email: Yup.string().required().email().label('Email'),
@@ -21,7 +24,6 @@ const Login = () => {
 	const router = useRouter();
 	const [signIn, { isLoading }] = useSignInMutation();
 	const dispatch = useAppDispatch();
-
 	const [showPassword, setShowPassword] = useState(false);
 
 	const handleSubmit = async (values: any) => {
@@ -69,7 +71,7 @@ const Login = () => {
 									{touched.email && <small className="text-[#E63946]">{errors.email}</small>}
 								</div>
 
-								<div className="mb-[24px]">
+								{/* <div className="mb-[24px]">
 									<label htmlFor="Password" className="text-[#003049] text-[14px]">
 										Password
 									</label>
@@ -84,6 +86,43 @@ const Login = () => {
 										onBlur={() => setFieldTouched('password')}
 									/>
 
+									{touched.password && <small className="text-[#E63946]">{errors.password}</small>}
+								</div> */}
+								<div className="mb-[24px]">
+									<label htmlFor="password" className="text-[#003049] text-[14px]">
+										Password
+									</label>
+									<div className="relative">
+										<input
+											id="password"
+											name="password"
+											type={showPassword ? 'text' : 'password'}
+											placeholder="Your Password"
+											className="border border-[#92929D] md:px-[16px] p-[8px] md:py-[12px] rounded-[4px] w-full pr-12"
+											value={values.password}
+											onChange={handleChange('password')}
+											onBlur={() => setFieldTouched('password')}
+										/>
+										<button
+											type="button"
+											onClick={() => setShowPassword(!showPassword)}
+											style={{
+												position: 'absolute',
+												right: '12px',
+												top: '50%',
+												transform: 'translateY(-50%)',
+												background: 'none',
+												border: 'none',
+												cursor: 'pointer',
+												display: 'flex',
+												alignItems: 'center',
+												justifyContent: 'center',
+												color: '#747D82'
+											}}
+										>
+											{showPassword ? <EyeIcon /> : <EyeClose />}
+										</button>
+									</div>
 									{touched.password && <small className="text-[#E63946]">{errors.password}</small>}
 								</div>
 
