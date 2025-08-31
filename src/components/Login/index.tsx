@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { useSignInMutation } from '@/config/api/client/slice';
 import { handleMutation } from '@/config/helpers/mutation';
 import AppHeader from '@/components/Header';
+import { Eye, EyeOff, EyeOffIcon } from "lucide-react";
 import AppButton from '../Common/AppButton';
 import { storeToken, storeUser } from '@/config/api/auth/slice';
 import { useAppDispatch } from '@/config/api/config/store';
@@ -69,21 +70,26 @@ const Login = () => {
 									{touched.email && <small className="text-[#E63946]">{errors.email}</small>}
 								</div>
 
-								<div>
-									<label htmlFor="password" className="text-[#003049] text-[14px]">
-										Password
-									</label>
+								<div className="relative">
 									<input
 										id="password"
 										name="password"
 										type={showPassword ? 'text' : 'password'}
 										placeholder="Your Password"
-										className="border border-[#92929D] px-[16px] py-[12px] rounded-[4px] w-full"
+										className="border border-[#92929D] px-[16px] py-[12px] rounded-[4px] w-full pr-12"
 										value={values.password}
 										onChange={handleChange('password')}
 										onBlur={() => setFieldTouched('password')}
 									/>
+
 									{touched.password && <small className="text-[#E63946]">{errors.password}</small>}
+									<button
+										type="button"
+										className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center justify-center"
+										onClick={() => setShowPassword(!showPassword)}
+									>
+										{showPassword ? <EyeOff size={20} color="#000" /> : <Eye size={20} color="#000" />}
+									</button>
 								</div>
 
 								<span className="block text-right text-[#3A86FF] font-medium text-sm mt-[12px] cursor-pointer">Forgot Password?</span>
