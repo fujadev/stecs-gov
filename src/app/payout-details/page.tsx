@@ -45,7 +45,7 @@ const PayoutDetails = () => {
 			<AppHeader />
 			<div className="max-w-[1137px] px-[20px] mx-auto mt-[32px] py-[20px]">
 				<div className="">
-					<h1 className="text-[14px] font-medium text-[#003049] text-center">Ekiti State</h1>
+					<h1 className="text-[14px] md:text-[24px] font-bold  text-[#003049] text-center">Ekiti State</h1>
 					<p className="text-[14px] mt-[24px] text-[#003049] font-medium text-left md:text-center">Enter your account details below to receive payment</p>
 
 					<div className="bg-[#F5F6FA] px-[24px] py-[20px] w-full text-center mt-[16px] mb-[24px]">

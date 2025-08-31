@@ -40,8 +40,8 @@ const Login = () => {
 		<section className="min-h-screen flex flex-col bg-[#F5F6FA]">
 			<AppHeader />
 
-			<div className="flex flex-1 items-center justify-center px-4">
-				<div className="w-full max-w-[601px] shrink-0 border border-[#3C3B3B] rounded-[20px] p-[48px] bg-white shadow-sm">
+			<div className="flex flex-1 items-center justify-center px-[20px]">
+				<div className="w-full max-w-[601px] shrink-0 border border-[#3C3B3B] rounded-[20px] p-[20px] md:p-[48px] bg-white shadow-sm">
 					<Formik
 						initialValues={{
 							email: '',
@@ -61,7 +61,7 @@ const Login = () => {
 										name="email"
 										type="email"
 										placeholder="eg. janedoe@gmail.com"
-										className="border border-[#92929D] px-[16px] py-[12px] rounded-[4px] w-full"
+										className="border border-[#92929D] md:px-[16px]  p-[8px] md:py-[12px]  rounded-[4px] w-full"
 										value={values.email}
 										onChange={handleChange('email')}
 										onBlur={() => setFieldTouched('email')}
@@ -69,13 +69,16 @@ const Login = () => {
 									{touched.email && <small className="text-[#E63946]">{errors.email}</small>}
 								</div>
 
-								<div className="relative">
+								<div className="mb-[24px]">
+									<label htmlFor="Password" className="text-[#003049] text-[14px]">
+										Password
+									</label>
 									<input
 										id="password"
 										name="password"
 										type={showPassword ? 'text' : 'password'}
 										placeholder="Your Password"
-										className="border border-[#92929D] px-[16px] py-[12px] rounded-[4px] w-full pr-12"
+										className="border border-[#92929D] md:px-[16px] p-[8px] md:py-[12px] rounded-[4px] w-full pr-12"
 										value={values.password}
 										onChange={handleChange('password')}
 										onBlur={() => setFieldTouched('password')}

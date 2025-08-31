@@ -29,7 +29,7 @@ const AppHeader = () => {
 							<span className="text-[#003049] text-[20px] font-medium">{getInitials(user?.fullName)}</span>
 						</div>
 						<span onClick={handleLogOut} className="text-[crimson] font-semibold cursor-pointer">
-							LogOut
+							Log Out
 						</span>
 					</div>
 				)}

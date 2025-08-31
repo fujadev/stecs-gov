@@ -24,23 +24,23 @@ const Dashboard = () => {
 
 	return (
 		<DashboardLayout>
-			<div className="max-w-[1137px] mx-auto">
-				<div className="flex items-center justify-between mb-[40px]">
-					<h1 className="text-[#292D32] text-[24px] font-bold">{accountData?.accountName}</h1>
-					<div className="flex gap-[8px] justify-end">
-						<Button radius="xl" className="w-[182px] h-[41px] bg-[#3A86FF] text-white text-[14px] font-semibold" onClick={() => {}}>
+			<div className="max-w-[1137px] mx-auto px-[20px] pb-[30px]">
+				<div className="md:flex items-center justify-between mb-[40px]">
+					<h1 className="text-[#292D32] text-[16px] md:text-[24px] font-bold mb-[8px] md:mb-[0px]">{accountData?.accountName}</h1>
+					<div className="flex md:gap-[8px] md:justify-end justify-between">
+						<Button radius="xl" className="md:w-[182px] h-[41px] bg-[#3A86FF] text-white text-[12px] md:text-[14px] font-semibold" onClick={() => router.push(ROUTES.PAYOUTDETAILS)}>
 							Fund Wallet
 						</Button>
 
-						<Button radius="xl" className="w-[182px] h-[41px] bg-[#3A86FF] text-white text-[14px] font-semibold" onClick={() => router.push(ROUTES.UPLOAD)}>
+						<Button radius="xl" className="md:w-[182px] h-[41px] bg-[#3A86FF] text-white text-[12px] md:text-[14px] font-semibold" onClick={() => router.push(ROUTES.UPLOAD)}>
 							Upload CSV
 						</Button>
 					</div>
 				</div>
 				<WalletSummary data={accountData} />
 
-				<div className="rounded-[8px] py-[24px] px-[20px] mt-[36px] bg-[white]">
-					<span className="font-bold text-[24px] block mb-[24px]">Payment Groups</span>
+				<div className="rounded-[8px] py-[24px] px-[20px] mt-[24px] md:mt-[36px] bg-[white]">
+					<span className="font-bold text-[16px] md:text-[24px] block mb-[0px] md:mb-[24px]">Payment Groups</span>
 
 					<CustomTable
 						loading={groupsLoading}

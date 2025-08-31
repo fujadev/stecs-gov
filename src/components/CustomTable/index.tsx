@@ -1,6 +1,7 @@
 // DataTable.tsx
 import React from 'react';
 import { Table, Skeleton, LoadingOverlay } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 
 type Column<T> = {
 	header: string;
@@ -42,10 +43,14 @@ const CustomTable = <T,>({
 	overlayLoading = false,
 	overlayMessage,
 }: DataTableProps<T>) => {
+	const isMobile = useMediaQuery('(max-width: 768px)');
+  const offset = isMobile ? 20 : stickyHeaderOffset;
+
 	const colCount = columns.length + (renderRowActions ? 1 : 0);
 
 	return (
-		<div className="relative">
+		<div className="overflow-x-auto sm:overflow-visible">
+
 			<LoadingOverlay visible={overlayLoading} zIndex={20} overlayProps={{ blur: 2, backgroundOpacity: 0.25 }} loaderProps={{ type: 'oval', size: 'md' }} />
 			{overlayLoading && overlayMessage && (
 				<div className="pointer-events-none absolute inset-x-0 top-16 z-30 flex justify-center">
@@ -55,14 +60,14 @@ const CustomTable = <T,>({
 
 			<Table
 				horizontalSpacing="lg"
-				verticalSpacing="md"
+				verticalSpacing="lg"
 				stickyHeader
-				stickyHeaderOffset={stickyHeaderOffset}
+			     stickyHeaderOffset={offset}
 				classNames={{
-					thead: `bg-[#F3F4F6] rounded-[200px] ${classNames?.thead ?? ''}`,
-					th: `font-semibold text-[14px] text-[#747D82] p-[20px] first:rounded-tl-[20px] last:rounded-tr-[20px] ${classNames?.th ?? ''}`,
+					thead: `bg-[#F3F4F6] md:rounded-[200px] ${classNames?.thead ?? ''}`,
+					th: `font-semibold text-[12px] text-center md:text-left md:text-[14px] text-[#747D82] p-[12px] first:rounded-tl-[20px] last:rounded-tr-[20px] md:p-[20px] md:first:rounded-tl-[20px] md:last:rounded-tr-[20px] ${classNames?.th ?? ''}`,
 					td: `${classNames?.td ?? ''}`,
-					tr: `text-[#003049] text-[14px] font-medium ${classNames?.tr ?? ''}`,
+					tr: `text-[#003049] text-center md:text-left text-[12px] md:text-[14px] font-medium ${classNames?.tr ?? ''}`,
 				}}
 			>
 				<Table.Thead>
