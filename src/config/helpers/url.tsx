@@ -51,18 +51,29 @@ export const formatAmount = (amount: number) => {
 };
 
 export const groupTableColumn = [
-	{ header: 'Recipient name', accessor: 'firstName' },
+	{
+		header: 'Recipient name',
+
+		render: (row: any) => (
+			<span>
+				{row?.lastName} {row?.firstName}
+			</span>
+		),
+	},
 	{ header: 'Phone Number', accessor: 'phoneNumber' },
 	{ header: 'NIN', accessor: 'nin' },
 	{
 		header: 'Amount',
-
-		render: (row: any) => <span>{row.amount || 0}</span>,
+		render: (row: any) => <span>{row?.amount || 0}</span>,
 	},
 	{
-		header: 'Status',
+		header: 'Transfer Status',
 		render: (row: any) => <span className={statusClasses[row.status] ?? 'px-3 py-1 rounded-full text-sm border'}>{row.status}</span>,
 	},
+	// {
+	// 	header: 'Withdrawal Status',
+	// 	render: (row: any) => <span className={statusClasses[row.status] ?? 'px-3 py-1 rounded-full text-sm border'}>{row.status}</span>,
+	// },
 ];
 export const groupsTableColumn = [
 	{ header: 'Group name', accessor: 'groupName' },

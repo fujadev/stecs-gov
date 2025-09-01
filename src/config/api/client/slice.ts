@@ -75,18 +75,7 @@ export const apiSlice = api.injectEndpoints({
 			}),
 			transformResponse: ({ data }: any) => convertKeysCase(data, 'camelCase'),
 		}),
-		makeTransfer: builder.mutation<
-			any,
-			{
-				recipientAccountId: string;
-				amount: number;
-				sortCode: string;
-				bankName: string;
-				accountNumber: string;
-				accountName: string;
-				narration: string;
-			}
-		>({
+		makeTransfer: builder.mutation<any, any>({
 			query: (payload) => ({
 				url: CLIENT_ENDPOINTS.makeTransfer(),
 				method: 'POST',
@@ -94,12 +83,10 @@ export const apiSlice = api.injectEndpoints({
 			}),
 			transformResponse: ({ data }) => convertKeysCase(data, 'camelCase'),
 		}),
-
 		getPaymentData: builder.query({
 			query: (recipientId: string) => `recipient/payment-data/${recipientId}`,
 			transformResponse: ({ data }) => convertKeysCase(data, 'camelCase'),
 		}),
-
 	}),
 });
 
@@ -116,5 +103,5 @@ export const {
 	useReleasePaymentMutation,
 	useSendGroupNotificationMutation,
 	useMakeTransferMutation,
-	useGetPaymentDataQuery
+	useGetPaymentDataQuery,
 } = apiSlice;

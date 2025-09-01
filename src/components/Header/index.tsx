@@ -1,7 +1,6 @@
 'use client';
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { usePathname, useParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import HeaderLogo from '@/assets/icons/HeaderLogo';
 import { useAppDispatch, useTypedSelector } from '@/config/api/config/store';
 import { resetStore } from '@/config/api/auth/slice';

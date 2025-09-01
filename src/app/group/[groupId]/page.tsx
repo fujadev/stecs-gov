@@ -1,7 +1,6 @@
 'use client';
 import CustomTable from '@/components/CustomTable';
 import DashboardLayout from '@/components/DashboardLayout';
-import AppHeader from '@/components/Header';
 import PaymentSummary from '@/components/PaymentSummary';
 import SearchInput from '@/components/SearchInput';
 
@@ -16,7 +15,6 @@ const GroupOverview = ({ params }: { params: { groupId: string } }): JSX.Element
 	const [search, setSearch] = useState('');
 
 	const tableData = useMemo(() => {
-		console.log();
 		if (search.length >= 1) {
 			return data?.beneficiaries.filter((val) => val.firstName.toLowerCase().includes(search.toLowerCase()));
 		}

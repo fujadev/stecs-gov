@@ -27,56 +27,36 @@ const PayoutDetails = () => {
 	const { data: bankList } = useGetBankListQuery();
 	const [getBankAccountDetails] = useGetBankAccountDetailsMutation();
 	const [makeTransfer] = useMakeTransferMutation();
-	const searchParams = useSearchParams()
-	const recipientId = searchParams.get('id')
+	const searchParams = useSearchParams();
+	const recipientId = searchParams.get('id') || '';
 	const { data: details } = useGetPaymentDataQuery(recipientId);
 
-
-	useEffect(() => {
-		console.log("================", details)
-	}, [details]);
-
-
-	const fetchAccountDetails = async (
-		accountNumber: string,
-		bankCode: string,
-		setFieldValue: any
-	) => {
+	const fetchAccountDetails = async (accountNumber: string, bankCode: string, setFieldValue: any) => {
 		setLoading(true);
 		try {
-			console.log('details', {
-				account_number: accountNumber,
-				sort_code: bankCode,
-			});
-
 			const response = await getBankAccountDetails({
 				account_number: accountNumber,
 				sort_code: bankCode,
 			}).unwrap();
 
-			console.log("NEWWWWWWWWW", response)
-
-
 			const { accountName } = response || {};
 			setFieldValue('accountName', accountName || '');
-
-			if (accountName) {
-
-			} else {
-
-			}
-		} catch (error) {
-			console.error('Failed', error);
 		} finally {
 			setLoading(false);
 		}
 	};
 
-
 	const handleSubmit = async (values: any) => {
 		try {
 			const selectedBank = bankList?.find((bank: any) => bank.code === values.bankCode);
 			const payload = {
+				    "recipient_account_id": recipientId,
+    "amount":  values?.accountNumber,
+    "sort_code": values?.bankCode,
+    "bank_name": selectedBank?.name,
+    "account_number":  values.accountNumber,
+    "account_name": "Olaitan Bayonle Abdulazeez",
+    "narration": ""
 				recipientAccountId: recipientId,
 				accountNumber: values.accountNumber,
 				accountName: 'olaitan abdulazeez',
@@ -87,10 +67,10 @@ const PayoutDetails = () => {
 				narration: '',
 			};
 			const response = await makeTransfer(payload).unwrap();
-			console.log("Transfer response:", response);
+			console.log('Transfer response:', response);
 			setShowSuccess(true);
 		} catch (err) {
-			console.error("Transfer failed:", err);
+			console.error('Transfer failed:', err);
 		}
 	};
 
@@ -100,10 +80,8 @@ const PayoutDetails = () => {
 			<div className="max-w-[1137px] px-[20px] mx-auto mt-[32px] py-[20px]">
 				{!showSuccess ? (
 					<div>
-						<h1 className="text-[14px] md:text-[24px] font-bold text-[#003049] text-center">Ekiti State</h1>
-						<p className="text-[14px] mt-[24px] text-[#003049] font-medium text-left md:text-center">
-							Enter your account details below to receive payment
-						</p>
+						<h1 className="text-[14px] md:text-[24px] font-bold text-[#003049] text-center">{details?.accountName}</h1>
+						<p className="text-[14px] mt-[24px] text-[#003049] font-medium text-left md:text-center">Enter your account details below to receive payment</p>
 
 						<div className="bg-[#F5F6FA] px-[24px] py-[20px] w-full text-center mt-[16px] mb-[24px]">
 							<span className="block text-[#003049] text-[20px] font-bold">₦{details?.availableBalance}</span>
@@ -119,17 +97,7 @@ const PayoutDetails = () => {
 							validationSchema={validationSchema}
 							onSubmit={handleSubmit}
 						>
-							{({
-								handleChange,
-								handleSubmit,
-								errors,
-								touched,
-								values,
-								isValid,
-								dirty,
-								setFieldValue,
-								setFieldTouched,
-							}) => (
+							{({ handleChange, handleSubmit, errors, touched, values, isValid, dirty, setFieldValue, setFieldTouched }) => (
 								<Form onSubmit={handleSubmit}>
 									<div className="flex flex-col justify-between">
 										<div className="mb-[24px]">
@@ -150,9 +118,7 @@ const PayoutDetails = () => {
 													</option>
 												))}
 											</select>
-											{touched.bankCode && errors.bankCode && (
-												<small className="text-[#E63946]">{errors.bankCode}</small>
-											)}
+											{touched.bankCode && errors.bankCode && <small className="text-[#E63946]">{errors.bankCode}</small>}
 										</div>
 
 										<div className="mb-[24px]">
@@ -174,9 +140,7 @@ const PayoutDetails = () => {
 												}}
 												onBlur={() => setFieldTouched('accountNumber')}
 											/>
-											{touched.accountNumber && errors.accountNumber && (
-												<small className="text-[#E63946]">{errors.accountNumber}</small>
-											)}
+											{touched.accountNumber && errors.accountNumber && <small className="text-[#E63946]">{errors.accountNumber}</small>}
 										</div>
 
 										<div className="mb-[24px]">
@@ -192,9 +156,7 @@ const PayoutDetails = () => {
 												value={values.accountName}
 												readOnly
 											/>
-											{touched.accountName && errors.accountName && (
-												<small className="text-[#E63946]">{errors.accountName}</small>
-											)}
+											{touched.accountName && errors.accountName && <small className="text-[#E63946]">{errors.accountName}</small>}
 										</div>
 									</div>
 
@@ -212,17 +174,11 @@ const PayoutDetails = () => {
 				) : (
 					<div className="flex flex-col justify-center items-center mt-[40px]">
 						<Image src={checklist} alt="Success checklist" width={129} height={129} />
-						<span className="text-[20px] text-[#000000] font-bold mb-[12px] text-center">
-							Payment Sent Successfully
-						</span>
+						<span className="text-[20px] text-[#000000] font-bold mb-[12px] text-center">Payment Sent Successfully</span>
 						<span className="text-[14px] text-[#3C3B3B] font-[400] text-center">
 							Payment of ₦{numberWithCommas(details?.payoutAmount)} has been successfully sent to your account
 						</span>
-						<button
-							type="button"
-							className="bg-[#3A86FF] rounded-[12px] w-full py-[15px] text-[14px] text-white font-semibold mt-[24px]"
-							onClick={() => router.push('/')}
-						>
+						<button type="button" className="bg-[#3A86FF] rounded-[12px] w-full py-[15px] text-[14px] text-white font-semibold mt-[24px]" onClick={() => router.push('/')}>
 							Close
 						</button>
 					</div>

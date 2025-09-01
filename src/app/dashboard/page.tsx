@@ -1,15 +1,19 @@
 'use client';
 import CustomTable from '@/components/CustomTable';
 import DashboardLayout from '@/components/DashboardLayout';
+import WalletModal from '@/components/Modals/WalletModal';
 import WalletSummary from '@/components/WalletSummary';
 import { useRetrieveAccountQuery, useRetrieveGroupsQuery } from '@/config/api/client/slice';
 import { groupsTableColumn } from '@/config/helpers/url';
 import { ROUTES } from '@/config/routes';
 import { Button, Loader } from '@mantine/core';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 const Dashboard = () => {
 	const router = useRouter();
+
+	const [openWalletModal, setOpenWalletModal] = useState(false);
 
 	const { data: groups = [], isLoading: groupsLoading } = useRetrieveGroupsQuery();
 	const { data: accountData, isLoading: accountLoading } = useRetrieveAccountQuery();
@@ -28,7 +32,7 @@ const Dashboard = () => {
 				<div className="md:flex items-center justify-between mb-[40px]">
 					<h1 className="text-[#292D32] text-[16px] md:text-[24px] font-bold mb-[8px] md:mb-[0px]">{accountData?.accountName}</h1>
 					<div className="flex md:gap-[8px] md:justify-end justify-between">
-						<Button radius="xl" className="md:w-[182px] h-[41px] bg-[#3A86FF] text-white text-[12px] md:text-[14px] font-semibold" >
+						<Button onClick={() => setOpenWalletModal(true)} radius="xl" className="md:w-[182px] h-[41px] bg-[#3A86FF] text-white text-[12px] md:text-[14px] font-semibold">
 							Fund Wallet
 						</Button>
 
@@ -55,6 +59,8 @@ const Dashboard = () => {
 					/>
 				</div>
 			</div>
+
+			<WalletModal wallet={accountData?.wallet} opened={openWalletModal} onClose={() => setOpenWalletModal(false)} />
 		</DashboardLayout>
 	);
 };
