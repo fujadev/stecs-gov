@@ -108,9 +108,9 @@ const Login = () => {
 									{touched.password && <small className="text-[#E63946]">{errors.password}</small>}
 								</div>
 
-								<span className="block text-right text-[#3A86FF] font-medium text-sm mt-[12px] cursor-pointer">Forgot Password?</span>
+								<span className="block text-right text-[#008752] font-medium text-sm mt-[12px] cursor-pointer">Forgot Password?</span>
 								<div className="mt-[32px]">
-									<AppButton loading={isLoading} type="submit" title="Log in" w="100%" mih={60} color="#3A86FF" />
+									<AppButton loading={isLoading} type="submit" title="Log in" w="100%" mih={60} color="#008752" />
 								</div>
 							</form>
 						)}

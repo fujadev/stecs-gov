@@ -70,10 +70,10 @@ export const groupTableColumn = [
 		header: 'Transfer Status',
 		render: (row: any) => <span className={statusClasses[row.status] ?? 'px-3 py-1 rounded-full text-sm border'}>{row.status}</span>,
 	},
-	// {
-	// 	header: 'Withdrawal Status',
-	// 	render: (row: any) => <span className={statusClasses[row.status] ?? 'px-3 py-1 rounded-full text-sm border'}>{row.status}</span>,
-	// },
+	{
+		header: 'Withdrawal Status',
+		render: (row: any) => <span className={statusClasses['Pending'] ?? 'px-3 py-1 rounded-full text-sm border'}>Pending</span>,
+	},
 ];
 export const groupsTableColumn = [
 	{ header: 'Group name', accessor: 'groupName' },

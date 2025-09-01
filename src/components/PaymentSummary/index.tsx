@@ -45,7 +45,7 @@ const PaymentSummary = ({ data }: any) => {
 
 					<div className="flex flex-col md:flex-row md:justify-between gap-[8px] grow-0 mt-[12px] md:mt-[0px]">
 						{user.role === 'admin' && data?.status === 'Pending' && (
-							<Button radius="xl" className="w-full lg:w-[182px] h-[41px] bg-[#3A86FF] text-white text-[14px] font-semibold" onClick={() => setInviteOpen(true)}>
+							<Button radius="xl" className="w-full lg:w-[182px] h-[41px] bg-[#008752] text-white text-[14px] font-semibold" onClick={() => setInviteOpen(true)}>
 								Invite Authorizer
 							</Button>
 						)}
@@ -53,7 +53,7 @@ const PaymentSummary = ({ data }: any) => {
 						{user.role === 'super_admin' && (
 							<>
 								{data?.status === 'Pending' && (
-									<Button radius="xl" className="w-full lg:w-[182px] h-[41px] bg-[#3A86FF] text-white text-[14px] font-semibold" onClick={() => setReleaseModalOpen(true)}>
+									<Button radius="xl" className="w-full lg:w-[182px] h-[41px] bg-[#008752] text-white text-[14px] font-semibold" onClick={() => setReleaseModalOpen(true)}>
 										Release Payment
 									</Button>
 								)}
@@ -62,7 +62,7 @@ const PaymentSummary = ({ data }: any) => {
 										onClick={handleSendNotification}
 										loading={isLoading}
 										radius="xl"
-										className="w-full lg:w-[182px] h-[41px] bg-[#3A86FF] text-white text-[14px] font-semibold"
+										className="w-full lg:w-[182px] h-[41px] bg-[#008752] text-white text-[14px] font-semibold"
 									>
 										Send Notification
 									</Button>

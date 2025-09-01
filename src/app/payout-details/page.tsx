@@ -30,7 +30,8 @@ const PayoutDetails = () => {
 	const [getBankAccountDetails, { isLoading: resolvingAccount }] = useGetBankAccountDetailsMutation();
 	const [makeTransfer, { isLoading: transferLoading }] = useMakeTransferMutation();
 	const searchParams = useSearchParams();
-	const recipientId = searchParams.get('id') || '';
+	const recipientId = searchParams?.get('id') || '';
+
 	const { data: paymentData, isLoading: detailsLoading } = useGetPaymentDataQuery(recipientId);
 
 	const bankListSelectData = useMemo(() => {
@@ -44,7 +45,7 @@ const PayoutDetails = () => {
 	}, [bankList]);
 
 	const onSubmit = async (values: any) => {
-		const selectedBank = bankList?.find((bank: any) => bank.code === values.bankCode);
+		const selectedBank = bankList?.find((bank: any) => bank?.code === values?.bankCode);
 		const payload = {
 			recipient_account_id: recipientId,
 			amount: paymentData?.availableBalance,
@@ -87,6 +88,8 @@ const PayoutDetails = () => {
 		);
 	}
 
+	if (!recipientId) return <></>;
+
 	return (
 		<>
 			<AppHeader />
@@ -114,7 +117,7 @@ const PayoutDetails = () => {
 									className="mb-[24px]"
 									data={bankListSelectData}
 									disabled={bankListLoading}
-									value={values.bankCode}
+									value={values?.bankCode}
 									onChange={(val) => {
 										setFieldValue('bankCode', val);
 									}}
@@ -130,16 +133,16 @@ const PayoutDetails = () => {
 										type="text"
 										placeholder="Enter 10-digit account number"
 										className="border border-[#92929D] px-[16px] py-[12px] rounded-[4px] w-full mt-[8px]"
-										value={values.accountNumber}
+										value={values?.accountNumber}
 										onChange={async (e) => {
 											handleChange(e);
-											if (e.target.value.length === 10 && values.bankCode) {
-												await fetchAccountDetails(e.target.value, values.bankCode, setFieldValue);
+											if (e?.target?.value?.length === 10 && values?.bankCode) {
+												await fetchAccountDetails(e?.target?.value, values?.bankCode, setFieldValue);
 											}
 										}}
 										onBlur={() => setFieldTouched('accountNumber')}
 									/>
-									{touched.accountNumber && errors.accountNumber && <small className="text-[#E63946]">{errors.accountNumber}</small>}
+									{touched?.accountNumber && errors?.accountNumber && <small className="text-[#E63946]">{errors?.accountNumber}</small>}
 								</div>
 
 								<div className="mb-[24px]">
@@ -152,10 +155,10 @@ const PayoutDetails = () => {
 										type="text"
 										placeholder="Account name will appear here"
 										className="border border-[#92929D] px-[16px] py-[12px] rounded-[4px] w-full mt-[8px]"
-										value={values.accountName}
+										value={values?.accountName}
 										readOnly
 									/>
-									{touched.accountName && errors.accountName && <small className="text-[#E63946]">{errors.accountName}</small>}
+									{touched?.accountName && errors?.accountName && <small className="text-[#E63946]">{errors?.accountName}</small>}
 								</div>
 							</div>
 
@@ -164,7 +167,7 @@ const PayoutDetails = () => {
 								loading={transferLoading}
 								onClick={() => handleSubmit()}
 								miw={197}
-								className="h-[41px] bg-[#3A86FF] text-white text-[14px] font-semibold rounded-[12px]"
+								className="h-[41px] bg-[#008752] text-white text-[14px] font-semibold rounded-[12px]"
 							>
 								Submit
 							</Button>
@@ -177,7 +180,7 @@ const PayoutDetails = () => {
 						<span className="text-[14px] text-[#3C3B3B] font-[400] text-center">
 							Payment of ₦{numberWithCommas(paymentData?.payoutAmount)} has been successfully sent to your account
 						</span>
-						<button type="button" className="bg-[#3A86FF] rounded-[12px] w-full py-[15px] text-[14px] text-white font-semibold mt-[24px]" onClick={() => router.push('/')}>
+						<button type="button" className="bg-[#008752] rounded-[12px] w-full py-[15px] text-[14px] text-white font-semibold mt-[24px]" onClick={() => router.push('/')}>
 							Close
 						</button>
 					</div>

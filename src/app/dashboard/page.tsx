@@ -32,11 +32,11 @@ const Dashboard = () => {
 				<div className="md:flex items-center justify-between mb-[40px]">
 					<h1 className="text-[#292D32] text-[16px] md:text-[24px] font-bold mb-[8px] md:mb-[0px]">{accountData?.accountName}</h1>
 					<div className="flex md:gap-[8px] md:justify-end justify-between">
-						<Button onClick={() => setOpenWalletModal(true)} radius="xl" className="md:w-[182px] h-[41px] bg-[#3A86FF] text-white text-[12px] md:text-[14px] font-semibold">
+						<Button onClick={() => setOpenWalletModal(true)} radius="xl" className="md:w-[182px] h-[41px] bg-[#008752] text-white text-[12px] md:text-[14px] font-semibold">
 							Fund Wallet
 						</Button>
 
-						<Button radius="xl" className="md:w-[182px] h-[41px] bg-[#3A86FF] text-white text-[12px] md:text-[14px] font-semibold" onClick={() => router.push(ROUTES.UPLOAD)}>
+						<Button radius="xl" className="md:w-[182px] h-[41px] bg-[#008752] text-white text-[12px] md:text-[14px] font-semibold" onClick={() => router.push(ROUTES.UPLOAD)}>
 							Upload CSV
 						</Button>
 					</div>
