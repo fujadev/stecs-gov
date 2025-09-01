@@ -64,7 +64,7 @@ export const groupTableColumn = [
 	{ header: 'NIN', accessor: 'nin' },
 	{
 		header: 'Amount',
-		render: (row: any) => <span>{row?.amount || 0}</span>,
+		render: (row: any) => <span>{row?.payoutAmount || 0}</span>,
 	},
 	{
 		header: 'Transfer Status',
@@ -72,7 +72,11 @@ export const groupTableColumn = [
 	},
 	{
 		header: 'Withdrawal Status',
-		render: (row: any) => <span className={statusClasses['Pending'] ?? 'px-3 py-1 rounded-full text-sm border'}>Pending</span>,
+		render: (row: any) => (
+			<span className={statusClasses[row?.withdrawalStatus ? 'Completed' : 'Pending'] ?? 'px-3 py-1 rounded-full text-sm border'}>
+				{row?.withdrawalStatus ? 'Completed' : 'Pending'}
+			</span>
+		),
 	},
 ];
 export const groupsTableColumn = [
