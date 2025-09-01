@@ -28,12 +28,14 @@ export const apiSlice = api.injectEndpoints({
 			transformResponse: ({ groups = [] }) => convertKeysCase(groups, 'camelCase') as any,
 		}),
 		retrieveGroup: builder.query<any, string>({
+			providesTags: ['group'],
 			query: (payload) => ({
 				url: CLIENT_ENDPOINTS.singleGroup(payload),
 			}),
 			transformResponse: ({ group }) => convertKeysCase(group, 'camelCase') as any,
 		}),
 		createGroup: builder.mutation<any, any>({
+			invalidatesTags: ['groups'],
 			query: (payload) => ({
 				body: payload,
 				method: 'POST',
@@ -41,24 +43,57 @@ export const apiSlice = api.injectEndpoints({
 			}),
 			transformResponse: ({ data }: any) => convertKeysCase(data, 'camelCase') as any,
 		}),
+		releasePayment: builder.mutation<any, string>({
+			invalidatesTags: ['group'],
+			query: (payload) => ({
+				url: CLIENT_ENDPOINTS.releasePayment(payload),
+			}),
+			transformResponse: (data: any) => convertKeysCase(data, 'camelCase') as any,
+		}),
 		inviteAuthorizer: builder.mutation<any, { id: string; email: string }>({
 			query: (payload) => ({
 				url: CLIENT_ENDPOINTS.inviteAuthorizer(payload.id, payload.email),
 			}),
-			transformResponse: ({ data }: any) => convertKeysCase(data, 'camelCase') as any,
+			transformResponse: (data: any) => convertKeysCase(data, 'camelCase') as any,
+		}),
+		sendGroupNotification: builder.mutation<any, string>({
+			invalidatesTags: ['group'],
+			query: (payload) => ({
+				url: CLIENT_ENDPOINTS.sendNotification(payload),
+			}),
+			transformResponse: (data: any) => convertKeysCase(data, 'camelCase') as any,
 		}),
 		getBankList: builder.query<any, void>({
 			query: CLIENT_ENDPOINTS.getBankList,
 			transformResponse: ({ data }) => convertKeysCase(data, 'camelCase') as any,
 		}),
-		getBankAccountDetails: builder.mutation<any, { accountNumber: string; bankCode: string }>({
+		getBankAccountDetails: builder.mutation<any, { account_number: string; sort_code: string }>({
 			query: (payload) => ({
 				url: CLIENT_ENDPOINTS.getBankAccountDetails(),
 				method: 'POST',
-				body: payload, 
+				body: payload,
 			}),
 			transformResponse: ({ data }: any) => convertKeysCase(data, 'camelCase'),
 		}),
+		makeTransfer: builder.mutation<
+			any,
+			{
+				recipientAccountId: string;
+				amount: number;
+				sortCode: string;
+				bankName: string;
+				accountNumber: string;
+				accountName: string;
+				narration: string;
+			}
+			>({
+				query: (payload) => ({
+					url: CLIENT_ENDPOINTS.makeTransfer(),
+					method: 'POST',
+					body: convertKeysCase(payload, 'snakeCase'),
+				}),
+				transformResponse: ({ data }) => convertKeysCase(data, 'camelCase'),
+			}),
 	}),
 });
 
@@ -72,4 +107,7 @@ export const {
 	useInviteAuthorizerMutation,
 	useGetBankListQuery,
 	useGetBankAccountDetailsMutation,
+	useReleasePaymentMutation,
+	useSendGroupNotificationMutation,
+	useMakeTransferMutation,
 } = apiSlice;

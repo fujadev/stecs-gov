@@ -18,3 +18,18 @@ export const getInitials = (name: string) =>
 		.split(/\s+/)
 		.map((w) => w[0]!.toUpperCase())
 		.join('');
+
+export const fileToBase64 = async (file: File): Promise<string> => {
+	const reader = new FileReader();
+
+	return await new Promise((resolve, reject) => {
+		reader.onload = () => {
+			// remove "data:*/*;base64," if backend only wants pure base64
+			const base64String = (reader.result as string).split(',')[1];
+			resolve(base64String);
+		};
+		reader.onerror = (error) => reject(error);
+
+		reader.readAsDataURL(file);
+	});
+};

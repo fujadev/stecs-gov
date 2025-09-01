@@ -24,15 +24,9 @@ const CustomModal = ({ opened, onClose, groupId }: CustomModalProps) => {
 	const [inviteSuccess, setInviteSuccess] = useState(false);
 
 	const onSubmit = async (values: { email: string }) => {
-		console.log('Form submitted:', values);
-
 		await handleMutation({
 			mutation: () => inviteAutorizer({ email: values.email, id: groupId }).unwrap(),
-			showSuccessToast: false,
 			onSuccess(result) {
-				console.log('====================================');
-				console.log(result);
-				console.log('====================================');
 				setInviteSuccess(true);
 			},
 			onError(error) {
@@ -94,7 +88,7 @@ const CustomModal = ({ opened, onClose, groupId }: CustomModalProps) => {
 							{touched.email && errors.email && <small className="text-[#E63946]">{errors.email}</small>}
 						</div>
 
-						<AppButton title={'Send Invite'} color="#3A86FF" fullWidth type="submit" />
+						<AppButton loading={inviteLoading} title={'Send Invite'} color="#3A86FF" fullWidth type="submit" />
 					</form>
 				</div>
 			) : (
@@ -103,7 +97,7 @@ const CustomModal = ({ opened, onClose, groupId }: CustomModalProps) => {
 					<h3 className="text-lg font-semibold text-gray-900">Invite Successfully</h3>
 					<p className="text-[16px] text-[#003049] mt-[8px]">Authorizer has been successfully invited</p>
 					<div className="mx-auto w-full mt-[16px] max-w-[197px]">
-						<AppButton loading={inviteLoading} title="Back Home" color="#3A86FF" fullWidth />
+						<AppButton onClick={onClose} title="Close" color="#3A86FF" fullWidth />
 					</div>
 				</div>
 			)}

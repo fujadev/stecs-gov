@@ -87,13 +87,13 @@ const getMutationHandler =
 		// eslint-disable-next-line @typescript-eslint/explicit-function-return-type,@typescript-eslint/explicit-module-boundary-types
 	}: HandleMutationOptions<Result>) => {
 		try {
-			const result = await mutation();
+			const result: any = await mutation();
 			onSuccess?.(result);
 			if (showSuccessToast) {
 				showToast({
 					title: successMessage ?? FALLBACK_SUCCESS_MESSAGE,
 					variant: 'success',
-					message: '',
+					message: result?.message || '',
 				});
 			}
 			onComplete?.();

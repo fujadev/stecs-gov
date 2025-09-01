@@ -7,7 +7,7 @@ import { useState } from 'react';
 import AppHeader from '@/components/Header';
 import checklist from '../../assets/images/checklist.png';
 import Image from 'next/image';
-import { useGetBankListQuery, useGetBankAccountDetailsMutation } from '@/config/api/client/slice';
+import { useGetBankListQuery, useGetBankAccountDetailsMutation, useMakeTransferMutation } from '@/config/api/client/slice';
 
 const validationSchema = Yup.object().shape({
 	bankCode: Yup.string().required('Bank is required'),
@@ -15,7 +15,7 @@ const validationSchema = Yup.object().shape({
 		.required('Account number is required')
 		.matches(/^[0-9]+$/, 'Must be only digits')
 		.length(10, 'Account number must be 10 digits'),
-	accountHolder: Yup.string().required('Account holder name is required'),
+	accountName: Yup.string().required('Account name is required'),
 });
 
 const PayoutDetails = () => {
@@ -24,8 +24,8 @@ const PayoutDetails = () => {
 	const [showSuccess, setShowSuccess] = useState(false);
 
 	const { data: bankList } = useGetBankListQuery();
-
 	const [getBankAccountDetails] = useGetBankAccountDetailsMutation();
+	const [makeTransfer] = useMakeTransferMutation();
 
 	const fetchAccountDetails = async (
 		accountNumber: string,
@@ -34,7 +34,7 @@ const PayoutDetails = () => {
 	) => {
 		setLoading(true);
 		try {
-			console.log('Making API call with:', {
+			console.log('details', {
 				account_number: accountNumber,
 				sort_code: bankCode,
 			});
@@ -44,8 +44,11 @@ const PayoutDetails = () => {
 				sort_code: bankCode,
 			}).unwrap();
 
+			console.log("NEWWWWWWWWW", response)
+
+
 			const { accountName } = response || {};
-			setFieldValue('accountHolder', accountName || '');
+			setFieldValue('accountName', accountName || '');
 
 			if (accountName) {
 
@@ -53,7 +56,7 @@ const PayoutDetails = () => {
 
 			}
 		} catch (error) {
-			console.error('Failed to fetch account details:', error);
+			console.error('Failed', error);
 		} finally {
 			setLoading(false);
 		}
@@ -62,10 +65,20 @@ const PayoutDetails = () => {
 
 	const handleSubmit = async (values: any) => {
 		try {
-			console.log('Submitted payout details:', values);
+			const payload = {
+				recipientAccountId: '9fc0e406-4bd5-4281-9b4b-e9c16118e505',
+				accountNumber: values.accountNumber,
+				accountName: values.accountName,
+				bankName: '',
+				sortCode: values.bankCode,
+				amount: 5000,
+				narration: '',
+			};
+			const response = await makeTransfer(payload).unwrap();
+			console.log("Transfer response:", response);
 			setShowSuccess(true);
 		} catch (err) {
-			console.error('Transfer failed:', err);
+			console.error("Transfer failed:", err);
 		}
 	};
 
@@ -89,7 +102,7 @@ const PayoutDetails = () => {
 							initialValues={{
 								bankCode: '',
 								accountNumber: '',
-								accountHolder: '',
+								accountName: '',
 							}}
 							validationSchema={validationSchema}
 							onSubmit={handleSubmit}
@@ -118,7 +131,7 @@ const PayoutDetails = () => {
 												value={values.bankCode}
 												onChange={handleChange}
 											>
-												<option value="">-- Select Bank --</option>
+												<option value="">Select Bank</option>
 												{bankList?.map((bank: any) => (
 													<option key={bank.code} value={bank.code}>
 														{bank.name}
@@ -155,20 +168,20 @@ const PayoutDetails = () => {
 										</div>
 
 										<div className="mb-[24px]">
-											<label htmlFor="accountHolder" className="text-[#003049] text-[14px] font-semibold">
+											<label htmlFor="accountName" className="text-[#003049] text-[14px] font-semibold">
 												Account Holder Name
 											</label>
 											<input
-												id="accountHolder"
-												name="accountHolder"
+												id="accountName"
+												name="accountName"
 												type="text"
 												placeholder="Account name will appear here"
 												className="border border-[#92929D] px-[16px] py-[12px] rounded-[4px] w-full mt-[8px]"
-												value={values.accountHolder}
+												value={values.accountName}
 												readOnly
 											/>
-											{touched.accountHolder && errors.accountHolder && (
-												<small className="text-[#E63946]">{errors.accountHolder}</small>
+											{touched.accountName && errors.accountName && (
+												<small className="text-[#E63946]">{errors.accountName}</small>
 											)}
 										</div>
 									</div>
