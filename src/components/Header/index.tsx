@@ -1,11 +1,11 @@
 'use client';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useParams } from 'next/navigation';
 import HeaderLogo from '@/assets/icons/HeaderLogo';
 import { useAppDispatch, useTypedSelector } from '@/config/api/config/store';
 import { resetStore } from '@/config/api/auth/slice';
 import { getInitials } from '@/config/helpers/globals';
-import { ROUTES } from '@/config/routes';
 
 const AppHeader = () => {
 	const dispatch = useAppDispatch();
@@ -19,7 +19,7 @@ const AppHeader = () => {
 	return (
 		<header className="w-full wrapper-pad px-[20px] md:px-[48px] h-[72px] flex items-center shadow-[0_1px_4px_rgba(0,0,0,0.1)]">
 			<div className="flex justify-between items-center w-full">
-				<Link href={user ? ROUTES.DASHBOARD : ROUTES.LOGIN}>
+				<Link href="/">
 					<HeaderLogo />
 				</Link>
 

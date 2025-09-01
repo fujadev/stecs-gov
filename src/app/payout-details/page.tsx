@@ -2,12 +2,13 @@
 
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import AppHeader from '@/components/Header';
 import checklist from '../../assets/images/checklist.png';
 import Image from 'next/image';
-import { useGetBankListQuery, useGetBankAccountDetailsMutation, useMakeTransferMutation } from '@/config/api/client/slice';
+import { useGetBankListQuery, useGetBankAccountDetailsMutation, useMakeTransferMutation, useGetPaymentDataQuery } from '@/config/api/client/slice';
+import { numberWithCommas } from '@/config/helpers/globals';
 
 const validationSchema = Yup.object().shape({
 	bankCode: Yup.string().required('Bank is required'),
@@ -26,6 +27,15 @@ const PayoutDetails = () => {
 	const { data: bankList } = useGetBankListQuery();
 	const [getBankAccountDetails] = useGetBankAccountDetailsMutation();
 	const [makeTransfer] = useMakeTransferMutation();
+	const searchParams = useSearchParams()
+	const recipientId = searchParams.get('id')
+	const { data: details } = useGetPaymentDataQuery(recipientId);
+
+
+	useEffect(() => {
+		console.log("================", details)
+	}, [details]);
+
 
 	const fetchAccountDetails = async (
 		accountNumber: string,
@@ -65,13 +75,15 @@ const PayoutDetails = () => {
 
 	const handleSubmit = async (values: any) => {
 		try {
+			const selectedBank = bankList?.find((bank: any) => bank.code === values.bankCode);
 			const payload = {
-				recipientAccountId: '9fc0e406-4bd5-4281-9b4b-e9c16118e505',
+				recipientAccountId: recipientId,
 				accountNumber: values.accountNumber,
-				accountName: values.accountName,
-				bankName: '',
+				accountName: 'olaitan abdulazeez',
+				// accountName: details?.accountName,
+				bankName: selectedBank?.name,
 				sortCode: values.bankCode,
-				amount: 5000,
+				amount: details?.payoutAmount,
 				narration: '',
 			};
 			const response = await makeTransfer(payload).unwrap();
@@ -94,7 +106,7 @@ const PayoutDetails = () => {
 						</p>
 
 						<div className="bg-[#F5F6FA] px-[24px] py-[20px] w-full text-center mt-[16px] mb-[24px]">
-							<span className="block text-[#003049] text-[20px] font-bold">₦5,000</span>
+							<span className="block text-[#003049] text-[20px] font-bold">₦{details?.availableBalance}</span>
 							<span className="block text-[#003049] text-[16px] font-medium mt-[16px]">Payment for students</span>
 						</div>
 
@@ -204,7 +216,7 @@ const PayoutDetails = () => {
 							Payment Sent Successfully
 						</span>
 						<span className="text-[14px] text-[#3C3B3B] font-[400] text-center">
-							Payment of ₦5,000 has been successfully sent to your account
+							Payment of ₦{numberWithCommas(details?.payoutAmount)} has been successfully sent to your account
 						</span>
 						<button
 							type="button"

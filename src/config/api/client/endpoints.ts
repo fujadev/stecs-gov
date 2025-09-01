@@ -14,4 +14,5 @@ export const CLIENT_ENDPOINTS = {
 	getBankList: (): string => formatEndpoint('get-bank-list', namespace),
 	getBankAccountDetails: (): string => formatEndpoint('get-bank-account-details', namespace),
 	makeTransfer: (): string => formatEndpoint('recipient/make-transfer', namespace),
+	// getPaymentData: (): string => formatEndpoint('')
 };

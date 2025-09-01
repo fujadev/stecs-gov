@@ -28,7 +28,7 @@ const Dashboard = () => {
 				<div className="md:flex items-center justify-between mb-[40px]">
 					<h1 className="text-[#292D32] text-[16px] md:text-[24px] font-bold mb-[8px] md:mb-[0px]">{accountData?.accountName}</h1>
 					<div className="flex md:gap-[8px] md:justify-end justify-between">
-						<Button radius="xl" className="md:w-[182px] h-[41px] bg-[#3A86FF] text-white text-[12px] md:text-[14px] font-semibold" onClick={() => router.push(ROUTES.PAYOUTDETAILS)}>
+						<Button radius="xl" className="md:w-[182px] h-[41px] bg-[#3A86FF] text-white text-[12px] md:text-[14px] font-semibold" >
 							Fund Wallet
 						</Button>
 
