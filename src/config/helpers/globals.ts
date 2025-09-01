@@ -12,12 +12,14 @@ export const createRoute = (baseRoute: string, params: ArrayLike<string> | { [s:
 	return `${baseRoute}${searchParams ? `?${searchParams}` : ''}`;
 };
 
-export const getInitials = (name: string) =>
+export const getInitials = (name: string) => {
+	if (!name) return '';
 	name
 		.trim()
 		.split(/\s+/)
 		.map((w) => w[0]!.toUpperCase())
 		.join('');
+};
 
 export const fileToBase64 = async (file: File): Promise<string> => {
 	const reader = new FileReader();
