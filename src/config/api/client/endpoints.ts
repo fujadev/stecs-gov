@@ -11,4 +11,7 @@ export const CLIENT_ENDPOINTS = {
 	inviteAuthorizer: (id: string, email: string): string => formatEndpoint(`group/${id}/invite-authorizer`, namespace, { queryParams: { email } }),
 	releasePayment: (id: string): string => formatEndpoint(`group/${id}/release-payment`, namespace),
 	sendNotification: (id: string): string => formatEndpoint(`group/${id}/send-notifications`, namespace),
+	getBankList: (): string => formatEndpoint('get-bank-list', namespace),
+	getBankAccountDetails: (): string => formatEndpoint('get-bank-account-details', namespace),
+	makeTransfer: (): string => formatEndpoint('recipient/make-transfer', namespace),
 };
