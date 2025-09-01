@@ -47,6 +47,18 @@ export const apiSlice = api.injectEndpoints({
 			}),
 			transformResponse: ({ data }: any) => convertKeysCase(data, 'camelCase') as any,
 		}),
+		getBankList: builder.query<any, void>({
+			query: CLIENT_ENDPOINTS.getBankList,
+			transformResponse: ({ data }) => convertKeysCase(data, 'camelCase') as any,
+		}),
+		getBankAccountDetails: builder.mutation<any, { accountNumber: string; bankCode: string }>({
+			query: (payload) => ({
+				url: CLIENT_ENDPOINTS.getBankAccountDetails(),
+				method: 'POST',
+				body: payload, 
+			}),
+			transformResponse: ({ data }: any) => convertKeysCase(data, 'camelCase'),
+		}),
 	}),
 });
 
@@ -58,4 +70,6 @@ export const {
 	useRetrieveGroupQuery,
 	useRetrieveAccountQuery,
 	useInviteAuthorizerMutation,
+	useGetBankListQuery,
+	useGetBankAccountDetailsMutation,
 } = apiSlice;

@@ -18,8 +18,8 @@ const PaymentSummary = ({ data }: any) => {
 			<div className=" bg-[#fff] rounded-[8px] pt-[24px] pb-[36px]">
 				<div className="flex flex-col md:flex-row justify-between px-[28px] gap-4">
 					<div className='grow'>
-						<h1 className="text-[20px] md:text-[24px] font-bold text-[#292D32]">{data?.groupName}</h1>
-						<span className="text-[#747D82] text-[14px] font-semibold mr-[8px] pr-[8px] border-r border-[#D7D7D7]">
+						<h1 className="text-[20px] text-center md:text-left md:text-[24px] font-bold text-[#292D32]">{data?.groupName}</h1>
+						<span className="text-[#747D82] text-center md:text-left text-[14px] font-semibold mr-[8px] pr-[8px] border-r border-[#D7D7D7]">
 							Created on {dayjs(data?.createdAt).format('DD MMM, YYYY')}
 						</span>
 						<span className="text-[#747D82] text-[14px] font-semibold">
@@ -27,7 +27,7 @@ const PaymentSummary = ({ data }: any) => {
 						</span>
 					</div>
 
-					<div className="flex flex-col md:flex-row md:justify-between gap-[8px] grow-0 mt-[12px] md:mt-[0px]">
+					<div className="flex flex-col md:flex-row md:justify-between gap-[8px] grow-0 mt-[26px] md:mt-[0px]">
 						<Button
 							radius="xl"
 							className="w-full lg:w-[182px] h-[41px] bg-[#3A86FF] text-white text-[14px] font-semibold"
