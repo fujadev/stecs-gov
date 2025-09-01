@@ -70,23 +70,6 @@ const Login = () => {
 									{touched.email && <small className="text-[#E63946]">{errors.email}</small>}
 								</div>
 
-								{/* <div className="mb-[24px]">
-									<label htmlFor="Password" className="text-[#003049] text-[14px]">
-										Password
-									</label>
-									<input
-										id="password"
-										name="password"
-										type={showPassword ? 'text' : 'password'}
-										placeholder="Your Password"
-										className="border border-[#92929D] md:px-[16px] p-[8px] md:py-[12px] rounded-[4px] w-full pr-12"
-										value={values.password}
-										onChange={handleChange('password')}
-										onBlur={() => setFieldTouched('password')}
-									/>
-
-									{touched.password && <small className="text-[#E63946]">{errors.password}</small>}
-								</div> */}
 								<div className="mb-[24px]">
 									<label htmlFor="password" className="text-[#003049] text-[14px]">
 										Password
@@ -116,7 +99,7 @@ const Login = () => {
 												display: 'flex',
 												alignItems: 'center',
 												justifyContent: 'center',
-												color: '#747D82'
+												color: '#747D82',
 											}}
 										>
 											{showPassword ? <EyeIcon /> : <EyeClose />}

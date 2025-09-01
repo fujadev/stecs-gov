@@ -83,8 +83,8 @@ export const apiSlice = api.injectEndpoints({
 			}),
 			transformResponse: ({ data }) => convertKeysCase(data, 'camelCase'),
 		}),
-		getPaymentData: builder.query({
-			query: (recipientId: string) => `recipient/payment-data/${recipientId}`,
+		getPaymentData: builder.query<any, any>({
+			query: (recipientId: string) => CLIENT_ENDPOINTS.getPaymentData(recipientId),
 			transformResponse: ({ data }) => convertKeysCase(data, 'camelCase'),
 		}),
 	}),
