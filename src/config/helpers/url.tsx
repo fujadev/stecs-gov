@@ -2,6 +2,8 @@
 import dayjs from 'dayjs';
 
 import { statusClasses } from './tailwindClasses';
+import { Checkbox } from '@mantine/core';
+import { numberWithCommas } from './globals';
 
 /** Can handle strings with parentheses */
 export const safeEncodeURIComponent = (s: string): string => encodeURIComponent(s).replace(/[!'()*]/g, (c) => '%' + c.charCodeAt(0).toString(16));
@@ -56,7 +58,7 @@ export const groupTableColumn = [
 
 		render: (row: any) => (
 			<span>
-				{row?.lastName} {row?.firstName}
+				{row?.lastName} {row?.middleName} {row?.firstName}
 			</span>
 		),
 	},
@@ -64,7 +66,7 @@ export const groupTableColumn = [
 	{ header: 'NIN', accessor: 'nin' },
 	{
 		header: 'Amount',
-		render: (row: any) => <span>{row?.payoutAmount || 0}</span>,
+		render: (row: any) => <span>{numberWithCommas(row?.payoutAmount) || 0}</span>,
 	},
 	{
 		header: 'Transfer Status',
