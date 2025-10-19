@@ -11,8 +11,11 @@ export const CLIENT_ENDPOINTS = {
 	inviteAuthorizer: (id: string, email: string): string => formatEndpoint(`group/${id}/invite-authorizer`, namespace, { queryParams: { email } }),
 	releasePayment: (id: string): string => formatEndpoint(`group/${id}/release-payment`, namespace),
 	sendNotification: (id: string): string => formatEndpoint(`group/${id}/send-notifications`, namespace),
+	sendSingleNotification: (id: string): string => formatEndpoint(`recipient/resend-notification/${id}`, namespace),
 	getBankList: (): string => formatEndpoint('get-bank-list', namespace),
 	getBankAccountDetails: (): string => formatEndpoint('get-bank-account-details', namespace),
 	makeTransfer: (): string => formatEndpoint('recipient/make-transfer', namespace),
 	getPaymentData: (recipientId: string): string => formatEndpoint(`recipient/payment-data/${recipientId}`, namespace),
+	deleteRecepientAccount: (recipientId: string): string => formatEndpoint(`recipient/delete/${recipientId}`, namespace),
+	updateRecepient: (recipientId: string): string => formatEndpoint(`recipient/update/${recipientId}`, namespace),
 };

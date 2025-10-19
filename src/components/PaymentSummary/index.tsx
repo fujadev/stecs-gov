@@ -7,23 +7,26 @@ import dayjs from 'dayjs';
 import { statusTextColor } from '@/config/helpers/tailwindClasses';
 import { numberWithCommas } from '@/config/helpers/globals';
 import { useTypedSelector } from '@/config/api/config/store';
-import ReleaseConfirmMoadal from '../Modals/ReleaseConfirmMoadal';
+import ReleaseConfirmMoadal from '../Modals/ReleaseConfirmModal';
 import { useSendGroupNotificationMutation } from '@/config/api/client/slice';
 import { handleMutation } from '@/config/helpers/mutation';
+import SendNotificationConfirmModal from '../Modals/SendNotificationConfirm';
 
 const PaymentSummary = ({ data }: any) => {
 	const user = useTypedSelector((state) => state.auth.user);
 	const [inviteOpen, setInviteOpen] = useState(false);
 	const [releaseModalOpen, setReleaseModalOpen] = useState(false);
+	const [notificationConfirmModal, setNotificationConfirmModal] = useState(false);
 
 	const [sendNotification, { isLoading }] = useSendGroupNotificationMutation();
 
-	const handleSendNotification = () => {
+	const handleSendNotification = (confirm: boolean) => {
+		if (confirm) return setNotificationConfirmModal(true);
 		if (!data?.id) return;
 		handleMutation({
 			mutation: () => sendNotification(data?.id).unwrap(),
-			onSuccess(result) {
-				console.log(result);
+			onComplete() {
+				setNotificationConfirmModal(false);
 			},
 		});
 	};
@@ -57,14 +60,14 @@ const PaymentSummary = ({ data }: any) => {
 										Release Payment
 									</Button>
 								)}
-								{data?.status === 'Authorized' && (
+								{(data?.status === 'Authorized' || data?.status === 'Completed') && (
 									<Button
-										onClick={handleSendNotification}
+										onClick={() => handleSendNotification(data?.status === 'Completed')}
 										loading={isLoading}
 										radius="xl"
 										className="w-full lg:w-[182px] h-[41px] bg-[#008752] text-white text-[14px] font-semibold"
 									>
-										Send Notification
+										{data?.status === 'Authorized' ? 'Send Notification' : 'Re-send Notification'}
 									</Button>
 								)}
 							</>
@@ -83,12 +86,26 @@ const PaymentSummary = ({ data }: any) => {
 					</div>
 					<div className="md:w-[323px] md:pl-[24px] text-center md:text-left">
 						<h2 className="text-[#1C1C1C] text-[14px]  mb-[12px]">Total Recipient</h2>
-						<p className="text-[#003049] text-[24px] font-semibold">{numberWithCommas(data?.totalAmount)}</p>
+						<p className="text-[#003049] text-[24px] font-semibold">{numberWithCommas(data?.totalRecipient, false)}</p>
+					</div>
+					<div className="md:w-[323px] md:pl-[24px] text-center md:text-left">
+						<h2 className="text-[#1C1C1C] text-[14px]  mb-[12px]">Total Withdraw</h2>
+						<p className="text-[#003049] text-[24px] font-semibold">{numberWithCommas(data?.withdrawalCount, false)}</p>
+					</div>
+					<div className="md:w-[323px] md:pl-[24px] text-center md:text-left">
+						<h2 className="text-[#1C1C1C] text-[14px]  mb-[12px]">Total Pending</h2>
+						<p className="text-[#003049] text-[24px] font-semibold">{numberWithCommas(data?.pendingWithdrawalCount, false)}</p>
 					</div>
 				</div>
 			</div>
 
 			<ReleaseConfirmMoadal groupId={data?.id} groupName={data.groupName} opened={releaseModalOpen} onClose={() => setReleaseModalOpen(false)} />
+			<SendNotificationConfirmModal
+				onClose={() => setNotificationConfirmModal(false)}
+				isLoading={isLoading}
+				handleSendNotification={() => handleSendNotification(false)}
+				opened={notificationConfirmModal}
+			/>
 			<InviteModal groupId={data?.id} opened={inviteOpen} onClose={() => setInviteOpen(false)} />
 		</div>
 	);

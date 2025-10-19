@@ -43,6 +43,15 @@ export const apiSlice = api.injectEndpoints({
 			}),
 			transformResponse: ({ data }: any) => convertKeysCase(data, 'camelCase') as any,
 		}),
+		updateRecipient: builder.mutation<any, any>({
+			invalidatesTags: ['group'],
+			query: ({ id, ...rest }) => ({
+				body: convertKeysCase(rest, 'snakeCase') as any,
+				method: 'POST',
+				url: CLIENT_ENDPOINTS.updateRecepient(id),
+			}),
+			transformResponse: ({ data }: any) => convertKeysCase(data, 'camelCase') as any,
+		}),
 		releasePayment: builder.mutation<any, string>({
 			invalidatesTags: ['group'],
 			query: (payload) => ({
@@ -60,6 +69,20 @@ export const apiSlice = api.injectEndpoints({
 			invalidatesTags: ['group'],
 			query: (payload) => ({
 				url: CLIENT_ENDPOINTS.sendNotification(payload),
+			}),
+			transformResponse: (data: any) => convertKeysCase(data, 'camelCase') as any,
+		}),
+		sendSingleNotification: builder.mutation<any, string>({
+			query: (payload) => ({
+				url: CLIENT_ENDPOINTS.sendSingleNotification(payload),
+			}),
+			transformResponse: (data: any) => convertKeysCase(data, 'camelCase') as any,
+		}),
+		deleteBeneficiaryAccount: builder.mutation<any, string>({
+			invalidatesTags: ['group'],
+			query: (payload) => ({
+				method: 'DELETE',
+				url: CLIENT_ENDPOINTS.deleteRecepientAccount(payload),
 			}),
 			transformResponse: (data: any) => convertKeysCase(data, 'camelCase') as any,
 		}),
@@ -104,4 +127,7 @@ export const {
 	useSendGroupNotificationMutation,
 	useMakeTransferMutation,
 	useGetPaymentDataQuery,
+	useSendSingleNotificationMutation,
+	useDeleteBeneficiaryAccountMutation,
+	useUpdateRecipientMutation,
 } = apiSlice;
