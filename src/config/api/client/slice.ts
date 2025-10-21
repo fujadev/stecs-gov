@@ -78,11 +78,36 @@ export const apiSlice = api.injectEndpoints({
 			}),
 			transformResponse: (data: any) => convertKeysCase(data, 'camelCase') as any,
 		}),
+		recallRecipientFunds: builder.mutation<any, string>({
+			invalidatesTags: ['group'],
+			query: (payload) => ({
+				method: 'GET',
+				url: CLIENT_ENDPOINTS.recallRecipientFunds(payload),
+			}),
+			transformResponse: (data: any) => convertKeysCase(data, 'camelCase') as any,
+		}),
 		deleteBeneficiaryAccount: builder.mutation<any, string>({
 			invalidatesTags: ['group'],
 			query: (payload) => ({
 				method: 'DELETE',
 				url: CLIENT_ENDPOINTS.deleteRecepientAccount(payload),
+			}),
+			transformResponse: (data: any) => convertKeysCase(data, 'camelCase') as any,
+		}),
+		bulkDeleteBeneficiary: builder.mutation<any, string[]>({
+			invalidatesTags: ['group'],
+			query: (payload) => ({
+				body: { ids: payload },
+				method: 'POST',
+				url: CLIENT_ENDPOINTS.bulkDeleteRecepient(),
+			}),
+			transformResponse: (data: any) => convertKeysCase(data, 'camelCase') as any,
+		}),
+		bulkRecallFunds: builder.mutation<any, string>({
+			invalidatesTags: ['group'],
+			query: (payload) => ({
+				method: 'GET',
+				url: CLIENT_ENDPOINTS.bulkRecallFunds(payload),
 			}),
 			transformResponse: (data: any) => convertKeysCase(data, 'camelCase') as any,
 		}),
@@ -130,4 +155,7 @@ export const {
 	useSendSingleNotificationMutation,
 	useDeleteBeneficiaryAccountMutation,
 	useUpdateRecipientMutation,
+	useBulkDeleteBeneficiaryMutation,
+	useRecallRecipientFundsMutation,
+	useBulkRecallFundsMutation,
 } = apiSlice;

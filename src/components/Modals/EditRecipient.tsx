@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { Button, Divider, Flex, Modal } from '@mantine/core';
+import { useEffect } from 'react';
+import { Button, Flex, Modal } from '@mantine/core';
 import { useForm, yupResolver } from '@mantine/form';
 import * as Yup from 'yup';
 import AppInput from '../Common/AppInput';

@@ -49,7 +49,7 @@ const ReleaseConfirmMoadal = ({ opened, onClose, groupId, groupName }: CustomMod
 						<h3 className="text-lg font-semibold text-gray-900">Release Payment</h3>
 						<p className="text-[16px] text-[#003049] mt-[24px]">Are you sure you want to release this payment ({groupName})?</p>
 						<div className="flex gap-[10px] mt-[32px]">
-							<Button disabled={isLoading} onClick={onClose} miw={197} variant="outline" color="#3A86FF" className="h-[41px] text-[14px] font-semibold rounded-[12px]">
+							<Button onClick={onClose} miw={197} variant="outline" color="#3A86FF" className="h-[41px] text-[14px] font-semibold rounded-[12px]">
 								Cancel
 							</Button>
 							<Button loading={isLoading} onClick={() => handleReleasePayment()} miw={197} className="h-[41px] bg-[#008752] text-white text-[14px] font-semibold rounded-[12px]">
