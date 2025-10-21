@@ -11,10 +11,12 @@ import ReleaseConfirmMoadal from '../Modals/ReleaseConfirmModal';
 import { useSendGroupNotificationMutation } from '@/config/api/client/slice';
 import { handleMutation } from '@/config/helpers/mutation';
 import SendNotificationConfirmModal from '../Modals/SendNotificationConfirm';
+import RecallConfirm from '../Modals/RecallConfirm';
 
 const PaymentSummary = ({ data }: any) => {
 	const user = useTypedSelector((state) => state.auth.user);
 	const [inviteOpen, setInviteOpen] = useState(false);
+	const [openBulkDeleteConfirm, setOpenBulkDeleteConfirm] = useState(false);
 	const [releaseModalOpen, setReleaseModalOpen] = useState(false);
 	const [notificationConfirmModal, setNotificationConfirmModal] = useState(false);
 
@@ -72,6 +74,18 @@ const PaymentSummary = ({ data }: any) => {
 								)}
 							</>
 						)}
+
+						{data?.status !== 'Pending' && (
+							<Button
+								color="#008752"
+								variant="outline"
+								radius="xl"
+								className="w-full  lg:w-[182px] h-[41px] bg-[transparent] text-[14px] font-semibold"
+								onClick={() => setOpenBulkDeleteConfirm(true)}
+							>
+								Withdraw Funds
+							</Button>
+						)}
 					</div>
 				</div>
 
@@ -81,14 +95,14 @@ const PaymentSummary = ({ data }: any) => {
 						<p className="text-[#003049] text-[24px] font-semibold">₦{numberWithCommas(data?.totalAmount)}</p>
 					</div>
 					<div className="md:w-[323px] md:pl-[24px] border-[#D7D7D7] md:border-r text-center md:text-left">
-						<h2 className="text-[#1C1C1C] text-[14px]  mb-[12px]">Avg Payment per recipient</h2>
+						<h2 className="text-[#1C1C1C] text-[14px]  mb-[12px]">Avg Payment</h2>
 						<p className="text-[#003049] text-[24px] font-semibold">₦{numberWithCommas(data?.averagePayment)}</p>
 					</div>
-					<div className="md:w-[323px] md:pl-[24px] text-center md:text-left">
+					<div className="md:w-[323px] md:pl-[24px] border-[#D7D7D7] md:border-r text-center md:text-left">
 						<h2 className="text-[#1C1C1C] text-[14px]  mb-[12px]">Total Recipient</h2>
 						<p className="text-[#003049] text-[24px] font-semibold">{numberWithCommas(data?.totalRecipient, false)}</p>
 					</div>
-					<div className="md:w-[323px] md:pl-[24px] text-center md:text-left">
+					<div className="md:w-[323px] md:pl-[24px] border-[#D7D7D7] md:border-r text-center md:text-left">
 						<h2 className="text-[#1C1C1C] text-[14px]  mb-[12px]">Total Withdraw</h2>
 						<p className="text-[#003049] text-[24px] font-semibold">{numberWithCommas(data?.withdrawalCount, false)}</p>
 					</div>
@@ -98,6 +112,7 @@ const PaymentSummary = ({ data }: any) => {
 					</div>
 				</div>
 			</div>
+			<RecallConfirm groupId={data?.id} opened={openBulkDeleteConfirm} onClose={() => setOpenBulkDeleteConfirm(false)} />
 
 			<ReleaseConfirmMoadal groupId={data?.id} groupName={data.groupName} opened={releaseModalOpen} onClose={() => setReleaseModalOpen(false)} />
 			<SendNotificationConfirmModal

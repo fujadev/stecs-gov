@@ -16,19 +16,26 @@ export type DataTableProps<T> = {
 	columns: Column<T>[];
 	getRowKey?: (row: T, index: number) => string | number;
 
-	/** NEW: selection */
-	selectable?: boolean; // show checkbox column
-	selectedKeys?: Array<string | number>; // controlled selection
-	defaultSelectedKeys?: Array<string | number>; // uncontrolled initial selection
-	onSelectionChange?: (keys: Array<string | number>) => void;
+	/** Selection */
+	selectable?: boolean;
+	selectedKeys?: Array<string>; // controlled
+	defaultSelectedKeys?: Array<string>; // uncontrolled
+	onSelectionChange?: (keys: Array<string>) => void;
+	/** Row-level control */
+	isRowSelectable?: (row: T, index: number) => boolean; // default: all selectable
+	/** Hide checkbox for non-selectable rows (otherwise disabled) */
+	hideCheckboxWhenDisabled?: boolean;
 
+	/** Visuals / behavior */
 	stickyHeaderOffset?: number;
 	renderRowActions?: (row: T) => React.ReactNode;
 	classNames?: { thead?: string; th?: string; tr?: string; td?: string };
 	emptyMessage?: string;
-	loading?: boolean;
+
+	/** Loading */
+	loading?: boolean; // first-load skeletons
 	skeletonRowCount?: number;
-	overlayLoading?: boolean;
+	overlayLoading?: boolean; // keeps rows visible, shows overlay (e.g., searching)
 	overlayMessage?: string;
 };
 
@@ -42,11 +49,16 @@ const CustomTable = <T,>({
 	selectedKeys,
 	defaultSelectedKeys = [],
 	onSelectionChange,
+	isRowSelectable,
+	hideCheckboxWhenDisabled = false,
 
+	// visuals
 	stickyHeaderOffset = 60,
 	renderRowActions,
 	classNames,
 	emptyMessage = 'No records found',
+
+	// loading
 	loading = false,
 	skeletonRowCount = 6,
 	overlayLoading = false,
@@ -55,7 +67,7 @@ const CustomTable = <T,>({
 	const isMobile = useMediaQuery('(max-width: 768px)');
 	const offset = isMobile ? 20 : stickyHeaderOffset;
 
-	// selection (controlled or uncontrolled)
+	/** selection state (controlled or uncontrolled) */
 	const controlled = selectedKeys !== undefined;
 	const [internal, setInternal] = React.useState<Array<string | number>>(defaultSelectedKeys);
 	const keys = controlled ? (selectedKeys as Array<string | number>) : internal;
@@ -66,21 +78,32 @@ const CustomTable = <T,>({
 	};
 
 	const keyOf = (row: T, idx: number) => getRowKey(row, idx);
-	const visibleRowKeys = data.map((r, i) => keyOf(r, i));
+
+	/** visible rows with selectability info */
+	const visible = data.map((row, i) => ({
+		key: keyOf(row, i),
+		row,
+		index: i,
+		selectable: isRowSelectable ? isRowSelectable(row, i) : true,
+	}));
+
 	const selectedSet = React.useMemo(() => new Set(keys), [keys]);
 
-	const selectedOnPage = visibleRowKeys.filter((k) => selectedSet.has(k));
-	const allChecked = data.length > 0 && selectedOnPage.length === data.length;
-	const someChecked = !allChecked && selectedOnPage.length > 0;
+	/** header checkbox logic (only counts selectable rows) */
+	const selectableKeysOnPage = visible.filter((v) => v.selectable).map((v) => v.key);
+	const selectedSelectableOnPage = selectableKeysOnPage.filter((k) => selectedSet.has(k));
+	const hasSelectableOnPage = selectableKeysOnPage.length > 0;
+	const allChecked = hasSelectableOnPage && selectedSelectableOnPage.length === selectableKeysOnPage.length;
+	const someChecked = hasSelectableOnPage && !allChecked && selectedSelectableOnPage.length > 0;
 
 	const toggleAllVisible = () => {
 		if (allChecked) {
-			// unselect all visible
-			const next = keys.filter((k) => !visibleRowKeys.includes(k));
+			// unselect all selectable visible rows
+			const next = keys.filter((k) => !selectableKeysOnPage.includes(k));
 			setKeys(next);
 		} else {
-			// add all visible (merge)
-			const merged = new Set([...keys, ...visibleRowKeys]);
+			// add all selectable visible rows
+			const merged = new Set([...keys, ...selectableKeysOnPage]);
 			setKeys([...merged]);
 		}
 	};
@@ -95,7 +118,7 @@ const CustomTable = <T,>({
 
 	return (
 		<div className="relative overflow-x-auto sm:overflow-visible">
-			{/* Overlay for search/refetch */}
+			{/* Overlay for refetch/search */}
 			<LoadingOverlay visible={overlayLoading} zIndex={20} overlayProps={{ blur: 2, backgroundOpacity: 0.25 }} loaderProps={{ type: 'oval', size: 'md' }} />
 			{overlayLoading && overlayMessage && (
 				<div className="pointer-events-none absolute inset-x-0 top-16 z-30 flex justify-center">
@@ -119,7 +142,7 @@ const CustomTable = <T,>({
 					<Table.Tr>
 						{selectable && (
 							<Table.Th className="w-10">
-								<Checkbox aria-label="Select all rows" checked={allChecked} indeterminate={someChecked} onChange={toggleAllVisible} />
+								<Checkbox aria-label="Select all rows" checked={allChecked} indeterminate={someChecked} onChange={toggleAllVisible} disabled={!hasSelectableOnPage} />
 							</Table.Th>
 						)}
 
@@ -134,7 +157,7 @@ const CustomTable = <T,>({
 				</Table.Thead>
 
 				<Table.Tbody>
-					{/* Skeletons on first load */}
+					{/* First-load skeletons */}
 					{loading &&
 						Array.from({ length: skeletonRowCount }).map((_, r) => (
 							<Table.Tr key={`skeleton-${r}`}>
@@ -146,7 +169,7 @@ const CustomTable = <T,>({
 							</Table.Tr>
 						))}
 
-					{/* Empty */}
+					{/* Empty state */}
 					{!loading && data.length === 0 && (
 						<Table.Tr>
 							<Table.Td colSpan={colCount}>
@@ -155,28 +178,37 @@ const CustomTable = <T,>({
 						</Table.Tr>
 					)}
 
-					{/* Rows */}
+					{/* Data rows */}
 					{!loading &&
-						data.map((row, rIdx) => {
-							const rowKey = keyOf(row, rIdx);
-							const checked = selectedSet.has(rowKey);
+						visible.map(({ key, row, index, selectable: canSelect }) => {
+							const checked = selectedSet.has(key);
+
 							return (
-								<Table.Tr key={rowKey}>
+								<Table.Tr key={key} className={!canSelect ? 'opacity-70' : undefined}>
 									{selectable && (
 										<Table.Td className="w-10">
-											<Checkbox aria-label={`Select row ${rIdx + 1}`} checked={checked} onChange={() => toggleOne(rowKey)} />
+											{hideCheckboxWhenDisabled && !canSelect ? null : (
+												<Checkbox
+													aria-label={`Select row ${index + 1}`}
+													checked={checked}
+													onChange={() => canSelect && toggleOne(key)}
+													disabled={!canSelect}
+													className={!canSelect ? 'cursor-not-allowed' : undefined}
+												/>
+											)}
 										</Table.Td>
 									)}
 
 									{columns.map((col, cIdx) => {
-										const content = col.render ? col.render(row, rIdx) : String((row as any)[col.accessor as string] ?? '');
+										const content = col.render ? col.render(row as T, index) : String((row as any)[col.accessor as string] ?? '');
 										return (
 											<Table.Td key={cIdx} className={col.tdClassName}>
 												{content}
 											</Table.Td>
 										);
 									})}
-									{renderRowActions && <Table.Td>{renderRowActions(row)}</Table.Td>}
+
+									{renderRowActions && <Table.Td>{renderRowActions(row as T)}</Table.Td>}
 								</Table.Tr>
 							);
 						})}

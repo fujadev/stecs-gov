@@ -17,5 +17,8 @@ export const CLIENT_ENDPOINTS = {
 	makeTransfer: (): string => formatEndpoint('recipient/make-transfer', namespace),
 	getPaymentData: (recipientId: string): string => formatEndpoint(`recipient/payment-data/${recipientId}`, namespace),
 	deleteRecepientAccount: (recipientId: string): string => formatEndpoint(`recipient/delete/${recipientId}`, namespace),
+	bulkDeleteRecepient: (): string => formatEndpoint('recipient/bulk-delete', namespace),
+	bulkRecallFunds: (groupID: string): string => formatEndpoint(`group/${groupID}/initiate-take-back`, namespace),
 	updateRecepient: (recipientId: string): string => formatEndpoint(`recipient/update/${recipientId}`, namespace),
+	recallRecipientFunds: (recipientId: string): string => formatEndpoint(`recipient/take-back/${recipientId}`, namespace),
 };

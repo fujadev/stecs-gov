@@ -10,17 +10,26 @@ import EditRecipient from '@/components/Modals/EditRecipient';
 import PaymentSummary from '@/components/PaymentSummary';
 import SearchInput from '@/components/SearchInput';
 
-import { useDeleteBeneficiaryAccountMutation, useRetrieveGroupQuery, useSendSingleNotificationMutation } from '@/config/api/client/slice';
+import {
+	useBulkDeleteBeneficiaryMutation,
+	useDeleteBeneficiaryAccountMutation,
+	useRecallRecipientFundsMutation,
+	useRetrieveGroupQuery,
+	useSendSingleNotificationMutation,
+} from '@/config/api/client/slice';
 import { handleMutation } from '@/config/helpers/mutation';
 import { groupTableColumn } from '@/config/helpers/url';
-import { Loader, Menu } from '@mantine/core';
+import { Button, Loader, Menu } from '@mantine/core';
 import { useMemo, useState } from 'react';
 
 const GroupOverview = ({ params }: { params: { groupId: string } }): JSX.Element => {
+	const [selectedIDs, setSelectedIDs] = useState<Array<string>>([]);
 	const [editDetails, setEditDetails] = useState(null);
 	const { data, isLoading: groupLoading } = useRetrieveGroupQuery(params?.groupId);
-	const [sendNotification, { isLoading }] = useSendSingleNotificationMutation();
+	const [sendNotification, { isLoading: sendingNotification }] = useSendSingleNotificationMutation();
 	const [deleteBeneficiary, { isLoading: deletingBeneficiary }] = useDeleteBeneficiaryAccountMutation();
+	const [bulkDeleteBeneficiary, { isLoading: bulkDeletingBeneficiary }] = useBulkDeleteBeneficiaryMutation();
+	const [recallFunds, { isLoading: recallLoading }] = useRecallRecipientFundsMutation();
 
 	const [search, setSearch] = useState('');
 
@@ -34,6 +43,19 @@ const GroupOverview = ({ params }: { params: { groupId: string } }): JSX.Element
 		if (!id) return;
 		handleMutation({
 			mutation: () => deleteBeneficiary(id).unwrap(),
+		});
+	};
+	const handleBulkDeleteBeneficiary = () => {
+		if (selectedIDs.length < 1) return;
+		handleMutation({
+			mutation: () => bulkDeleteBeneficiary(selectedIDs).unwrap(),
+		});
+	};
+
+	const handleRecallFunds = (id: string) => {
+		if (!id) return;
+		handleMutation({
+			mutation: () => recallFunds(id).unwrap(),
 		});
 	};
 
@@ -56,13 +78,30 @@ const GroupOverview = ({ params }: { params: { groupId: string } }): JSX.Element
 		<DashboardLayout>
 			<PaymentSummary data={data} />
 			<div className="bg-[#FFFFFF] mt-[32px] py-[32px] px-[19px] rounded-[8px]">
-				<div className="mb-[32px]">
+				<div className="mb-[32px] flex justify-between">
 					<SearchInput placeholder="Search Recipient" onChange={(e) => setSearch(e.target.value)} />
+
+					{selectedIDs.length >= 1 && (
+						<Button
+							onClick={() => handleBulkDeleteBeneficiary()}
+							loading={bulkDeletingBeneficiary}
+							type="submit"
+							miw={197}
+							className="h-[41px] bg-[crimson] text-white text-[14px] font-semibold rounded-[12px]"
+						>
+							Delete
+						</Button>
+					)}
 				</div>
 				<CustomTable
 					selectable
 					columns={groupTableColumn}
+					isRowSelectable={(row: any) => row.status === 'Pending' && !row.withdrawalStatus}
+					selectedKeys={selectedIDs}
+					onSelectionChange={setSelectedIDs}
+					getRowKey={(r: any) => r.id}
 					data={tableData || []}
+					loading={groupLoading}
 					renderRowActions={(row) => (
 						<>
 							<Menu openDelay={100} closeDelay={400}>
@@ -77,12 +116,13 @@ const GroupOverview = ({ params }: { params: { groupId: string } }): JSX.Element
 										disabled={row?.withdrawalStatus}
 										onClick={() => handleSendNotification(row.id)}
 										className="mb-[4px]"
-										leftSection={!isLoading ? <SendIcon /> : <Loader size={16} />}
+										leftSection={!sendingNotification ? <SendIcon /> : <Loader size={16} />}
 									>
-										Resend Notification
+										Send Notification
 									</Menu.Item>
 
 									<Menu.Item
+										disabled={row?.withdrawalStatus}
 										className="mb-[4px]"
 										onClick={() => {
 											setEditDetails(row);
@@ -91,10 +131,19 @@ const GroupOverview = ({ params }: { params: { groupId: string } }): JSX.Element
 									>
 										Edit Recipient
 									</Menu.Item>
-									<Menu.Item className="mb-[4px]" leftSection={<WithdrawIcon />}>
+									<Menu.Item
+										onClick={() => handleRecallFunds(row?.id)}
+										disabled={row?.withdrawalStatus}
+										className="mb-[4px]"
+										leftSection={!recallLoading ? <WithdrawIcon /> : <Loader size={16} />}
+									>
 										Withdraw Funds
 									</Menu.Item>
-									<Menu.Item onClick={() => handleDeleteBeneficiary(row.id)} leftSection={!deletingBeneficiary ? <TrashIcon /> : <Loader size={16} />}>
+									<Menu.Item
+										disabled={row.status !== 'Pending' || row?.withdrawalStatus}
+										onClick={() => handleDeleteBeneficiary(row.id)}
+										leftSection={!deletingBeneficiary ? <TrashIcon /> : <Loader size={16} />}
+									>
 										Delete Recipient
 									</Menu.Item>
 								</Menu.Dropdown>
