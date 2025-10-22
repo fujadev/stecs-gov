@@ -35,9 +35,7 @@ const PayoutDetails = () => {
 	const { data: paymentData, isLoading: detailsLoading } = useGetPaymentDataQuery(recipientId);
 
 	const bankListSelectData = useMemo(() => {
-		// eslint-disable-next-line
 		const cArr = bankList;
-		// eslint-disable-next-line
 		if (Array.isArray(cArr)) {
 			return cArr.map((v) => ({ label: v?.name || v.bankName, value: v?.code || v?.bankCode }));
 		}
@@ -186,6 +184,7 @@ const PayoutDetails = () => {
 					</div>
 				)}
 			</div>
+			<></>
 		</>
 	);
 };
